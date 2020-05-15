@@ -1,0 +1,104 @@
+---
+title: "9_Plotting_Jasp"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+#Set Absolute Path
+getwd()
+Absolute_Directory <- dirname(rstudioapi::getSourceEditorContext()$path)
+setwd(Absolute_Directory)
+getwd()
+Jasp_Data <- read.csv("FinalWithOutHeart.csv")
+
+#Loading library
+library(gridExtra)
+library(grid)
+library(ggplot2)
+library(lattice)
+library(tidyr)
+library(ggpubr)
+library(doBy)
+
+#Plot
+#Meta-D
+p1 <- ggplot(Jasp_Data, aes(x = Arousal,y = meta_d, group=Valence, color=Valence)) + stat_summary(aes(colour=paste("mean",Valence),group=Valence), fun.y=mean, geom="line", size=1,position=position_dodge(0.15))+geom_point(aes(colour=paste("mean",Valence),group=Valence), stat = "summary", fun.y=mean,position=position_dodge(0.15),size=3) + labs(x = "Arousal", y = "meta d'") +theme_bw()+scale_x_continuous(breaks = c(0,1),labels=c("0" = "Low", "1" = "High")) + theme(legend.position = "none") + scale_color_manual(values=c("#2C5AA0","#AA0000")) + geom_errorbar(aes(colour=paste("mean",Valence),group=Valence),stat = "summary", fun.data = mean_se, width = 0.3,position=position_dodge(0.15),size=1)+ theme(plot.title = element_text(size=25, face="bold.italic"),aspect.ratio=1,axis.title.x = element_text(
+  size=20, face="bold"),axis.text.x = element_text(face = "bold", size = 12),axis.text.y = element_text(face = "bold", size = 12),axis.title.y = element_text(size=20, face="bold"),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"))
+p1
+#D
+p2 <- ggplot(Jasp_Data, aes(x = Arousal,y = d, group=Valence, color=Valence)) + stat_summary(aes(colour=paste("mean",Valence),group=Valence), fun.y=mean, geom="line", size=1,position=position_dodge(0.15))+geom_point(aes(colour=paste("mean",Valence),group=Valence), stat = "summary", fun.y=mean,position=position_dodge(0.15),size=3) + labs(x = "Arousal", y = "d'") +theme_bw()+scale_x_continuous(breaks = c(0,1),labels=c("0" = "Low", "1" = "High")) + theme(legend.position = "none") + scale_color_manual(values=c("#2C5AA0","#AA0000")) + geom_errorbar(aes(colour=paste("mean",Valence),group=Valence),stat = "summary", fun.data = mean_se, width = 0.3,position=position_dodge(0.15),size=1)+ theme(plot.title = element_text(size=25, face="bold.italic"),aspect.ratio=1,axis.title.x = element_text(
+  size=20, face="bold"),axis.text.x = element_text(face = "bold", size = 12),axis.text.y = element_text(face = "bold", size = 12),axis.title.y = element_text(size=20, face="bold"),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"))
+p2
+#Mratio
+pd <- position_dodge(0.1)
+p3 <- ggplot(Jasp_Data, aes(x = Arousal,y = mratio, group=Valence, color=Valence)) + stat_summary(aes(colour=paste("mean",Valence),group=Valence), fun.y=mean, geom="line", size=1,position=position_dodge(0.15))+geom_point(aes(colour=paste("mean",Valence),group=Valence), stat = "summary", fun.y=mean,position=position_dodge(0.15),size=3) + labs(x = "Arousal", y = "mratio") +theme_bw()+scale_x_continuous(breaks = c(0,1),labels=c("0" = "Low", "1" = "High")) + theme(legend.position = "none") + scale_color_manual(values=c("#2C5AA0","#AA0000")) + geom_errorbar(aes(colour=paste("mean",Valence),group=Valence),stat = "summary", fun.data = mean_se, width = 0.3,position=position_dodge(0.15),size=1)+ theme(plot.title = element_text(size=25, face="bold.italic"),aspect.ratio=1,axis.title.x = element_text(
+  size=20, face="bold"),axis.text.x = element_text(face = "bold", size = 12),axis.text.y = element_text(face = "bold", size = 12),axis.title.y = element_text(size=20, face="bold"),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"))
+p3
+#Confidence Mean
+p4 <- ggplot(Jasp_Data, aes(x = Arousal,y = Confidence.mean, group=Valence, color=Valence)) + stat_summary(aes(colour=paste("mean",Valence),group=Valence), fun.y=mean, geom="line", size=1,position=position_dodge(0.15))+geom_point(aes(colour=paste("mean",Valence),group=Valence), stat = "summary", fun.y=mean,position=position_dodge(0.15),size=3) + labs(x = "Arousal", y = "Confidence Mean") +theme_bw()+scale_x_continuous(breaks = c(0,1),labels=c("0" = "Low", "1" = "High")) + theme(legend.position = "none") + scale_color_manual(values=c("#2C5AA0","#AA0000")) + geom_errorbar(aes(colour=paste("mean",Valence),group=Valence),stat = "summary", fun.data = mean_se, width = 0.3,position=position_dodge(0.15),size=1)+ theme(plot.title = element_text(size=25, face="bold.italic"),aspect.ratio=1,axis.title.x = element_text(
+  size=20, face="bold"),axis.text.x = element_text(face = "bold", size = 12),axis.text.y = element_text(face = "bold", size = 12),axis.title.y = element_text(size=20, face="bold"),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"))
+p4
+#Confidence RT Mean
+p5 <- ggplot(Jasp_Data, aes(x = Arousal,y = Confidence_RT.mean, group=Valence, color=Valence)) + stat_summary(aes(colour=paste("mean",Valence),group=Valence), fun.y=mean, geom="line", size=1,position=position_dodge(0.15))+geom_point(aes(colour=paste("mean",Valence),group=Valence), stat = "summary", fun.y=mean,position=position_dodge(0.15),size=3) + labs(x = "Arousal", y = "Confidence RT Mean") +theme_bw()+scale_x_continuous(breaks = c(0,1),labels=c("0" = "Low", "1" = "High")) + theme(legend.position = "none") + scale_color_manual(values=c("#2C5AA0","#AA0000")) + geom_errorbar(aes(colour=paste("mean",Valence),group=Valence),stat = "summary", fun.data = mean_se, width = 0.3,position=position_dodge(0.15),size=1)+ theme(plot.title = element_text(size=25, face="bold.italic"),aspect.ratio=1,axis.title.x = element_text(
+  size=20, face="bold"),axis.text.x = element_text(face = "bold", size = 12),axis.text.y = element_text(face = "bold", size = 12),axis.title.y = element_text(size=20, face="bold"),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"))
+p5
+#Accuracy Mean
+p6 <- ggplot(Jasp_Data, aes(x = Arousal,y = Accuracy.mean, group=Valence, color=Valence)) + stat_summary(aes(colour=paste("mean",Valence),group=Valence), fun.y=mean, geom="line", size=1,position=position_dodge(0.15))+geom_point(aes(colour=paste("mean",Valence),group=Valence), stat = "summary", fun.y=mean,position=position_dodge(0.15),size=3) + labs(x = "Arousal", y = "Accuracy Mean") +theme_bw()+scale_x_continuous(breaks = c(0,1),labels=c("0" = "Low", "1" = "High")) + theme(legend.position = "none") + scale_color_manual(values=c("#2C5AA0","#AA0000")) + geom_errorbar(aes(colour=paste("mean",Valence),group=Valence),stat = "summary", fun.data = mean_se, width = 0.3,position=position_dodge(0.15),size=1)+ theme(plot.title = element_text(size=25, face="bold.italic"),aspect.ratio=1,axis.title.x = element_text(
+  size=20, face="bold"),axis.text.x = element_text(face = "bold", size = 12),axis.text.y = element_text(face = "bold", size = 12),axis.title.y = element_text(size=20, face="bold"),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"))
+p6
+#Accuracy RT Mean
+p7 <- ggplot(Jasp_Data, aes(x = Arousal,y = RT.mean, group=Valence, color=Valence)) + stat_summary(aes(colour=paste("mean",Valence),group=Valence), fun.y=mean, geom="line", size=1,position=position_dodge(0.15))+geom_point(aes(colour=paste("mean",Valence),group=Valence), stat = "summary", fun.y=mean,position=position_dodge(0.15),size=3) + labs(x = "Arousal", y = "Accuracy RT Mean") +theme_bw()+scale_x_continuous(breaks = c(0,1),labels=c("0" = "Low", "1" = "High")) + theme(legend.position = "none") + scale_color_manual(values=c("#2C5AA0","#AA0000")) + geom_errorbar(aes(colour=paste("mean",Valence),group=Valence),stat = "summary", fun.data = mean_se, width = 0.3,position=position_dodge(0.15),size=1)+ theme(plot.title = element_text(size=25, face="bold.italic"),aspect.ratio=1,axis.title.x = element_text(
+  size=20, face="bold"),axis.text.x = element_text(face = "bold", size = 12),axis.text.y = element_text(face = "bold", size = 12),axis.title.y = element_text(size=20, face="bold"),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"))
+p7
+
+#Loading library
+library(gridExtra)
+library(grid)
+library(ggplot2)
+library(lattice)
+library(gdtools)
+library(svglite)
+
+ggarrange(p6,p4,p7,p3,p1,p2)
+ggarrange(p5,p7)
+
+
+#We may plot a Bayesian Correlation Matrix to explore between-subject correlations in M-ratio between our different task categories, and also together with heart-rate. These analyses would be highly exploratory and at risk of heightened type-II error, and so would only be reported in supplemental results.
+#See Jasp Analysis
+
+```
+
+
+#Exploratory - LearningTime
+```{r}
+#Set Absolute Path
+getwd()
+Absolute_Directory <- dirname(rstudioapi::getSourceEditorContext()$path)
+setwd(Absolute_Directory)
+getwd()
+Jasp_Data <- read.csv("FinalWithOutHeart_LearningTime_Or.csv")
+
+#Loading library
+library(gridExtra)
+library(grid)
+library(ggplot2)
+library(lattice)
+library(tidyr)
+library(ggpubr)
+library(doBy)
+
+#Plot
+#Meta-D (Valence over Learning Time)
+pp1 <- ggplot(Jasp_Data, aes(x = LearningTime,y = meta_d, group=Valence, color=Valence, Shape=Arousal)) + stat_summary(aes(colour=paste("mean",Valence),group=Valence), fun.y=mean, geom="line", size=1,position=position_dodge(0.15))+geom_point(aes(colour=paste("mean",Valence),group=Valence), stat = "summary", fun.y=mean,position=position_dodge(0.15),size=3) + labs(x = "Learning Times", y = "meta d'") +theme_bw()+scale_x_continuous(breaks = c(30,60,90)) + theme(legend.position = "none") + scale_color_manual(values=c("#2C5AA0","#AA0000")) + geom_errorbar(aes(colour=paste("mean",Valence),group=Valence),stat = "summary", fun.data = mean_se, width = 0.3,position=position_dodge(0.15),size=1)+ theme(plot.title = element_text(size=25, face="bold.italic"),aspect.ratio=1,axis.title.x = element_text(
+  size=20, face="bold"),axis.text.x = element_text(face = "bold", size = 12),axis.text.y = element_text(face = "bold", size = 12),axis.title.y = element_text(size=20, face="bold"),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"))
+pp1
+```
+

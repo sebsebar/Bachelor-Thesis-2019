@@ -1,0 +1,95 @@
+---
+title: "R Modelling"
+output: html_document
+---
+
+#Modelling in R
+```{r setup, include=FALSE}
+#Set Absolute Path
+getwd()
+Absolute_Directory <- dirname(rstudioapi::getSourceEditorContext()$path)
+setwd(Absolute_Directory)
+getwd()
+R_Model_Data <- read.csv("RModel_Data.csv")
+#Remove two First coloumns which are an obsolete ID Coloumn
+R_Model_Data = R_Model_Data[,-1]
+R_Model_Data = R_Model_Data[,-1]
+
+#Add variables for Arousal and Valence
+R_Model_Data$Arousal <- ifelse(R_Model_Data$Cond == "A+V+" | R_Model_Data$Cond == "A+V-",1,0)
+R_Model_Data$Valence <- ifelse(R_Model_Data$Cond == "A-V+" | R_Model_Data$Cond == "A+V+",1,0)
+
+#Merge with the Demographic Data
+R_Model_Data <- merge(R_Model_Data,demographic_data, by = "SUBJ")
+
+
+
+# To explore the influence of random effects on these estimates, we will additionally fit multilevel linear models in R, testing for overall effects of arousal, valence, and their interaction on confidence and accuracy while including random slopes and offsets for each subject, i.e., testing for the full factorial interactions between valence, arousal, and decision accuracy on confidence.
+# Significant effects of each main effect and interaction will be calculated by likelihood ratio tests comparing models with and without these effects included.
+
+library(lme4)
+#mixed effects models with p-values
+
+####Cheking assumptions - we use all models conformed to the assumptions as tested by residiual plots
+#1
+#No violation of sphericity because it only has two levels 
+
+#normality of residuals
+#qqnorm(residuals(collectedlm2))
+#plot(fitted)
+#Linearity
+#plot(fitted(collectedlm2),residuals(collectedlm2))
+#Homoskedasticity
+#par(mfrow=c(2,2)) # init 4 charts in 1 panel
+#plot(collectedlm2)
+# The plots we are interested in are at the top-left and bottom-left. The top-left is the chart of residuals vs fitted values, while in the bottom-left one, it is standardised residuals on Y axis. If there is absolutely no heteroscedastity, you should see a completely random, equal distribution of points throughout the range of X axis and a flat red line.
+
+Acc_model = lmer(Accuracy ~ Cond + (1 |SUBJ), R_Model_Data)
+summary(Acc_model)
+R_Model_Data$fit <- predict(Acc_model)
+
+Con_model = lmer(Confidence ~ Accuracy + Valence*Arousal + (1 |SUBJ), R_Model_Data)
+summary(Con_model)
+
+
+
+
+
+
+
+
+
+
+
+
+#GGplot
+library(lme4)
+library(MuMIn)
+Conf_model = lmer(Confidence ~ Accuracy + Valence*Arousal + (1|SUBJ), R_Model_Data)
+summary(Conf_model)
+#1 marginal and a 2 conditional R Squared value (we look at the first value - The marginal R Squared concerned with our Fixed effects only)
+r_squared<- MuMIn::r.squaredGLMM(Conf_model)
+"""
+ Fixed effects:
+                  Estimate Std. Error         df t value Pr(>|t|)    
+(Intercept)      2.531e+00  1.217e-01  3.441e+01  20.794  < 2e-16 ***
+Accuracy         2.097e+00  3.660e-02  1.693e+04  57.296  < 2e-16 ***
+Valence          2.535e-01  4.404e-02  1.692e+04   5.755 8.84e-09 ***
+Arousal          6.039e-02  4.398e-02  1.692e+04   1.373    0.170    
+Valence:Arousal -8.135e-02  6.237e-02  1.692e+04  -1.304    0.192
+
+#Estimate = How much does Confidence go up or down per perdictor
+#P-Value for Significance
+"""
+
+#Quick Visualisatio
+library(lmerTest)
+boxplot(Confidence ~ Accuracy + Valence*Arousal, col=c("white","lightgray"),Conf_model)
+
+library(ggplot2)
+ggplot(R_Model_Data,aes(x = Valence,y = Confidence, group=Arousal, color=Arousal)) +geom_point(position="jitter",alpha=0.1) + 
+  geom_smooth(method=lm)+ facet_wrap(~Accuracy) + labs(title="Accuracy", x = "Valence", y = "Confidence") +theme_bw()+scale_x_continuous(breaks = c(0,1)) + theme(legend.position = "none") 
+#+ scale_color_manual(values=c("#2C5AA0","#AA0000")) 
+
+Make Spaghetti plot
+```

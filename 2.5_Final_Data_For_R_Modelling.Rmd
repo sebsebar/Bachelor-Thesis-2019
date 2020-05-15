@@ -1,0 +1,23 @@
+---
+title: "2.5_ Final_Data_For_R_Modelling"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+#Loading Libraries
+library(tidyverse) ; library(plyr) ; library(doBy) ; library(ggplot2) ; library(Hmisc)
+#Set Absolute Path
+getwd()
+Absolute_Directory <- dirname(rstudioapi::getSourceEditorContext()$path)
+setwd(Absolute_Directory)
+getwd()
+```
+
+
+```{r}
+RModel_Data <- data
+#participants are excluded because of outliers in d' -> see Rmd: "6_Meta_Cognition_Model"
+RModel_Data <- filter(RModel_Data,SUBJ!= "Subject_11138.txt" & SUBJ!= "Subject_11124.txt")
+#Write to CSV
+write.csv(RModel_Data,file = "RModel_Data.csv")
+```

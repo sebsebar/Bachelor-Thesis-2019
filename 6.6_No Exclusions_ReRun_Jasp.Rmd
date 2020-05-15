@@ -1,0 +1,38 @@
+---
+title: "No Exclusions to rerun Jasp Analysis"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+#Set Absolute Path
+getwd()
+Absolute_Directory <- dirname(rstudioapi::getSourceEditorContext()$path)
+setwd(Absolute_Directory)
+getwd()
+
+#Look at the Final Output Dataframe for the MetaCognition Model
+Meta_Cog_data <- read.csv("FinalWithOutHeartBackUp.csv")
+
+#Add variables for Arousal and Valence
+Meta_Cog_data$Arousal <- ifelse(Meta_Cog_data$Cond == "A+V+" | Meta_Cog_data$Cond == "A+V-",1,0)
+Meta_Cog_data$Valence <- ifelse(Meta_Cog_data$Cond == "A+V+" | Meta_Cog_data$Cond == "A-V+",1,0)
+
+#Remove First coloumn which is an obsolete ID Coloumn
+Meta_Cog_data = Meta_Cog_data[,-1]
+#Rename Coloumn of Meta D prime
+colnames(Meta_Cog_data)[2] <- "meta_d"
+#Remove First coloumn which is an obsolete ID Coloumn
+Meta_Cog_data = Meta_Cog_data[,-1]
+
+#Merge the Final Meta Cognition Data with the Summary Data (Summary_data)
+Meta_Summary <- merge(Meta_Cog_data,Summary_data,by = c("SUBJ", "Cond"))
+
+###Merge with the Demographic Data
+Meta_Summary_Demo <- merge(Meta_Summary,demographic_data, by = "SUBJ")
+```
+
+#Not Excluding to Check Jasp 
+```{r setup, include=FALSE}
+write.csv(Meta_Summary_Demo, file = "FinalWithOutHeart_No_Exclu_ReRun.csv")
+```
+

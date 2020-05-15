@@ -1,0 +1,131 @@
+---
+title: "Meta Cognition Model"
+output: html_document
+---
+
+## Running the Baysian Model on all subjects leveraging the Trial 2 Count Function
+```{r}
+#We Make a final dataframe for all participant data to be stored within
+Meta_Cog_data <- data.frame()
+#We Make Dataframes to save S1 and S2
+S <- data.frame()
+SS <- data.frame()
+
+
+#We Make a list of all SUBJs 
+SUBJ_list <- as.list(unique(data$SUBJ))
+        #We make a list if we wish to run the function for only 1 participant
+        #Trial_SUBJ_list <- SUBJ_list[[1]]
+#We Make a list of Conditions 
+Condition_list <- as.list(unique(data$Cond))
+
+#We set the Working Directory to folder which includes the R Script leveraged by the Meta-Cognitive Model
+# https://github.com/metacoglab/HMeta-d/blob/master/R/Function_metad_indiv.R
+#Set Absolute Path
+getwd()
+Absolute_Directory <- dirname(rstudioapi::getSourceEditorContext()$path)
+setwd(Absolute_Directory)
+getwd()
+
+#Go into Subjects
+for (n_subj in SUBJ_list){
+  #Go into Conditions
+  for(n_cond in Condition_list){
+    #Filter for Subj and Condition
+    Individisual_Dataframe <- filter(data,SUBJ==n_subj)
+    Individisual_Dataframe <- filter(Individisual_Dataframe,Cond==n_cond)
+    
+    #Format coloumns for numeric values: Left == 0 and Right == 1
+    Individisual_Dataframe$Expected <- ifelse(Individisual_Dataframe$Expected == "right",1,0)
+    Individisual_Dataframe$KeyPressed <- ifelse(Individisual_Dataframe$KeyPressed == "right",1,0)
+    
+    #Using Trial 2 Count for 1 Participant in 1 condition
+    # Starting by making the Lists for the function inputs:
+    stimID =    as.list(Individisual_Dataframe$Expected)
+    response =  as.list(Individisual_Dataframe$KeyPressed)
+    rating =    as.list(Individisual_Dataframe$Confidence)
+    nRatings = 7
+    #Running The Trial 2 Count Function
+    newlist = trials2counts(stimID,response,rating,nRatings)
+    #Seperating output into vectors containing the total number of responses in
+    #each response category, conditional on presentation of S1 and S2.
+    nR_S1 <- unlist(newlist[1], recursive = TRUE, use.names = TRUE)
+    nR_S2 <- unlist(newlist[2], recursive = TRUE, use.names = TRUE)
+    #save S1 and S2s outside loop
+    S <- rbind(S,nR_S1)
+    SS <- rbind(SS,nR_S2)
+  
+    # Estimate metacognitive sensibility for subject with the MetaCognition Model
+    Fit <- metad_indiv(nR_S1 = nR_S1, nR_S2 = nR_S2)
+    
+    #Add Subject and condition
+    Fit$SUBJ <- n_subj
+    Fit$Cond <- n_cond
+    #Bind inside the final dataframe
+    Meta_Cog_data <- rbind(Meta_Cog_data, Fit)
+    #Repeat for all conditions and subjects
+    }}
+
+#Look at the Final Output Dataframe for the MetaCognition Model
+Meta_Cog_data
+
+#Backup the Dataframe as to avoid overwriting 
+Backup_Final <- Meta_Cog_data
+write.csv(Backup_Final, file = "FinalWithOutHeartBackUp.csv")
+
+#Add variables for Arousal and Valence
+Meta_Cog_data$Arousal <- ifelse(Meta_Cog_data$Cond == "A+V+" | Meta_Cog_data$Cond == "A+V-",1,0)
+Meta_Cog_data$Valence <- ifelse(Meta_Cog_data$Cond == "A+V+" | Meta_Cog_data$Cond == "A-V+",1,0)
+
+#Rename Coloumn of Meta D prime
+colnames(Meta_Cog_data)[2] <- "meta_d"
+
+#Remove First coloumn which is an obsolete ID Coloumn
+Meta_Cog_data = Meta_Cog_data[,-1]
+
+#Merge the Final Meta Cognition Data with the Summary Data (Summary_data)
+Meta_Summary <- merge(Meta_Cog_data,Summary_data,by = c("SUBJ", "Cond"))
+
+###Merge with the Demographic Data
+Meta_Summary_Demo <- merge(Meta_Summary,demographic_data, by = "SUBJ")
+```
+
+#Plotting and Find Participants to Exclude
+```{r setup, include=FALSE}
+# We look at Type 1 and Type 2 Errors
+#FAR (Type2)>95% & HR (Type 1)<5%
+boxplot(Meta_Summary_Demo$ratingHR)
+boxplot(Meta_Summary_Demo$ratingFAR)
+#We see no Type 1 or 2 errors - so no reason to exclude
+
+#Participants with mean d' less than or equal to 0 will be excluded because this indicates that they are unable to do the task. 
+#Participants with mean meta-d' less than or equal to 0 will be excluded because m-ratio is uninterpretable in these cases.
+min(Meta_Summary_Demo$meta_d)
+min(Meta_Summary_Demo$d)
+#No mean d' or mean meta d' falls below 0 - so no reason to exclude
+
+#If m-ratio cannot be estimated, for example because there is no variability in confidence reports or in accuracy, then that participant will be excluded.But all m-ratios could be calculated and no participants needs exclusion
+
+#Finally, outliers in task performance will be detected by inspecting boxplots of reaction time, d’, and confidence across all subjects; subjects whose values for any of these variables on any condition are greater than 1.5 times the interquartile range will be excluded from the analysis
+#Plotting For Confidence and Reaction Time and d'
+ggplot(Meta_Summary_Demo, aes(x = Cond, y = Confidence.median)) + geom_boxplot(outlier.colour = "red") 
+ggplot(Meta_Summary_Demo, aes(x = Cond, y = RT.median)) + geom_boxplot(outlier.colour = "red")
+ggplot(Meta_Summary_Demo, aes(x = Cond, y = d, label=SUBJ)) + geom_boxplot(outlier.colour = "red") +geom_text(aes(label=SUBJ),hjust=0, vjust=0)
+#No Outlier detected in RT or Confidence
+#But Subject 11138 and 11124 seem to be outliers in d' and should therefore be excluded
+
+Meta_Summary_Demo <- filter(Meta_Summary_Demo,SUBJ!= "Subject_11138.txt" & SUBJ!= "Subject_11124.txt")
+unique(Meta_Summary_Demo$SUBJ)
+
+#Explore Meta D' over conditions to Test for skewed M-ratio
+#Boxplots of Meta D' for all conditions
+ggplot(Meta_Summary_Demo,aes(y=meta_d,x=Cond))+ geom_boxplot()+geom_point()
+#Boxplots of Meta D' for all conditions
+ggplot(Meta_Summary_Demo,aes(x=meta_d, fill=Cond))+ geom_histogram(aes(y = ..density..), binwidth = .3)
+# M-ratios look good so no reason to exclude
+#A total of 29 participants
+unique(Meta_Summary_Demo$SUBJ)
+#Save to CSV
+
+write.csv(Meta_Summary_Demo, file = "FinalWithOutHeart.csv")
+```

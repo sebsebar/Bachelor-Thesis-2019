@@ -1,0 +1,74 @@
+---
+title: "3_Summary_Data"
+output: html_document
+---
+
+#Finding Summary Data for Accuracy, Confidence ReactionTime, ReactionTime and Confidence Scores
+```{r setup, results='hide',error = FALSE, warning = FALSE, message = FALSE}
+#Loading Libraries
+library(tidyverse) ; library(plyr) ; library(doBy) ; library(ggplot2) ; library(Hmisc)
+```
+
+
+```{r}
+#Set Absolute Path
+getwd()
+Absolute_Directory <- dirname(rstudioapi::getSourceEditorContext()$path)
+setwd(Absolute_Directory)
+getwd()
+
+#Extract summaries for each participant and each condition for Accuracy, Confidence ReactionTime, ReactionTime and Confidence Scores
+data$Accuracy <- as.numeric(data$Accuracy)
+Sum_ACC <- doBy::summaryBy( Accuracy ~ SUBJ|Cond, data = data, FUN = list(mean, median, sd))
+Sum_CRT <- doBy::summaryBy( Confidence_RT ~ SUBJ|Cond, data = data, FUN = list(mean, median, sd))
+Sum_RT <- doBy::summaryBy( RT ~ SUBJ|Cond, data = data, FUN = list(mean, median, sd))
+Sum_C <- doBy::summaryBy( Confidence ~ SUBJ|Cond, data = data, FUN = list(mean, median, sd))
+#Add % accuracy (total correct trials for that condition/total trials for that condition) & Number of rejected trials per condition
+Sum_rej_trials <- data.frame()
+    #Make list of SUBJs
+    SUBJ_list <- as.list(unique(data$SUBJ))
+    Condition_list <- as.list(unique(data$Cond))
+    #Go into Subjects
+    for (n_subjects in SUBJ_list){
+      #Go into Conditions
+      for(n_con in Condition_list){
+       temp1 <- filter(data, SUBJ == n_subjects & Cond == n_con)
+       p <- nrow(temp1)
+       l <- nrow(temp1)/150
+       S <- count(temp1$Accuracy == 1)
+       S <- S[2,2]/p
+       pls <- cbind(p,l,S)
+       Sum_rej_trials <- rbind(Sum_rej_trials,pls)
+      }}
+      names(Sum_rej_trials) <- c("Total_Accepted_Trials","Reject_Ratio_from_150", "Accuracy_in_percent")
+      
+#Bind all Summary data together into a final summary of ( Accuracy, Confidence ReactionTime, ReactionTime, Confidence Scores, % accuracy and Number of rejected trials)
+Summary_data <- cbind(Sum_C,Sum_CRT,Sum_RT,Sum_ACC,Sum_rej_trials) 
+
+#Remove Duplicate Subject Coloumns
+Summary_data <- subset(Summary_data, select=which(!duplicated(colnames(Summary_data))))
+```
+
+#Making plots of SummaryData
+```{r}
+#Confidence
+#Plot per Cond
+ggplot(Summary_data, aes(x=Cond, y=Confidence.mean))+ geom_point(position = position_jitter(width = .15), size = .25) + geom_boxplot(alpha = 0.3, width = .1, colour = "BLACK")+ geom_violin(position = position_nudge(x = .5, y = 0),adjust =0.5, trim = TRUE)
+
+#Accuracy
+#Plot per Cond
+ggplot(Summary_data, aes(x=Cond, y=Accuracy.mean))+ geom_point(position = position_jitter(width = .15), size = .25) + geom_boxplot(alpha = 0.3, width = .1, colour = "BLACK")+ geom_violin(position = position_nudge(x = .5, y = 0),adjust =0.5, trim = TRUE)
+
+#RT
+#Plot per Cond
+ggplot(Summary_data, aes(x=Cond, y=RT.mean))+ geom_point(position = position_jitter(width = .15), size = .25) + geom_boxplot(alpha = 0.3, width = .1, colour = "BLACK")+ geom_violin(position = position_nudge(x = .5, y = 0),adjust =0.5, trim = TRUE)
+
+#Confidence_RT
+#Plot per Cond
+ggplot(Summary_data, aes(x=Cond, y=Confidence_RT.mean))+ geom_point(position = position_jitter(width = .15), size = .25) + geom_boxplot(alpha = 0.3, width = .1, colour = "BLACK")+ geom_violin(position = position_nudge(x = .5, y = 0),adjust =0.5, trim = TRUE)
+
+#Making plots of All data
+ggplot(data, aes(x=Accuracy, y=Confidence, col=SUBJ))+
+geom_smooth(method = "lm", se =F) + facet_wrap(~Cond)+ 
+stat_summary(fun.y=mean, geom="line")
+```
