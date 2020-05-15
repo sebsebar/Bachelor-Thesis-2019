@@ -1,0 +1,495 @@
+﻿<?xml version="1.0" ?>
+<PsychoPy2experiment encoding="utf-8" version="3.2.3">
+  <Settings>
+    <Param name="Audio latency priority" updates="None" val="use prefs" valType="str"/>
+    <Param name="Audio lib" updates="None" val="use prefs" valType="str"/>
+    <Param name="Completed URL" updates="None" val="" valType="str"/>
+    <Param name="Data filename" updates="None" val="u'data/%s_%s_%s' % (expInfo['ParticipantID'], expName, expInfo['date'])" valType="code"/>
+    <Param name="Enable Escape" updates="None" val="True" valType="bool"/>
+    <Param name="Experiment info" updates="None" val="{'ParticipantID': ''}" valType="code"/>
+    <Param name="Force stereo" updates="None" val="True" valType="bool"/>
+    <Param name="Full-screen window" updates="None" val="True" valType="bool"/>
+    <Param name="HTML path" updates="None" val="html" valType="str"/>
+    <Param name="Incomplete URL" updates="None" val="" valType="str"/>
+    <Param name="JS libs" updates="None" val="packaged" valType="str"/>
+    <Param name="Monitor" updates="None" val="testMonitor" valType="str"/>
+    <Param name="Save csv file" updates="None" val="True" valType="bool"/>
+    <Param name="Save excel file" updates="None" val="True" valType="bool"/>
+    <Param name="Save log file" updates="None" val="False" valType="bool"/>
+    <Param name="Save psydat file" updates="None" val="True" valType="bool"/>
+    <Param name="Save wide csv file" updates="None" val="True" valType="bool"/>
+    <Param name="Screen" updates="None" val="1" valType="num"/>
+    <Param name="Show info dlg" updates="None" val="True" valType="bool"/>
+    <Param name="Show mouse" updates="None" val="True" valType="bool"/>
+    <Param name="Units" updates="None" val="height" valType="str"/>
+    <Param name="Use version" updates="None" val="latest" valType="str"/>
+    <Param name="Window size (pixels)" updates="None" val="[1440, 900]" valType="code"/>
+    <Param name="blendMode" updates="None" val="avg" valType="str"/>
+    <Param name="color" updates="None" val="$[0,0,0]" valType="str"/>
+    <Param name="colorSpace" updates="None" val="rgb" valType="str"/>
+    <Param name="expName" updates="None" val="SurveyExpMetaMem" valType="str"/>
+    <Param name="exportHTML" updates="None" val="on Sync" valType="str"/>
+    <Param name="logging level" updates="None" val="data" valType="code"/>
+  </Settings>
+  <Routines>
+    <Routine name="introduction">
+      <TextComponent name="introText">
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.02" valType="code"/>
+        <Param name="name" updates="None" val="introText" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="condition" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="text" updates="constant" val="Welcome To The Word-Rating Survey &amp;#10;I appreciate you for participating in this part of the study. The survey being conducted today is investigating emotion, and concerns how people respond to different types of words. On the next screens you will see some figures.&amp;#10;We call these figures SAM, and you will be using these figures to rate how different words seem to you. &amp;#10;SAM shows two different kinds of feelings:&amp;#10;&amp;#10;Happy vs. Unhappy &amp;#10;and &amp;#10;Excited vs. Calm.&amp;#10; &amp;#10;You will use both of these ratings for each word that is presented to you. Please notice that both feelings are arrayed along a 9-point scale. &amp;#10;&amp;#10;On the happy vs. unhappy scale, which ranges from a frown to a smile, 9 means happy, pleased, satisfied, contented or hopeful. 1 on the other hand means unhappy, annoyed, unsatisfied, melancholic, despaired, or bored. If the word feels neutral to you, neither happy nor sad, you can select 5 on the ratingscale. &amp;#10;&amp;#10;On the excited vs. calm scale, which ranges from a SAM to an exploding SAM, 9 means stimulated, excited, frenzied, jittered, or aroused. 1 on the other hand means relaxed, calm, sluggish, dull, sleepy, or unaroused. If the word feels neutral to you, neither exciting nor calm, you can select 5 on the ratingscale. &amp;#10;&amp;#10;There will be a total of 1200 words that you will need to rated and you will be compensated 100kr for helping us with this survey part ofthe study.&amp;#10;&amp;#10;Please work at a rapid place and don’t spend too much time thinking about each word. Rather, make your ratings based on your first&amp;#10;and immediate reaction as you read each word. &amp;#10;&amp;#10;Click the screen to continue." valType="str"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
+      <MouseComponent name="mouse">
+        <Param name="clickable" updates="constant" val="" valType="code"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutineOnPress" updates="constant" val="any click" valType="str"/>
+        <Param name="name" updates="None" val="mouse" valType="code"/>
+        <Param name="newClicksOnly" updates="constant" val="True" valType="bool"/>
+        <Param name="saveMouseState" updates="None" val="final" valType="str"/>
+        <Param name="saveParamsClickable" updates="constant" val="name," valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="condition" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="False" valType="bool"/>
+        <Param name="timeRelativeTo" updates="constant" val="mouse onset" valType="str"/>
+      </MouseComponent>
+    </Routine>
+    <Routine name="valence_instruction">
+      <TextComponent name="InstructValenceText">
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.025" valType="code"/>
+        <Param name="name" updates="None" val="InstructValenceText" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="condition" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="text" updates="constant" val="This Is The Scale For Valence Ratings&amp;#10;&amp;#10;A 1 On The Scale Equals To Very Low Valence (Unhappy)&amp;#10;&amp;#10;A 5 On The Scale Equals To Neutral&amp;#10;&amp;#10;A 9 On The Scale Equals To Very High Valence (Happy)&amp;#10;&amp;#10;You select a number on the scale using your keyboards keys: 1-9&amp;#10;&amp;#10;Click on the screen to continue" valType="str"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
+      <ImageComponent name="Valence">
+        <Param name="color" updates="constant" val="$[1,1,1]" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flipHoriz" updates="constant" val="False" valType="bool"/>
+        <Param name="flipVert" updates="constant" val="False" valType="bool"/>
+        <Param name="image" updates="constant" val="Valence.png" valType="str"/>
+        <Param name="interpolate" updates="constant" val="linear" valType="str"/>
+        <Param name="mask" updates="constant" val="None" valType="str"/>
+        <Param name="name" updates="None" val="Valence" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 0.3)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="size" updates="constant" val="(0.50, 0.25)" valType="code"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="condition" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="texture resolution" updates="constant" val="128" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+      </ImageComponent>
+      <MouseComponent name="mouse_2">
+        <Param name="clickable" updates="constant" val="" valType="code"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutineOnPress" updates="constant" val="any click" valType="str"/>
+        <Param name="name" updates="None" val="mouse_2" valType="code"/>
+        <Param name="newClicksOnly" updates="constant" val="True" valType="bool"/>
+        <Param name="saveMouseState" updates="None" val="final" valType="str"/>
+        <Param name="saveParamsClickable" updates="constant" val="name," valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="condition" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="False" valType="bool"/>
+        <Param name="timeRelativeTo" updates="constant" val="mouse onset" valType="str"/>
+      </MouseComponent>
+    </Routine>
+    <Routine name="arousal_instruction">
+      <TextComponent name="InstructArousalText">
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.025" valType="code"/>
+        <Param name="name" updates="None" val="InstructArousalText" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="condition" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="text" updates="constant" val="This Is The Scale For Arousal Ratings&amp;#10;&amp;#10;A 1 On The Scale Equals To Very Low Arousal (Calm)&amp;#10;&amp;#10;A 5 On The Scale Equals To Neutral&amp;#10;&amp;#10;A 9 On The Scale Equals To Very High Arousal (Excited)&amp;#10;&amp;#10;You select a number on the scale using your keyboards keys: 1-9&amp;#10;&amp;#10;Click on the screen to continue" valType="str"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
+      <ImageComponent name="Arousal">
+        <Param name="color" updates="constant" val="$[1,1,1]" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flipHoriz" updates="constant" val="False" valType="bool"/>
+        <Param name="flipVert" updates="constant" val="False" valType="bool"/>
+        <Param name="image" updates="constant" val="Arousal.png" valType="str"/>
+        <Param name="interpolate" updates="constant" val="linear" valType="str"/>
+        <Param name="mask" updates="constant" val="None" valType="str"/>
+        <Param name="name" updates="None" val="Arousal" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 0.3)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="size" updates="constant" val="(0.50, 0.25)" valType="code"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="condition" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="texture resolution" updates="constant" val="128" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+      </ImageComponent>
+      <MouseComponent name="mouse_3">
+        <Param name="clickable" updates="constant" val="" valType="code"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutineOnPress" updates="constant" val="any click" valType="str"/>
+        <Param name="name" updates="None" val="mouse_3" valType="code"/>
+        <Param name="newClicksOnly" updates="constant" val="True" valType="bool"/>
+        <Param name="saveMouseState" updates="None" val="final" valType="str"/>
+        <Param name="saveParamsClickable" updates="constant" val="name," valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="condition" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="False" valType="bool"/>
+        <Param name="timeRelativeTo" updates="constant" val="mouse onset" valType="str"/>
+      </MouseComponent>
+    </Routine>
+    <Routine name="goodbye">
+      <TextComponent name="GoodbyeText">
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.04" valType="code"/>
+        <Param name="name" updates="None" val="GoodbyeText" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="5" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="text" updates="constant" val="Thank You For Participating &amp;#10;In This Survey Part Of The Experiment!&amp;#10;&amp;#10;It Has Been A PleasureTo Have You On Board!&amp;#10;&amp;#10;Take Care!" valType="str"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
+    </Routine>
+    <Routine name="Intro_To_Click">
+      <TextComponent name="text">
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.04" valType="code"/>
+        <Param name="name" updates="None" val="text" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="condition" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="text" updates="constant" val="Welcome To The Emotional Meta-Memory Survey&amp;#10;&amp;#10;Click On the Screen To Continue" valType="str"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
+      <MouseComponent name="mouse_4">
+        <Param name="clickable" updates="constant" val="" valType="code"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutineOnPress" updates="constant" val="any click" valType="str"/>
+        <Param name="name" updates="None" val="mouse_4" valType="code"/>
+        <Param name="newClicksOnly" updates="constant" val="True" valType="bool"/>
+        <Param name="saveMouseState" updates="None" val="final" valType="str"/>
+        <Param name="saveParamsClickable" updates="constant" val="name," valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="condition" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="False" valType="bool"/>
+        <Param name="timeRelativeTo" updates="constant" val="mouse onset" valType="str"/>
+      </MouseComponent>
+    </Routine>
+    <Routine name="Valence_2">
+      <TextComponent name="WordPresentation2">
+        <Param name="color" updates="constant" val="White" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.09" valType="code"/>
+        <Param name="name" updates="None" val="WordPresentation2" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, -0.2)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="condition" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="text" updates="set every repeat" val="$word" valType="str"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
+      <ImageComponent name="ValenceImage">
+        <Param name="color" updates="constant" val="$[1,1,1]" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flipHoriz" updates="constant" val="False" valType="bool"/>
+        <Param name="flipVert" updates="constant" val="False" valType="bool"/>
+        <Param name="image" updates="constant" val="Valence.png" valType="str"/>
+        <Param name="interpolate" updates="constant" val="linear" valType="str"/>
+        <Param name="mask" updates="constant" val="None" valType="str"/>
+        <Param name="name" updates="None" val="ValenceImage" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, .25)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="size" updates="constant" val="(0.8, 0.25)" valType="code"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="condition" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="texture resolution" updates="constant" val="128" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+      </ImageComponent>
+      <TextComponent name="text_2">
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.04" valType="code"/>
+        <Param name="name" updates="None" val="text_2" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, -0.1)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="condition" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="text" updates="constant" val="Valence&amp;#10;1 = Unhappy, 9 = Happy" valType="str"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
+      <KeyboardComponent name="key_resp">
+        <Param name="allowedKeys" updates="constant" val="'1','2','3','4','5','6','7','8','9'" valType="code"/>
+        <Param name="correctAns" updates="constant" val="" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
+        <Param name="name" updates="None" val="key_resp" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="condition" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="store" updates="constant" val="last key" valType="str"/>
+        <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
+        <Param name="syncScreenRefresh" updates="constant" val="False" valType="bool"/>
+      </KeyboardComponent>
+    </Routine>
+    <Routine name="Arousal_2">
+      <TextComponent name="WordPresentation">
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.09" valType="code"/>
+        <Param name="name" updates="None" val="WordPresentation" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, -0.2)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="condition" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="text" updates="set every repeat" val="$word" valType="str"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
+      <ImageComponent name="ArousalGuide">
+        <Param name="color" updates="constant" val="$[1,1,1]" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flipHoriz" updates="constant" val="False" valType="bool"/>
+        <Param name="flipVert" updates="constant" val="False" valType="bool"/>
+        <Param name="image" updates="constant" val="Arousal.png" valType="str"/>
+        <Param name="interpolate" updates="constant" val="linear" valType="str"/>
+        <Param name="mask" updates="constant" val="None" valType="str"/>
+        <Param name="name" updates="None" val="ArousalGuide" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, .25)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="size" updates="constant" val="(0.80, 0.25)" valType="code"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="condition" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="texture resolution" updates="constant" val="128" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+      </ImageComponent>
+      <TextComponent name="text_3">
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.04" valType="code"/>
+        <Param name="name" updates="None" val="text_3" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, -0.1)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="condition" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="text" updates="constant" val="Arousal&amp;#10;1 = Calm, 9 = Excited" valType="str"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
+      <KeyboardComponent name="A_key_resp">
+        <Param name="allowedKeys" updates="constant" val="'1','2','3','4','5','6','7','8','9'" valType="code"/>
+        <Param name="correctAns" updates="constant" val="" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
+        <Param name="name" updates="None" val="A_key_resp" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="condition" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="store" updates="constant" val="last key" valType="str"/>
+        <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
+        <Param name="syncScreenRefresh" updates="constant" val="False" valType="bool"/>
+      </KeyboardComponent>
+    </Routine>
+  </Routines>
+  <Flow>
+    <Routine name="Intro_To_Click"/>
+    <Routine name="introduction"/>
+    <Routine name="valence_instruction"/>
+    <Routine name="arousal_instruction"/>
+    <LoopInitiator loopType="TrialHandler" name="trials">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="[OrderedDict([('Word', 'dragon')]), OrderedDict([('Word', 'fuck')]), OrderedDict([('Word', 'zealous')]), OrderedDict([('Word', 'nudist')]), OrderedDict([('Word', 'night')]), OrderedDict([('Word', 'drunk')]), OrderedDict([('Word', 'chest')]), OrderedDict([('Word', 'duet')]), OrderedDict([('Word', 'extreme')]), OrderedDict([('Word', 'try')]), OrderedDict([('Word', 'cheerleader')]), OrderedDict([('Word', 'astonished')]), OrderedDict([('Word', 'mountain')]), OrderedDict([('Word', 'mingle')]), OrderedDict([('Word', 'attain')]), OrderedDict([('Word', 'curiosity')]), OrderedDict([('Word', 'sing')]), OrderedDict([('Word', 'outgoing')]), OrderedDict([('Word', 'mail')]), OrderedDict([('Word', 'firefighter')]), OrderedDict([('Word', 'climax')]), OrderedDict([('Word', 'game')]), OrderedDict([('Word', 'doughnut')]), OrderedDict([('Word', 'earn')]), OrderedDict([('Word', 'model')]), OrderedDict([('Word', 'charisma')]), OrderedDict([('Word', 'inspired')]), OrderedDict([('Word', 'gourmet')]), OrderedDict([('Word', 'energy')]), OrderedDict([('Word', 'life')]), OrderedDict([('Word', 'impressed')]), OrderedDict([('Word', 'brownie')]), OrderedDict([('Word', 'festival')]), OrderedDict([('Word', 'sister')]), OrderedDict([('Word', 'personality')]), OrderedDict([('Word', 'bright')]), OrderedDict([('Word', 'puppy')]), OrderedDict([('Word', 'magnificence')]), OrderedDict([('Word', 'cheeseburger')]), OrderedDict([('Word', 'birth')]), OrderedDict([('Word', 'kissing')]), OrderedDict([('Word', 'progress')]), OrderedDict([('Word', 'accomplish')]), OrderedDict([('Word', 'diamond')]), OrderedDict([('Word', 'diploma')]), OrderedDict([('Word', 'sex')]), OrderedDict([('Word', 'god')]), OrderedDict([('Word', 'enjoy')]), OrderedDict([('Word', 'excellence')]), OrderedDict([('Word', 'ecstatic')]), OrderedDict([('Word', 'bolt')]), OrderedDict([('Word', 'body')]), OrderedDict([('Word', 'dare')]), OrderedDict([('Word', 'lotion')]), OrderedDict([('Word', 'alcohol')]), OrderedDict([('Word', 'rare')]), OrderedDict([('Word', 'spice')]), OrderedDict([('Word', 'important')]), OrderedDict([('Word', 'boost')]), OrderedDict([('Word', 'sports')]), OrderedDict([('Word', 'bikini')]), OrderedDict([('Word', 'zoom')]), OrderedDict([('Word', 'interested')]), OrderedDict([('Word', 'clothes')]), OrderedDict([('Word', 'brain')]), OrderedDict([('Word', 'restaurant')]), OrderedDict([('Word', 'zest')]), OrderedDict([('Word', 'penthouse')]), OrderedDict([('Word', 'perfect')]), OrderedDict([('Word', 'special')]), OrderedDict([('Word', 'cartoon')]), OrderedDict([('Word', 'spirit')]), OrderedDict([('Word', 'attract')]), OrderedDict([('Word', 'rhythm')]), OrderedDict([('Word', 'explore')]), OrderedDict([('Word', 'actor')]), OrderedDict([('Word', 'midnight')]), OrderedDict([('Word', 'adore')]), OrderedDict([('Word', 'energetic')]), OrderedDict([('Word', 'dazzle')]), OrderedDict([('Word', 'wonderful')]), OrderedDict([('Word', 'best')]), OrderedDict([('Word', 'stunning')]), OrderedDict([('Word', 'appreciative')]), OrderedDict([('Word', 'eat')]), OrderedDict([('Word', 'like')]), OrderedDict([('Word', 'talent')]), OrderedDict([('Word', 'cookie')]), OrderedDict([('Word', 'ambitious')]), OrderedDict([('Word', 'cruiseship')]), OrderedDict([('Word', 'satisfaction')]), OrderedDict([('Word', 'pretty')]), OrderedDict([('Word', 'justice')]), OrderedDict([('Word', 'smiling')]), OrderedDict([('Word', 'engaged')]), OrderedDict([('Word', 'giggle')]), OrderedDict([('Word', 'joke')]), OrderedDict([('Word', 'enthusiastic')]), OrderedDict([('Word', 'affection')]), OrderedDict([('Word', 'funny')]), OrderedDict([('Word', 'intense')]), OrderedDict([('Word', 'alien')]), OrderedDict([('Word', 'motorcycle')]), OrderedDict([('Word', 'conquest')]), OrderedDict([('Word', 'freeway')]), OrderedDict([('Word', 'curious')]), OrderedDict([('Word', 'voyage')]), OrderedDict([('Word', 'sandwich')]), OrderedDict([('Word', 'naked')]), OrderedDict([('Word', 'new')]), OrderedDict([('Word', 'animal')]), OrderedDict([('Word', 'band')]), OrderedDict([('Word', 'jaguar')]), OrderedDict([('Word', 'bridesmaid')]), OrderedDict([('Word', 'raise')]), OrderedDict([('Word', 'sexual')]), OrderedDict([('Word', 'carnival')]), OrderedDict([('Word', 'powerful')]), OrderedDict([('Word', 'conquer')]), OrderedDict([('Word', 'stereo')]), OrderedDict([('Word', 'imaginative')]), OrderedDict([('Word', 'self')]), OrderedDict([('Word', 'prince')]), OrderedDict([('Word', 'favorite')]), OrderedDict([('Word', 'honeymoon')]), OrderedDict([('Word', 'dancing')]), OrderedDict([('Word', 'rich')]), OrderedDict([('Word', 'glamorous')]), OrderedDict([('Word', 'supper')]), OrderedDict([('Word', 'fly')]), OrderedDict([('Word', 'great')]), OrderedDict([('Word', 'treat')]), OrderedDict([('Word', 'silly')]), OrderedDict([('Word', 'prosperous')]), OrderedDict([('Word', 'dollar')]), OrderedDict([('Word', 'applause')]), OrderedDict([('Word', 'dog')]), OrderedDict([('Word', 'money')]), OrderedDict([('Word', 'blessings')]), OrderedDict([('Word', 'generosity')]), OrderedDict([('Word', 'riches')]), OrderedDict([('Word', 'surprise')]), OrderedDict([('Word', 'christmas')]), OrderedDict([('Word', 'weekend')]), OrderedDict([('Word', 'aroused')]), OrderedDict([('Word', 'me')]), OrderedDict([('Word', 'congratulations')]), OrderedDict([('Word', 'cure')]), OrderedDict([('Word', 'victory')]), OrderedDict([('Word', 'loved')]), OrderedDict([('Word', 'vodka')]), OrderedDict([('Word', 'react')]), OrderedDict([('Word', 'hire')]), OrderedDict([('Word', 'teach')]), OrderedDict([('Word', 'race')]), OrderedDict([('Word', 'ignite')]), OrderedDict([('Word', 'gym')]), OrderedDict([('Word', 'reveal')]), OrderedDict([('Word', 'engage')]), OrderedDict([('Word', 'teenager')]), OrderedDict([('Word', 'reunion')]), OrderedDict([('Word', 'limousine')]), OrderedDict([('Word', 'royalty')]), OrderedDict([('Word', 'gem')]), OrderedDict([('Word', 'marry')]), OrderedDict([('Word', 'sizzle')]), OrderedDict([('Word', 'unite')]), OrderedDict([('Word', 'casino')]), OrderedDict([('Word', 'mate')]), OrderedDict([('Word', 'aid')]), OrderedDict([('Word', 'entertainment')]), OrderedDict([('Word', 'imagination')]), OrderedDict([('Word', 'potential')]), OrderedDict([('Word', 'hope')]), OrderedDict([('Word', 'snow')]), OrderedDict([('Word', 'playground')]), OrderedDict([('Word', 'champ')]), OrderedDict([('Word', 'frosting')]), OrderedDict([('Word', 'alive')]), OrderedDict([('Word', 'star')]), OrderedDict([('Word', 'embrace')]), OrderedDict([('Word', 'fascinate')]), OrderedDict([('Word', 'genius')]), OrderedDict([('Word', 'congratulate')]), OrderedDict([('Word', 'surprised')]), OrderedDict([('Word', 'flirt')]), OrderedDict([('Word', 'holiday')]), OrderedDict([('Word', 'excite')]), OrderedDict([('Word', 'profit')]), OrderedDict([('Word', 'thoughtful')]), OrderedDict([('Word', 'rescue')]), OrderedDict([('Word', 'compassion')]), OrderedDict([('Word', 'pleased')]), OrderedDict([('Word', 'party')]), OrderedDict([('Word', 'celebration')]), OrderedDict([('Word', 'laughing')]), OrderedDict([('Word', 'smile')]), OrderedDict([('Word', 'happy')]), OrderedDict([('Word', 'comedy')]), OrderedDict([('Word', 'laughter')]), OrderedDict([('Word', 'preach')]), OrderedDict([('Word', 'gorilla')]), OrderedDict([('Word', 'mercy')]), OrderedDict([('Word', 'seal')]), OrderedDict([('Word', 'crazy')]), OrderedDict([('Word', 'outspoken')]), OrderedDict([('Word', 'comet')]), OrderedDict([('Word', 'erect')]), OrderedDict([('Word', 'wild')]), OrderedDict([('Word', 'husband')]), OrderedDict([('Word', 'elephant')]), OrderedDict([('Word', 'surfer')]), OrderedDict([('Word', 'belief')]), OrderedDict([('Word', 'fair')]), OrderedDict([('Word', 'revive')]), OrderedDict([('Word', 'salary')]), OrderedDict([('Word', 'vigorous')]), OrderedDict([('Word', 'bravery')]), OrderedDict([('Word', 'charming')]), OrderedDict([('Word', 'know')]), OrderedDict([('Word', 'reef')]), OrderedDict([('Word', 'sparkle')]), OrderedDict([('Word', 'waterskiing')]), OrderedDict([('Word', 'fashion')]), OrderedDict([('Word', 'strengthen')]), OrderedDict([('Word', 'strong')]), OrderedDict([('Word', 'prize')]), OrderedDict([('Word', 'musician')]), OrderedDict([('Word', 'suite')]), OrderedDict([('Word', 'heaven')]), OrderedDict([('Word', 'eager')]), OrderedDict([('Word', 'cherish')]), OrderedDict([('Word', 'prosper')]), OrderedDict([('Word', 'exhilaration')]), OrderedDict([('Word', 'redeem')]), OrderedDict([('Word', 'cheery')]), OrderedDict([('Word', 'amaze')]), OrderedDict([('Word', 'beautiful')]), OrderedDict([('Word', 'sunshine')]), OrderedDict([('Word', 'compassionate')]), OrderedDict([('Word', 'giggles')]), OrderedDict([('Word', 'car')]), OrderedDict([('Word', 'triumph')]), OrderedDict([('Word', 'fame')]), OrderedDict([('Word', 'sexy')]), OrderedDict([('Word', 'beach')]), OrderedDict([('Word', 'complete')]), OrderedDict([('Word', 'graduate')]), OrderedDict([('Word', 'win')]), OrderedDict([('Word', 'award')]), OrderedDict([('Word', 'erupt')]), OrderedDict([('Word', 'meteor')]), OrderedDict([('Word', 'infatuated')]), OrderedDict([('Word', 'soldier')]), OrderedDict([('Word', 'crush')]), OrderedDict([('Word', 'ass')]), OrderedDict([('Word', 'galaxy')]), OrderedDict([('Word', 'cockpit')]), OrderedDict([('Word', 'children')]), OrderedDict([('Word', 'thin')]), OrderedDict([('Word', 'control')]), OrderedDict([('Word', 'windsurfers')]), OrderedDict([('Word', 'athletics')]), OrderedDict([('Word', 'answer')]), OrderedDict([('Word', 'thong')]), OrderedDict([('Word', 'invent')]), OrderedDict([('Word', 'juice')]), OrderedDict([('Word', 'bold')]), OrderedDict([('Word', 'tickle')]), OrderedDict([('Word', 'extravagant')]), OrderedDict([('Word', 'toddler')]), OrderedDict([('Word', 'applaud')]), OrderedDict([('Word', 'confidence')]), OrderedDict([('Word', 'worthwhile')]), OrderedDict([('Word', 'song')]), OrderedDict([('Word', 'brilliant')]), OrderedDict([('Word', 'pastry')]), OrderedDict([('Word', 'cupcake')]), OrderedDict([('Word', 'king')]), OrderedDict([('Word', 'bargain')]), OrderedDict([('Word', 'cookout')]), OrderedDict([('Word', 'summer')]), OrderedDict([('Word', 'luck')]), OrderedDict([('Word', 'elated')]), OrderedDict([('Word', 'delight')]), OrderedDict([('Word', 'gold')]), OrderedDict([('Word', 'superstar')]), OrderedDict([('Word', 'optimistic')]), OrderedDict([('Word', 'tasty')]), OrderedDict([('Word', 'concert')]), OrderedDict([('Word', 'enthusiasm')]), OrderedDict([('Word', 'fantastic')]), OrderedDict([('Word', 'birthday')]), OrderedDict([('Word', 'succeed')]), OrderedDict([('Word', 'confident')]), OrderedDict([('Word', 'passion')]), OrderedDict([('Word', 'awesome')]), OrderedDict([('Word', 'pleasure')]), OrderedDict([('Word', 'success')]), OrderedDict([('Word', 'champion')]), OrderedDict([('Word', 'unhappy')]), OrderedDict([('Word', 'sad')]), OrderedDict([('Word', 'loneliness')]), OrderedDict([('Word', 'death')]), OrderedDict([('Word', 'depression')]), OrderedDict([('Word', 'frown')]), OrderedDict([('Word', 'gloom')]), OrderedDict([('Word', 'sick')]), OrderedDict([('Word', 'worthless')]), OrderedDict([('Word', 'homeless')]), OrderedDict([('Word', 'lonely')]), OrderedDict([('Word', 'discomfort')]), OrderedDict([('Word', 'stench')]), OrderedDict([('Word', 'rotten')]), OrderedDict([('Word', 'hopeless')]), OrderedDict([('Word', 'zit')]), OrderedDict([('Word', 'sorrow')]), OrderedDict([('Word', 'cry')]), OrderedDict([('Word', 'disappointment')]), OrderedDict([('Word', 'malaria')]), OrderedDict([('Word', 'deformed')]), OrderedDict([('Word', 'wart')]), OrderedDict([('Word', 'widow')]), OrderedDict([('Word', 'ungrateful')]), OrderedDict([('Word', 'inferiority')]), OrderedDict([('Word', 'disability')]), OrderedDict([('Word', 'scam')]), OrderedDict([('Word', 'misfortune')]), OrderedDict([('Word', 'disgrace')]), OrderedDict([('Word', 'worse')]), OrderedDict([('Word', 'sunburn')]), OrderedDict([('Word', 'casket')]), OrderedDict([('Word', 'sewage')]), OrderedDict([('Word', 'weak')]), OrderedDict([('Word', 'trash')]), OrderedDict([('Word', 'decay')]), OrderedDict([('Word', 'wasteful')]), OrderedDict([('Word', 'stinks')]), OrderedDict([('Word', 'obesity')]), OrderedDict([('Word', 'chore')]), OrderedDict([('Word', 'coward')]), OrderedDict([('Word', 'stinky')]), OrderedDict([('Word', 'alienation')]), OrderedDict([('Word', 'fever')]), OrderedDict([('Word', 'pessimistic')]), OrderedDict([('Word', 'unfortunate')]), OrderedDict([('Word', 'alcoholism')]), OrderedDict([('Word', 'unpleasant')]), OrderedDict([('Word', 'impotent')]), OrderedDict([('Word', 'mope')]), OrderedDict([('Word', 'inadequate')]), OrderedDict([('Word', 'germs')]), OrderedDict([('Word', 'negligent')]), OrderedDict([('Word', 'blister')]), OrderedDict([('Word', 'cowardice')]), OrderedDict([('Word', 'graveyard')]), OrderedDict([('Word', 'mucous')]), OrderedDict([('Word', 'whine')]), OrderedDict([('Word', 'waste')]), OrderedDict([('Word', 'bored')]), OrderedDict([('Word', 'dandruff')]), OrderedDict([('Word', 'glum')]), OrderedDict([('Word', 'despair')]), OrderedDict([('Word', 'dumb')]), OrderedDict([('Word', 'stink')]), OrderedDict([('Word', 'discouraged')]), OrderedDict([('Word', 'fatigue')]), OrderedDict([('Word', 'pathetic')]), OrderedDict([('Word', 'dreary')]), OrderedDict([('Word', 'blind')]), OrderedDict([('Word', 'rodent')]), OrderedDict([('Word', 'weakness')]), OrderedDict([('Word', 'inferior')]), OrderedDict([('Word', 'ignorance')]), OrderedDict([('Word', 'sluggish')]), OrderedDict([('Word', 'manure')]), OrderedDict([('Word', 'incompetent')]), OrderedDict([('Word', 'complain')]), OrderedDict([('Word', 'dislike')]), OrderedDict([('Word', 'slob')]), OrderedDict([('Word', 'expire')]), OrderedDict([('Word', 'sloppy')]), OrderedDict([('Word', 'vulnerable')]), OrderedDict([('Word', 'messy')]), OrderedDict([('Word', 'idiot')]), OrderedDict([('Word', 'tiresome')]), OrderedDict([('Word', 'pale')]), OrderedDict([('Word', 'tax')]), OrderedDict([('Word', 'mildew')]), OrderedDict([('Word', 'gloomy')]), OrderedDict([('Word', 'impair')]), OrderedDict([('Word', 'detach')]), OrderedDict([('Word', 'moody')]), OrderedDict([('Word', 'droop')]), OrderedDict([('Word', 'dump')]), OrderedDict([('Word', 'lack')]), OrderedDict([('Word', 'unpopular')]), OrderedDict([('Word', 'complaint')]), OrderedDict([('Word', 'handicapped')]), OrderedDict([('Word', 'withdrawn')]), OrderedDict([('Word', 'urine')]), OrderedDict([('Word', 'feeble')]), OrderedDict([('Word', 'dismissive')]), OrderedDict([('Word', 'wither')]), OrderedDict([('Word', 'nuisance')]), OrderedDict([('Word', 'fatigued')]), OrderedDict([('Word', 'tired')]), OrderedDict([('Word', 'handicap')]), OrderedDict([('Word', 'bore')]), OrderedDict([('Word', 'old')]), OrderedDict([('Word', 'tarnish')]), OrderedDict([('Word', 'bitter')]), OrderedDict([('Word', 'mucus')]), OrderedDict([('Word', 'deficient')]), OrderedDict([('Word', 'pity')]), OrderedDict([('Word', 'grime')]), OrderedDict([('Word', 'boring')]), OrderedDict([('Word', 'dummy')]), OrderedDict([('Word', 'cheapskate')]), OrderedDict([('Word', 'immature')]), OrderedDict([('Word', 'smoke')]), OrderedDict([('Word', 'stale')]), OrderedDict([('Word', 'doubtful')]), OrderedDict([('Word', 'stain')]), OrderedDict([('Word', 'fault')]), OrderedDict([('Word', 'crutch')]), OrderedDict([('Word', 'con')]), OrderedDict([('Word', 'doubt')]), OrderedDict([('Word', 'end')]), OrderedDict([('Word', 'cough')]), OrderedDict([('Word', 'cancel')]), OrderedDict([('Word', 'itch')]), OrderedDict([('Word', 'resign')]), OrderedDict([('Word', 'uninteresting')]), OrderedDict([('Word', 'frail')]), OrderedDict([('Word', 'grovel')]), OrderedDict([('Word', 'mediocre')]), OrderedDict([('Word', 'blubber')]), OrderedDict([('Word', 'dull')]), OrderedDict([('Word', 'spit')]), OrderedDict([('Word', 'forgot')]), OrderedDict([('Word', 'prohibit')]), OrderedDict([('Word', 'foolish')]), OrderedDict([('Word', 'incorrect')]), OrderedDict([('Word', 'mold')]), OrderedDict([('Word', 'bleak')]), OrderedDict([('Word', 'greedy')]), OrderedDict([('Word', 'dishes')]), OrderedDict([('Word', 'depart')]), OrderedDict([('Word', 'egotistical')]), OrderedDict([('Word', 'overcast')]), OrderedDict([('Word', 'lame')]), OrderedDict([('Word', 'scapegoat')]), OrderedDict([('Word', 'prude')]), OrderedDict([('Word', 'damp')]), OrderedDict([('Word', 'chubby')]), OrderedDict([('Word', 'piss')]), OrderedDict([('Word', 'confuse')]), OrderedDict([('Word', 'refuse')]), OrderedDict([('Word', 'heavy')]), OrderedDict([('Word', 'rag')]), OrderedDict([('Word', 'ail')]), OrderedDict([('Word', 'shallow')]), OrderedDict([('Word', 'limp')]), OrderedDict([('Word', 'tick')]), OrderedDict([('Word', 'void')]), OrderedDict([('Word', 'gnaw')]), OrderedDict([('Word', False)]), OrderedDict([('Word', 'noose')]), OrderedDict([('Word', 'resent')]), OrderedDict([('Word', 'cynical')]), OrderedDict([('Word', 'chump')]), OrderedDict([('Word', 'bald')]), OrderedDict([('Word', 'senseless')]), OrderedDict([('Word', 'weary')]), OrderedDict([('Word', 'nameless')]), OrderedDict([('Word', 'warden')]), OrderedDict([('Word', 'separate')]), OrderedDict([('Word', 'numb')]), OrderedDict([('Word', 'period')]), OrderedDict([('Word', 'hinder')]), OrderedDict([('Word', 'melancholy')]), OrderedDict([('Word', 'cell')]), OrderedDict([('Word', 'condescension')]), OrderedDict([('Word', 'leave')]), OrderedDict([('Word', 'pinch')]), OrderedDict([('Word', 'fool')]), OrderedDict([('Word', 'junk')]), OrderedDict([('Word', 'rusty')]), OrderedDict([('Word', 'timid')]), OrderedDict([('Word', 'detached')]), OrderedDict([('Word', 'meek')]), OrderedDict([('Word', 'naive')]), OrderedDict([('Word', 'little')]), OrderedDict([('Word', 'butcher')]), OrderedDict([('Word', 'dust')]), OrderedDict([('Word', 'slow')]), OrderedDict([('Word', 'pungent')]), OrderedDict([('Word', 'alimony')]), OrderedDict([('Word', 'stop')]), OrderedDict([('Word', 'nosey')]), OrderedDict([('Word', 'dustpan')]), OrderedDict([('Word', 'crap')]), OrderedDict([('Word', 'sludge')]), OrderedDict([('Word', 'cane')]), OrderedDict([('Word', 'exhaust')]), OrderedDict([('Word', 'lower')]), OrderedDict([('Word', 'smudge')]), OrderedDict([('Word', 'haphazard')]), OrderedDict([('Word', 'ash')]), OrderedDict([('Word', 'excuse')]), OrderedDict([('Word', 'slouch')]), OrderedDict([('Word', 'insect')]), OrderedDict([('Word', 'bland')]), OrderedDict([('Word', 'defer')]), OrderedDict([('Word', 'blues')]), OrderedDict([('Word', 'smug')]), OrderedDict([('Word', 'habit')]), OrderedDict([('Word', 'report')]), OrderedDict([('Word', 'listless')]), OrderedDict([('Word', 'gullible')]), OrderedDict([('Word', 'laundry')]), OrderedDict([('Word', 'cleft')]), OrderedDict([('Word', 'witch')]), OrderedDict([('Word', 'sigh')]), OrderedDict([('Word', 'stagnant')]), OrderedDict([('Word', 'dry')]), OrderedDict([('Word', 'passive')]), OrderedDict([('Word', 'dirt')]), OrderedDict([('Word', 'small')]), OrderedDict([('Word', 'erase')]), OrderedDict([('Word', 'omit')]), OrderedDict([('Word', 'recede')]), OrderedDict([('Word', 'busy')]), OrderedDict([('Word', 'rules')]), OrderedDict([('Word', 'ramble')]), OrderedDict([('Word', 'vacant')]), OrderedDict([('Word', 'absurd')]), OrderedDict([('Word', 'crumbs')]), OrderedDict([('Word', 'novice')]), OrderedDict([('Word', 'derelict')]), OrderedDict([('Word', 'apathy')]), OrderedDict([('Word', 'loose')]), OrderedDict([('Word', 'gloat')]), OrderedDict([('Word', 'snail')]), OrderedDict([('Word', 'tar')]), OrderedDict([('Word', 'solemn')]), OrderedDict([('Word', 'cellar')]), OrderedDict([('Word', 'vague')]), OrderedDict([('Word', 'beet')]), OrderedDict([('Word', 'fart')]), OrderedDict([('Word', 'coal')]), OrderedDict([('Word', 'shadow')]), OrderedDict([('Word', 'corner')]), OrderedDict([('Word', 'label')]), OrderedDict([('Word', 'school')]), OrderedDict([('Word', 'allege')]), OrderedDict([('Word', 'class')]), OrderedDict([('Word', 'punk')]), OrderedDict([('Word', 'lazy')]), OrderedDict([('Word', 'spurn')]), OrderedDict([('Word', 'plain')]), OrderedDict([('Word', 'average')]), OrderedDict([('Word', 'stupor')]), OrderedDict([('Word', 'wane')]), OrderedDict([('Word', 'frozen')]), OrderedDict([('Word', 'obscure')]), OrderedDict([('Word', 'folly')]), OrderedDict([('Word', 'therapy')]), OrderedDict([('Word', 'onion')]), OrderedDict([('Word', 'muddy')]), OrderedDict([('Word', 'marrow')]), OrderedDict([('Word', 'cast')]), OrderedDict([('Word', 'cease')]), OrderedDict([('Word', 'distracted')]), OrderedDict([('Word', 'paragraph')]), OrderedDict([('Word', 'policy')]), OrderedDict([('Word', 'retreat')]), OrderedDict([('Word', 'govern')]), OrderedDict([('Word', 'bus')]), OrderedDict([('Word', 'fur')]), OrderedDict([('Word', 'dork')]), OrderedDict([('Word', 'cling')]), OrderedDict([('Word', 'obey')]), OrderedDict([('Word', 'anus')]), OrderedDict([('Word', 'tatter')]), OrderedDict([('Word', 'cab')]), OrderedDict([('Word', 'dissolve')]), OrderedDict([('Word', 'bandage')]), OrderedDict([('Word', 'coarse')]), OrderedDict([('Word', 'stool')]), OrderedDict([('Word', 'bereavement')]), OrderedDict([('Word', 'sweep')]), OrderedDict([('Word', 'errand')]), OrderedDict([('Word', 'moss')]), OrderedDict([('Word', 'vacuum')]), OrderedDict([('Word', 'factory')]), OrderedDict([('Word', 'drool')]), OrderedDict([('Word', 'feet')]), OrderedDict([('Word', 'obstinate')]), OrderedDict([('Word', 'parlor')]), OrderedDict([('Word', 'roof')]), OrderedDict([('Word', 'vegetable')]), OrderedDict([('Word', 'mane')]), OrderedDict([('Word', 'lamp')]), OrderedDict([('Word', 'year')]), OrderedDict([('Word', 'easel')]), OrderedDict([('Word', 'greyhound')]), OrderedDict([('Word', 'carrot')]), OrderedDict([('Word', 'candlestick')]), OrderedDict([('Word', 'miniature')]), OrderedDict([('Word', 'herring')]), OrderedDict([('Word', 'propeller')]), OrderedDict([('Word', 'cup')]), OrderedDict([('Word', 'crossword')]), OrderedDict([('Word', 'lad')]), OrderedDict([('Word', 'coat')]), OrderedDict([('Word', 'tomato')]), OrderedDict([('Word', 'ceiling')]), OrderedDict([('Word', 'pulpit')]), OrderedDict([('Word', 'spray')]), OrderedDict([('Word', 'chew')]), OrderedDict([('Word', 'revere')]), OrderedDict([('Word', 'suburban')]), OrderedDict([('Word', 'tower')]), OrderedDict([('Word', 'hat')]), OrderedDict([('Word', 'pan')]), OrderedDict([('Word', 'introductory')]), OrderedDict([('Word', 'chess')]), OrderedDict([('Word', 'barn')]), OrderedDict([('Word', 'website')]), OrderedDict([('Word', 'delicate')]), OrderedDict([('Word', 'avenue')]), OrderedDict([('Word', 'cattle')]), OrderedDict([('Word', 'glacier')]), OrderedDict([('Word', 'sensitive')]), OrderedDict([('Word', 'refine')]), OrderedDict([('Word', 'flock')]), OrderedDict([('Word', 'quench')]), OrderedDict([('Word', 'outlet')]), OrderedDict([('Word', 'cabin')]), OrderedDict([('Word', 'writer')]), OrderedDict([('Word', 'newspaper')]), OrderedDict([('Word', 'library')]), OrderedDict([('Word', 'farm')]), OrderedDict([('Word', 'telescope')]), OrderedDict([('Word', 'wear')]), OrderedDict([('Word', 'accord')]), OrderedDict([('Word', 'beads')]), OrderedDict([('Word', 'donkey')]), OrderedDict([('Word', 'native')]), OrderedDict([('Word', 'bathroom')]), OrderedDict([('Word', 'tend')]), OrderedDict([('Word', 'detail')]), OrderedDict([('Word', 'brief')]), OrderedDict([('Word', 'name')]), OrderedDict([('Word', 'number')]), OrderedDict([('Word', 'peanut')]), OrderedDict([('Word', 'method')]), OrderedDict([('Word', 'hair')]), OrderedDict([('Word', 'rock')]), OrderedDict([('Word', 'cow')]), OrderedDict([('Word', 'bib')]), OrderedDict([('Word', 'trout')]), OrderedDict([('Word', 'quiet')]), OrderedDict([('Word', 'read')]), OrderedDict([('Word', 'verify')]), OrderedDict([('Word', 'dew')]), OrderedDict([('Word', 'unit')]), OrderedDict([('Word', 'plaza')]), OrderedDict([('Word', 'urinate')]), OrderedDict([('Word', 'windmill')]), OrderedDict([('Word', 'ketchup')]), OrderedDict([('Word', 'bedspread')]), OrderedDict([('Word', 'fitting')]), OrderedDict([('Word', 'golfer')]), OrderedDict([('Word', 'straighten')]), OrderedDict([('Word', 'handwriting')]), OrderedDict([('Word', 'lightbulb')]), OrderedDict([('Word', 'yellow')]), OrderedDict([('Word', 'candle')]), OrderedDict([('Word', 'fig')]), OrderedDict([('Word', 'camel')]), OrderedDict([('Word', 'scarf')]), OrderedDict([('Word', 'send')]), OrderedDict([('Word', 'makeup')]), OrderedDict([('Word', 'phone')]), OrderedDict([('Word', 'skinny')]), OrderedDict([('Word', 'jelly')]), OrderedDict([('Word', 'land')]), OrderedDict([('Word', 'similar')]), OrderedDict([('Word', 'circle')]), OrderedDict([('Word', 'medicine')]), OrderedDict([('Word', 'key')]), OrderedDict([('Word', 'pecan')]), OrderedDict([('Word', 'teacher')]), OrderedDict([('Word', 'rink')]), OrderedDict([('Word', 'clarinet')]), OrderedDict([('Word', 'oven')]), OrderedDict([('Word', 'leg')]), OrderedDict([('Word', 'frog')]), OrderedDict([('Word', 'telephone')]), OrderedDict([('Word', 'den')]), OrderedDict([('Word', 'book')]), OrderedDict([('Word', 'flute')]), OrderedDict([('Word', 'tolerant')]), OrderedDict([('Word', 'cat')]), OrderedDict([('Word', 'adapt')]), OrderedDict([('Word', 'nursery')]), OrderedDict([('Word', 'ancestor')]), OrderedDict([('Word', 'gender')]), OrderedDict([('Word', 'sympathetic')]), OrderedDict([('Word', 'harvest')]), OrderedDict([('Word', 'mobile')]), OrderedDict([('Word', 'courtyard')]), OrderedDict([('Word', 'sheltered')]), OrderedDict([('Word', 'blouse')]), OrderedDict([('Word', 'modest')]), OrderedDict([('Word', 'flow')]), OrderedDict([('Word', 'western')]), OrderedDict([('Word', 'stable')]), OrderedDict([('Word', 'contemporary')]), OrderedDict([('Word', 'consoled')]), OrderedDict([('Word', 'cinnamon')]), OrderedDict([('Word', 'owl')]), OrderedDict([('Word', 'checkerboard')]), OrderedDict([('Word', 'crackers')]), OrderedDict([('Word', 'author')]), OrderedDict([('Word', 'patio')]), OrderedDict([('Word', 'velvet')]), OrderedDict([('Word', 'slogan')]), OrderedDict([('Word', 'decency')]), OrderedDict([('Word', 'humble')]), OrderedDict([('Word', 'poetry')]), OrderedDict([('Word', 'piano')]), OrderedDict([('Word', 'tea')]), OrderedDict([('Word', 'hawk')]), OrderedDict([('Word', 'lamb')]), OrderedDict([('Word', 'horse')]), OrderedDict([('Word', 'seagull')]), OrderedDict([('Word', 'groceries')]), OrderedDict([('Word', 'wheat')]), OrderedDict([('Word', 'window')]), OrderedDict([('Word', 'herbal')]), OrderedDict([('Word', 'village')]), OrderedDict([('Word', 'inform')]), OrderedDict([('Word', 'proper')]), OrderedDict([('Word', 'furniture')]), OrderedDict([('Word', 'town')]), OrderedDict([('Word', 'glasses')]), OrderedDict([('Word', 'porpoise')]), OrderedDict([('Word', 'listen')]), OrderedDict([('Word', 'milk')]), OrderedDict([('Word', 'patience')]), OrderedDict([('Word', 'reflection')]), OrderedDict([('Word', 'soap')]), OrderedDict([('Word', 'plant')]), OrderedDict([('Word', 'sentiment')]), OrderedDict([('Word', 'camera')]), OrderedDict([('Word', 'prefer')]), OrderedDict([('Word', 'shrimp')]), OrderedDict([('Word', 'corn')]), OrderedDict([('Word', 'orchestra')]), OrderedDict([('Word', 'vegetables')]), OrderedDict([('Word', 'coin')]), OrderedDict([('Word', 'candid')]), OrderedDict([('Word', 'flag')]), OrderedDict([('Word', 'civil')]), OrderedDict([('Word', 'trait')]), OrderedDict([('Word', 'relate')]), OrderedDict([('Word', 'buffalo')]), OrderedDict([('Word', 'practical')]), OrderedDict([('Word', 'ornament')]), OrderedDict([('Word', 'rational')]), OrderedDict([('Word', 'leaves')]), OrderedDict([('Word', 'pancakes')]), OrderedDict([('Word', 'doll')]), OrderedDict([('Word', 'casual')]), OrderedDict([('Word', 'adorn')]), OrderedDict([('Word', 'shampoo')]), OrderedDict([('Word', 'grass')]), OrderedDict([('Word', 'emerald')]), OrderedDict([('Word', 'open')]), OrderedDict([('Word', 'sprinkle')]), OrderedDict([('Word', 'logical')]), OrderedDict([('Word', 'pond')]), OrderedDict([('Word', 'afternoon')]), OrderedDict([('Word', 'dawn')]), OrderedDict([('Word', 'cook')]), OrderedDict([('Word', 'green')]), OrderedDict([('Word', 'binoculars')]), OrderedDict([('Word', 'shoes')]), OrderedDict([('Word', 'moral')]), OrderedDict([('Word', 'virtue')]), OrderedDict([('Word', 'pray')]), OrderedDict([('Word', 'soup')]), OrderedDict([('Word', 'rose')]), OrderedDict([('Word', 'hamburger')]), OrderedDict([('Word', 'crystal')]), OrderedDict([('Word', 'precise')]), OrderedDict([('Word', 'authentic')]), OrderedDict([('Word', 'noon')]), OrderedDict([('Word', 'familiar')]), OrderedDict([('Word', 'tidy')]), OrderedDict([('Word', 'peach')]), OrderedDict([('Word', 'autumn')]), OrderedDict([('Word', 'tree')]), OrderedDict([('Word', 'person')]), OrderedDict([('Word', 'violinist')]), OrderedDict([('Word', 'boy')]), OrderedDict([('Word', 'polite')]), OrderedDict([('Word', 'tenderness')]), OrderedDict([('Word', 'harp')]), OrderedDict([('Word', 'walking')]), OrderedDict([('Word', 'dress')]), OrderedDict([('Word', 'apple')]), OrderedDict([('Word', 'hippotamus')]), OrderedDict([('Word', 'countryside')]), OrderedDict([('Word', 'priest')]), OrderedDict([('Word', 'sheep')]), OrderedDict([('Word', 'oxygen')]), OrderedDict([('Word', 'cottage')]), OrderedDict([('Word', 'clearer')]), OrderedDict([('Word', 'nourish')]), OrderedDict([('Word', 'favor')]), OrderedDict([('Word', 'swan')]), OrderedDict([('Word', 'poem')]), OrderedDict([('Word', 'saint')]), OrderedDict([('Word', 'cooperative')]), OrderedDict([('Word', 'innocent')]), OrderedDict([('Word', 'pear')]), OrderedDict([('Word', 'sofa')]), OrderedDict([('Word', 'candy')]), OrderedDict([('Word', 'nice')]), OrderedDict([('Word', 'crown')]), OrderedDict([('Word', 'helpful')]), OrderedDict([('Word', 'lounge')]), OrderedDict([('Word', 'responsible')]), OrderedDict([('Word', 'nestle')]), OrderedDict([('Word', 'flower')]), OrderedDict([('Word', 'cuisine')]), OrderedDict([('Word', 'bathtub')]), OrderedDict([('Word', 'breathe')]), OrderedDict([('Word', 'garden')]), OrderedDict([('Word', 'soul')]), OrderedDict([('Word', 'honey')]), OrderedDict([('Word', 'able')]), OrderedDict([('Word', 'moon')]), OrderedDict([('Word', 'graceful')]), OrderedDict([('Word', 'blue')]), OrderedDict([('Word', 'lake')]), OrderedDict([('Word', 'cool')]), OrderedDict([('Word', 'caring')]), OrderedDict([('Word', 'breeze')]), OrderedDict([('Word', 'river')]), OrderedDict([('Word', 'girl')]), OrderedDict([('Word', 'leisurely')]), OrderedDict([('Word', 'thankful')]), OrderedDict([('Word', 'donate')]), OrderedDict([('Word', 'serene')]), OrderedDict([('Word', 'silk')]), OrderedDict([('Word', 'nectar')]), OrderedDict([('Word', 'ease')]), OrderedDict([('Word', 'fireplace')]), OrderedDict([('Word', 'blanket')]), OrderedDict([('Word', 'bliss')]), OrderedDict([('Word', 'haven')]), OrderedDict([('Word', 'relaxed')]), OrderedDict([('Word', 'grace')]), OrderedDict([('Word', 'assure')]), OrderedDict([('Word', 'safe')]), OrderedDict([('Word', 'comfort')]), OrderedDict([('Word', 'dignified')]), OrderedDict([('Word', 'useful')]), OrderedDict([('Word', 'butterfly')]), OrderedDict([('Word', 'fluffy')]), OrderedDict([('Word', 'politeness')]), OrderedDict([('Word', 'bless')]), OrderedDict([('Word', 'sleep')]), OrderedDict([('Word', 'bird')]), OrderedDict([('Word', 'security')]), OrderedDict([('Word', 'protected')]), OrderedDict([('Word', 'gentle')]), OrderedDict([('Word', 'sky')]), OrderedDict([('Word', 'grateful')]), OrderedDict([('Word', 'cozy')]), OrderedDict([('Word', 'sunflower')]), OrderedDict([('Word', 'elegant')]), OrderedDict([('Word', 'refreshment')]), OrderedDict([('Word', 'wise')]), OrderedDict([('Word', 'carefree')]), OrderedDict([('Word', 'kind')]), OrderedDict([('Word', 'untroubled')]), OrderedDict([('Word', 'nature')]), OrderedDict([('Word', 'sunset')]), OrderedDict([('Word', 'peace')]), OrderedDict([('Word', 'cuddle')]), OrderedDict([('Word', 'peaceful')]), OrderedDict([('Word', 'kindness')]), OrderedDict([('Word', 'relax')]), OrderedDict([('Word', 'suicide')]), OrderedDict([('Word', 'rape')]), OrderedDict([('Word', 'rejected')]), OrderedDict([('Word', 'cancer')]), OrderedDict([('Word', 'murderer')]), OrderedDict([('Word', 'suffocate')]), OrderedDict([('Word', 'syphilis')]), OrderedDict([('Word', 'terrorist')]), OrderedDict([('Word', 'suffer')]), OrderedDict([('Word', 'terrified')]), OrderedDict([('Word', 'abusive')]), OrderedDict([('Word', 'rejection')]), OrderedDict([('Word', 'rabies')]), OrderedDict([('Word', 'ulcer')]), OrderedDict([('Word', 'fail')]), OrderedDict([('Word', 'abuse')]), OrderedDict([('Word', 'starvation')]), OrderedDict([('Word', 'slave')]), OrderedDict([('Word', 'gunpoint')]), OrderedDict([('Word', 'loss')]), OrderedDict([('Word', 'hurt')]), OrderedDict([('Word', 'humiliation')]), OrderedDict([('Word', 'nightmare')]), OrderedDict([('Word', 'punish')]), OrderedDict([('Word', 'terrible')]), OrderedDict([('Word', 'disloyal')]), OrderedDict([('Word', 'dead')]), OrderedDict([('Word', 'jail')]), OrderedDict([('Word', 'cruel')]), OrderedDict([('Word', 'mutilation')]), OrderedDict([('Word', 'poison')]), OrderedDict([('Word', 'overweight')]), OrderedDict([('Word', 'bankrupt')]), OrderedDict([('Word', 'afraid')]), OrderedDict([('Word', 'sob')]), OrderedDict([('Word', 'despise')]), OrderedDict([('Word', 'assault')]), OrderedDict([('Word', 'prison')]), OrderedDict([('Word', 'seasick')]), OrderedDict([('Word', 'vomit')]), OrderedDict([('Word', 'war')]), OrderedDict([('Word', 'leprosy')]), OrderedDict([('Word', 'aggravation')]), OrderedDict([('Word', 'trauma')]), OrderedDict([('Word', 'kill')]), OrderedDict([('Word', 'demon')]), OrderedDict([('Word', 'amputate')]), OrderedDict([('Word', 'shame')]), OrderedDict([('Word', 'pain')]), OrderedDict([('Word', 'thief')]), OrderedDict([('Word', 'murder')]), OrderedDict([('Word', 'castrate')]), OrderedDict([('Word', 'troubled')]), OrderedDict([('Word', 'victim')]), OrderedDict([('Word', 'hostage')]), OrderedDict([('Word', 'drown')]), OrderedDict([('Word', 'crushed')]), OrderedDict([('Word', 'debt')]), OrderedDict([('Word', 'traitor')]), OrderedDict([('Word', 'divorce')]), OrderedDict([('Word', 'irritated')]), OrderedDict([('Word', 'crucify')]), OrderedDict([('Word', 'poisonous')]), OrderedDict([('Word', 'dreadful')]), OrderedDict([('Word', 'grieve')]), OrderedDict([('Word', 'traffic')]), OrderedDict([('Word', 'regretful')]), OrderedDict([('Word', 'horrible')]), OrderedDict([('Word', 'insult')]), OrderedDict([('Word', 'whore')]), OrderedDict([('Word', 'worry')]), OrderedDict([('Word', 'crash')]), OrderedDict([('Word', 'homicide')]), OrderedDict([('Word', 'anger')]), OrderedDict([('Word', 'roach')]), OrderedDict([('Word', 'insecure')]), OrderedDict([('Word', 'tumor')]), OrderedDict([('Word', 'choke')]), OrderedDict([('Word', 'starving')]), OrderedDict([('Word', 'harassment')]), OrderedDict([('Word', 'liar')]), OrderedDict([('Word', 'rage')]), OrderedDict([('Word', 'robbery')]), OrderedDict([('Word', 'demonic')]), OrderedDict([('Word', 'despairing')]), OrderedDict([('Word', 'pollution')]), OrderedDict([('Word', 'mad')]), OrderedDict([('Word', 'disgusted')]), OrderedDict([('Word', 'deserter')]), OrderedDict([('Word', 'banish')]), OrderedDict([('Word', 'enraged')]), OrderedDict([('Word', 'harass')]), OrderedDict([('Word', 'addict')]), OrderedDict([('Word', 'remorse')]), OrderedDict([('Word', 'repulsed')]), OrderedDict([('Word', 'cult')]), OrderedDict([('Word', 'sting')]), OrderedDict([('Word', 'injury')]), OrderedDict([('Word', 'virus')]), OrderedDict([('Word', 'burdened')]), OrderedDict([('Word', 'threat')]), OrderedDict([('Word', 'rude')]), OrderedDict([('Word', 'wounds')]), OrderedDict([('Word', 'jealousy')]), OrderedDict([('Word', 'burglar')]), OrderedDict([('Word', 'pissed')]), OrderedDict([('Word', 'rash')]), OrderedDict([('Word', 'tornado')]), OrderedDict([('Word', 'gang')]), OrderedDict([('Word', 'frightened')]), OrderedDict([('Word', 'arson')]), OrderedDict([('Word', 'robber')]), OrderedDict([('Word', 'gunshot')]), OrderedDict([('Word', 'guilty')]), OrderedDict([('Word', 'destroy')]), OrderedDict([('Word', 'frighten')]), OrderedDict([('Word', 'awful')]), OrderedDict([('Word', 'aggravated')]), OrderedDict([('Word', 'distress')]), OrderedDict([('Word', 'fraud')]), OrderedDict([('Word', 'malice')]), OrderedDict([('Word', 'attack')]), OrderedDict([('Word', 'creepy')]), OrderedDict([('Word', 'disorder')]), OrderedDict([('Word', 'burn')]), OrderedDict([('Word', 'deadly')]), OrderedDict([('Word', 'crisis')]), OrderedDict([('Word', 'criticism')]), OrderedDict([('Word', 'terror')]), OrderedDict([('Word', 'abduction')]), OrderedDict([('Word', 'offend')]), OrderedDict([('Word', 'fear')]), OrderedDict([('Word', 'exam')]), OrderedDict([('Word', 'horror')]), OrderedDict([('Word', 'pester')]), OrderedDict([('Word', 'expel')]), OrderedDict([('Word', 'anxiety')]), OrderedDict([('Word', 'scared')]), OrderedDict([('Word', 'pervert')]), OrderedDict([('Word', 'stalk')]), OrderedDict([('Word', 'communism')]), OrderedDict([('Word', 'sin')]), OrderedDict([('Word', 'brutal')]), OrderedDict([('Word', 'scold')]), OrderedDict([('Word', 'lost')]), OrderedDict([('Word', 'scalding')]), OrderedDict([('Word', 'unsafe')]), OrderedDict([('Word', 'psycho')]), OrderedDict([('Word', 'paranoid')]), OrderedDict([('Word', 'electrocute')]), OrderedDict([('Word', 'scorn')]), OrderedDict([('Word', 'insane')]), OrderedDict([('Word', 'angry')]), OrderedDict([('Word', 'surgery')]), OrderedDict([('Word', 'jealous')]), OrderedDict([('Word', 'alarm')]), OrderedDict([('Word', 'crime')]), OrderedDict([('Word', 'deceit')]), OrderedDict([('Word', 'bloody')]), OrderedDict([('Word', 'harsh')]), OrderedDict([('Word', 'dent')]), OrderedDict([('Word', 'difficult')]), OrderedDict([('Word', 'shoplifter')]), OrderedDict([('Word', 'quarrel')]), OrderedDict([('Word', 'sinful')]), OrderedDict([('Word', 'slap')]), OrderedDict([('Word', 'annoy')]), OrderedDict([('Word', 'wicked')]), OrderedDict([('Word', 'riot')]), OrderedDict([('Word', 'defeat')]), OrderedDict([('Word', 'bleed')]), OrderedDict([('Word', 'uncomfortable')]), OrderedDict([('Word', 'bothered')]), OrderedDict([('Word', 'bitch')]), OrderedDict([('Word', 'detain')]), OrderedDict([('Word', 'apprehension')]), OrderedDict([('Word', 'embarrassed')]), OrderedDict([('Word', 'unsure')]), OrderedDict([('Word', 'trouble')]), OrderedDict([('Word', 'critic')]), OrderedDict([('Word', 'broken')]), OrderedDict([('Word', 'damage')]), OrderedDict([('Word', 'hazard')]), OrderedDict([('Word', 'delayed')]), OrderedDict([('Word', 'uneasy')]), OrderedDict([('Word', 'sever')]), OrderedDict([('Word', 'irritate')]), OrderedDict([('Word', 'affair')]), OrderedDict([('Word', 'forbid')]), OrderedDict([('Word', 'ridicule')]), OrderedDict([('Word', 'destruction')]), OrderedDict([('Word', 'cram')]), OrderedDict([('Word', 'rattlesnake')]), OrderedDict([('Word', 'hive')]), OrderedDict([('Word', 'disruptive')]), OrderedDict([('Word', 'fright')]), OrderedDict([('Word', 'flood')]), OrderedDict([('Word', 'bees')]), OrderedDict([('Word', 'confused')]), OrderedDict([('Word', 'fire')]), OrderedDict([('Word', 'evil')]), OrderedDict([('Word', 'scary')]), OrderedDict([('Word', 'nuclear')]), OrderedDict([('Word', 'mob')]), OrderedDict([('Word', 'avalanche')]), OrderedDict([('Word', 'flee')]), OrderedDict([('Word', 'pushy')]), OrderedDict([('Word', 'snake')]), OrderedDict([('Word', 'spider')]), OrderedDict([('Word', 'germ')]), OrderedDict([('Word', 'bastard')]), OrderedDict([('Word', 'bruise')]), OrderedDict([('Word', 'pressure')]), OrderedDict([('Word', 'dagger')]), OrderedDict([('Word', 'foe')]), OrderedDict([('Word', 'invade')]), OrderedDict([('Word', 'emergency')]), OrderedDict([('Word', 'court')]), OrderedDict([('Word', 'frantic')]), OrderedDict([('Word', 'confusion')]), OrderedDict([('Word', 'gun')]), OrderedDict([('Word', 'ban')]), OrderedDict([('Word', 'gossip')]), OrderedDict([('Word', 'haunt')]), OrderedDict([('Word', 'seize')]), OrderedDict([('Word', 'outrage')]), OrderedDict([('Word', 'offensive')]), OrderedDict([('Word', 'spank')]), OrderedDict([('Word', 'fighting')]), OrderedDict([('Word', 'spanking')]), OrderedDict([('Word', 'slut')]), OrderedDict([('Word', 'envious')]), OrderedDict([('Word', 'anarchy')]), OrderedDict([('Word', 'slip')]), OrderedDict([('Word', 'obsessed')]), OrderedDict([('Word', 'thirsty')]), OrderedDict([('Word', 'appall')]), OrderedDict([('Word', 'knife')]), OrderedDict([('Word', 'wail')]), OrderedDict([('Word', 'scare')]), OrderedDict([('Word', 'blood')]), OrderedDict([('Word', 'shark')]), OrderedDict([('Word', 'disturb')]), OrderedDict([('Word', 'arrogant')]), OrderedDict([('Word', 'yelp')]), OrderedDict([('Word', 'officer')]), OrderedDict([('Word', 'bug')]), OrderedDict([('Word', 'demand')]), OrderedDict([('Word', 'suspicious')]), OrderedDict([('Word', 'fight')]), OrderedDict([('Word', 'forceful')]), OrderedDict([('Word', 'drama')]), OrderedDict([('Word', 'scream')]), OrderedDict([('Word', 'mangle')]), OrderedDict([('Word', 'politics')]), OrderedDict([('Word', 'tangle')]), OrderedDict([('Word', 'weapon')]), OrderedDict([('Word', 'slayer')]), OrderedDict([('Word', 'dentist')]), OrderedDict([('Word', 'rifle')]), OrderedDict([('Word', 'enlist')]), OrderedDict([('Word', 'shock')]), OrderedDict([('Word', 'baffle')]), OrderedDict([('Word', 'python')]), OrderedDict([('Word', 'battle')]), OrderedDict([('Word', 'revolt')]), OrderedDict([('Word', 'compulsive')]), OrderedDict([('Word', 'bribe')]), OrderedDict([('Word', 'financial')]), OrderedDict([('Word', 'enforcement')]), OrderedDict([('Word', 'police')]), OrderedDict([('Word', 'chaos')]), OrderedDict([('Word', 'overwhelmed')]), OrderedDict([('Word', 'lurk')]), OrderedDict([('Word', 'beast')]), OrderedDict([('Word', 'prostitute')]), OrderedDict([('Word', 'vampire')]), OrderedDict([('Word', 'pang')]), OrderedDict([('Word', 'weight')]), OrderedDict([('Word', 'nerves')]), OrderedDict([('Word', 'heat')]), OrderedDict([('Word', 'blade')]), OrderedDict([('Word', 'pierce')]), OrderedDict([('Word', 'emotional')]), OrderedDict([('Word', 'reckless')]), OrderedDict([('Word', 'shotgun')]), OrderedDict([('Word', 'goddamn')]), OrderedDict([('Word', 'drill')]), OrderedDict([('Word', 'swear')]), OrderedDict([('Word', 'lava')]), OrderedDict([('Word', 'clench')]), OrderedDict([('Word', 'evade')]), OrderedDict([('Word', 'startled')]), OrderedDict([('Word', 'damn')]), OrderedDict([('Word', 'obsession')]), OrderedDict([('Word', 'speech')]), OrderedDict([('Word', 'breathless')]), OrderedDict([('Word', 'command')]), OrderedDict([('Word', 'lightning')]), OrderedDict([('Word', 'expensive')])]" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="Workbook2.xlsx" valType="str"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="1" valType="code"/>
+      <Param name="name" updates="None" val="trials" valType="code"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+    </LoopInitiator>
+    <Routine name="Arousal_2"/>
+    <Routine name="Valence_2"/>
+    <LoopTerminator name="trials"/>
+    <Routine name="goodbye"/>
+  </Flow>
+</PsychoPy2experiment>
