@@ -1,0 +1,27 @@
+"0","data <- read.csv(""behaviour.txt"")"
+"0",""
+"0","data$Valence <- factor(data$Valence, levels = c(""Low"", ""High""))"
+"0","data$Valence <- revalue(data$Valence, c(""Low""=""Negative"", ""High""=""Positive""))"
+"0","data$Arousal <- factor(data$Arousal, levels = c(""Low"", ""High""))"
+"0",""
+"0","data$xj <- jitter(as.numeric(as.factor(data$Arousal)), amount=0.02)"
+"0",""
+"0","data$Arousal <- as.numeric(as.factor(data$Arousal))"
+"0",""
+"0","summary_data <- data %>%"
+"0","  group_by(Valence, Arousal) %>%"
+"0","  select(-Subject, -X) %>%"
+"0","  filter(Reject == 0) %>% # rejections determined by boxplot analysis, see prereg"
+"0","  summarise_all(funs(mean, std.error))"
+"2","funs() is soft deprecated as of dplyr 0.8.0
+Please use a list of either functions or lambdas: 
+
+  # Simple named list: 
+  list(mean = mean, median = median)
+
+  # Auto named with `tibble::lst()`: 
+  tibble::lst(mean, median)
+
+  # Using lambdas
+  list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))
+[90mThis warning is displayed once per session.[39m"

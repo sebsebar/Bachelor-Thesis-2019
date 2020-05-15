@@ -1,0 +1,13 @@
+"0","```r
+data <- read.csv(\"behaviour.txt\")
+data$Valence <- factor(data$Valence, levels = c(\"Low\", \"High\"))
+data$Valence <- revalue(data$Valence, c(\"Low\"=\"Negative\", \"High\"=\"Positive\"))
+data$Arousal <- factor(data$Arousal, levels = c(\"Low\", \"High\"))
+data$xj <- jitter(as.numeric(as.factor(data$Arousal)), amount=0.02)
+data$Arousal <- as.numeric(as.factor(data$Arousal))
+summary_data <- data %>%
+  group_by(Valence, Arousal) %>%
+  select(-Subject, -X) %>%
+  filter(Reject == 0) %>% # rejections determined by boxplot analysis, see prereg
+  summarise_all(funs(mean, std.error))
+```"

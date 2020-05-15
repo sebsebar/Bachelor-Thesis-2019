@@ -1,0 +1,1 @@
+{"frames":[{"character_number":0,"end_character_number":0,"end_line_number":0,"file":"","func":"setwd(abs_dic)","line_number":0}],"message":"Error in setwd(abs_dic) : cannot change working directory\n"}

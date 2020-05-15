@@ -1,0 +1,7 @@
+"0","data$xj <- jitter(as.numeric(as.factor(data$Arousal)), amount=0.05)"
+"0","  "
+"0","# now we can calculate a new matrix with mean and SE "
+"0","summary_data <- data %>%"
+"0","  group_by(Valence, Arousal) %>%"
+"0","  select(-Subject) %>%"
+"0","  summarise_all(funs(mean, std.error))"

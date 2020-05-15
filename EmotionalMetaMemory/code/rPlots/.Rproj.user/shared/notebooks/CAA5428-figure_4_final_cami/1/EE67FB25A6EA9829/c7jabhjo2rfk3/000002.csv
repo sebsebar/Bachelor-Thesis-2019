@@ -1,0 +1,420 @@
+"0","pacman::p_load(""plyr"", ""tidyr"", ""lattice"", ""ggplot2"", ""dplyr"", ""patchwork"","
+"0","              ""cowplot"",""readr"", ""rmarkdown"",""Rmisc"",""devtools"",""gghalves"",""plotrix"", ""here"")"
+"2","Installing package into ‘C:/Users/Camile Correa/Documents/R/win-library/3.6’
+(as ‘lib’ is unspecified)
+"
+"2","cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/3.6/PACKAGES.rds': HTTP status was '404 Not Found'"
+"2","cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/3.6/PACKAGES.gz': HTTP status was '404 Not Found'"
+"2","cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/3.6/PACKAGES': HTTP status was '404 Not Found'"
+"2","unable to access index for repository http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/3.6:
+  cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/3.6/PACKAGES'"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/patchwork_1.0.0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 3216156 bytes (3.1 MB)
+"
+"2","downloaded 3.1 MB
+
+"
+"1","package â€˜patchworkâ€™ successfully unpacked and MD5 sums checked
+"
+"1","
+"
+"1",""
+"1","The downloaded binary packages are in
+	C:\Users\Camile Correa\AppData\Local\Temp\RtmpCarlBF\downloaded_packages"
+"1",""
+"1","
+"
+"2","
+patchwork installed
+"
+"2","Installing package into ‘C:/Users/Camile Correa/Documents/R/win-library/3.6’
+(as ‘lib’ is unspecified)
+"
+"2","cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/3.6/PACKAGES.rds': HTTP status was '404 Not Found'"
+"2","cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/3.6/PACKAGES.gz': HTTP status was '404 Not Found'"
+"2","cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/3.6/PACKAGES': HTTP status was '404 Not Found'"
+"2","unable to access index for repository http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/3.6:
+  cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/3.6/PACKAGES'"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/Rmisc_1.5.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 52491 bytes (51 KB)
+"
+"2","downloaded 51 KB
+
+"
+"1","package â€˜Rmiscâ€™ successfully unpacked and MD5 sums checked
+"
+"1","
+"
+"1",""
+"1","The downloaded binary packages are in
+	C:\Users\Camile Correa\AppData\Local\Temp\RtmpCarlBF\downloaded_packages"
+"1",""
+"1","
+"
+"2","
+Rmisc installed
+"
+"2","Installing package into ‘C:/Users/Camile Correa/Documents/R/win-library/3.6’
+(as ‘lib’ is unspecified)
+"
+"2","also installing the dependencies ‘ini’, ‘lazyeval’, ‘later’, ‘gh’, ‘rematch2’, ‘rex’, ‘htmlwidgets’, ‘crosstalk’, ‘promises’, ‘xopen’, ‘brew’, ‘commonmark’, ‘usethis’, ‘covr’, ‘DT’, ‘glue’, ‘git2r’, ‘memoise’, ‘rcmdcheck’, ‘roxygen2’, ‘rversions’, ‘sessioninfo’
+
+"
+"2","cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/3.6/PACKAGES.rds': HTTP status was '404 Not Found'"
+"2","cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/3.6/PACKAGES.gz': HTTP status was '404 Not Found'"
+"2","cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/3.6/PACKAGES': HTTP status was '404 Not Found'"
+"2","unable to access index for repository http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/3.6:
+  cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/3.6/PACKAGES'"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/ini_0.3.1.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 15700 bytes (15 KB)
+"
+"2","downloaded 15 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/lazyeval_0.2.2.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 172636 bytes (168 KB)
+"
+"2","downloaded 168 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/later_1.0.0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 664881 bytes (649 KB)
+"
+"2","downloaded 649 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/gh_1.1.0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 110729 bytes (108 KB)
+"
+"2","downloaded 108 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/rematch2_2.1.2.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 47567 bytes (46 KB)
+"
+"2","downloaded 46 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/rex_1.2.0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 125211 bytes (122 KB)
+"
+"2","downloaded 122 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/htmlwidgets_1.5.1.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 809964 bytes (790 KB)
+"
+"2","downloaded 790 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/crosstalk_1.1.0.1.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 778649 bytes (760 KB)
+"
+"2","downloaded 760 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/promises_1.1.0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 1787229 bytes (1.7 MB)
+"
+"2","downloaded 1.7 MB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/xopen_1.0.0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 24682 bytes (24 KB)
+"
+"2","downloaded 24 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/brew_1.0-6.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 113871 bytes (111 KB)
+"
+"2","downloaded 111 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/commonmark_1.7.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 265807 bytes (259 KB)
+"
+"2","downloaded 259 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/usethis_1.6.1.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 604073 bytes (589 KB)
+"
+"2","downloaded 589 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/covr_3.5.0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 304409 bytes (297 KB)
+"
+"2","downloaded 297 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/DT_0.13.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 1734186 bytes (1.7 MB)
+"
+"2","downloaded 1.7 MB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/glue_1.4.0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 157970 bytes (154 KB)
+"
+"2","downloaded 154 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/git2r_0.27.1.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 3698420 bytes (3.5 MB)
+"
+"2","downloaded 3.5 MB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/memoise_1.1.0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 36816 bytes (35 KB)
+"
+"2","downloaded 35 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/rcmdcheck_1.3.3.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 135071 bytes (131 KB)
+"
+"2","downloaded 131 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/roxygen2_7.1.0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 1178728 bytes (1.1 MB)
+"
+"2","downloaded 1.1 MB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/rversions_2.0.1.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 68436 bytes (66 KB)
+"
+"2","downloaded 66 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/sessioninfo_1.1.1.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 46932 bytes (45 KB)
+"
+"2","downloaded 45 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/devtools_2.3.0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 351121 bytes (342 KB)
+"
+"2","downloaded 342 KB
+
+"
+"1","package â€˜iniâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜lazyevalâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜laterâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜ghâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜rematch2â€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜rexâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜htmlwidgetsâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜crosstalkâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜promisesâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜xopenâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜brewâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜commonmarkâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜usethisâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜covrâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜DTâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜glueâ€™ successfully unpacked and MD5 sums checked
+"
+"2","cannot remove prior installation of package ‘glue’"
+"2","problem copying C:\Users\Camile Correa\Documents\R\win-library\3.6\00LOCK\glue\libs\x64\glue.dll to C:\Users\Camile Correa\Documents\R\win-library\3.6\glue\libs\x64\glue.dll: Permission denied"
+"2","restored ‘glue’"
+"1","package â€˜git2râ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜memoiseâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜rcmdcheckâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜roxygen2â€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜rversionsâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜sessioninfoâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜devtoolsâ€™ successfully unpacked and MD5 sums checked
+"
+"1","
+"
+"1",""
+"1","The downloaded binary packages are in
+	C:\Users\Camile Correa\AppData\Local\Temp\RtmpCarlBF\downloaded_packages"
+"1",""
+"1","
+"
+"2","
+devtools installed
+"
+"2","Installing package into ‘C:/Users/Camile Correa/Documents/R/win-library/3.6’
+(as ‘lib’ is unspecified)
+"
+"2","cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/3.6/PACKAGES.rds': HTTP status was '404 Not Found'"
+"2","cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/3.6/PACKAGES.gz': HTTP status was '404 Not Found'"
+"2","cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/3.6/PACKAGES': HTTP status was '404 Not Found'"
+"2","unable to access index for repository http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/3.6:
+  cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/3.6/PACKAGES'"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/gghalves_0.1.0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 235040 bytes (229 KB)
+"
+"2","downloaded 229 KB
+
+"
+"1","package â€˜gghalvesâ€™ successfully unpacked and MD5 sums checked
+"
+"1","
+"
+"1",""
+"1","The downloaded binary packages are in
+	C:\Users\Camile Correa\AppData\Local\Temp\RtmpCarlBF\downloaded_packages"
+"1",""
+"1","
+"
+"2","
+gghalves installed
+"
+"2","Installing package into ‘C:/Users/Camile Correa/Documents/R/win-library/3.6’
+(as ‘lib’ is unspecified)
+"
+"2","cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/3.6/PACKAGES.rds': HTTP status was '404 Not Found'"
+"2","cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/3.6/PACKAGES.gz': HTTP status was '404 Not Found'"
+"2","cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/3.6/PACKAGES': HTTP status was '404 Not Found'"
+"2","unable to access index for repository http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/3.6:
+  cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/3.6/PACKAGES'"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/plotrix_3.7-8.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 1141963 bytes (1.1 MB)
+"
+"2","downloaded 1.1 MB
+
+"
+"1","package â€˜plotrixâ€™ successfully unpacked and MD5 sums checked
+"
+"1","
+"
+"1",""
+"1","The downloaded binary packages are in
+	C:\Users\Camile Correa\AppData\Local\Temp\RtmpCarlBF\downloaded_packages"
+"1",""
+"1","
+"
+"2","
+plotrix installed
+"
+"2","Installing package into ‘C:/Users/Camile Correa/Documents/R/win-library/3.6’
+(as ‘lib’ is unspecified)
+"
+"2","cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/3.6/PACKAGES.rds': HTTP status was '404 Not Found'"
+"2","cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/3.6/PACKAGES.gz': HTTP status was '404 Not Found'"
+"2","cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/3.6/PACKAGES': HTTP status was '404 Not Found'"
+"2","unable to access index for repository http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/3.6:
+  cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/3.6/PACKAGES'"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/here_0.1.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 20472 bytes (19 KB)
+"
+"2","downloaded 19 KB
+
+"
+"1","package â€˜hereâ€™ successfully unpacked and MD5 sums checked
+"
+"1","
+"
+"1",""
+"1","The downloaded binary packages are in
+	C:\Users\Camile Correa\AppData\Local\Temp\RtmpCarlBF\downloaded_packages"
+"1",""
+"1","
+"
+"2","
+here installed
+"
+"0","abs_dic <- dirname(rstudioapi::getSourceEditorContext()$path)"
+"0","setwd(abs_dic)"
+"0",""
+"0","# width and height variables for saved plots"
+"0","w = 5"
+"0","h = 5"
+"0",""
+"0","# nudge variables for rainclouds"
+"0",""
+"0","nudge_dot_a = 1.15"
+"0","nudge_dot_b = -1.15"
+"0",""
+"0","nudge_cloud_a = 1.25"
+"0","nudge_cloud_b = -1.25"
+"0",""
+"0","# Make the figure folder if it doesn't exist yet"
+"0","dir.create('../figures/', showWarnings = FALSE)"
+"0",""

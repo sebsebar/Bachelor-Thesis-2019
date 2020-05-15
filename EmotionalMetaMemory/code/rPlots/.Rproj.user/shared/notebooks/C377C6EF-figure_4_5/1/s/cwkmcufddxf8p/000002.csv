@@ -1,0 +1,30 @@
+"0","```r
+P_B <- ggplot(data = summary_data, aes(y = Criterion_mean)) +
+   geom_point(data = summary_data, aes( x = Arousal, color = Valence, y = Criterion_mean), position = position_nudge(0), alpha = 1) +
+   geom_point(data = data %>% filter(Arousal==1), aes(x = xj, colour = Valence, y = Criterion),
+                position = position_nudge(nudge_dot_a), alpha =.8, size=1.5)+
+   geom_point(data = data %>% filter(Arousal==2), aes(x = xj, colour = Valence, y = Criterion),
+                position = position_nudge(nudge_dot_b), alpha =.8,size=1.5) +
+  geom_errorbar(data = summary_data, aes(x = as.numeric(Arousal), colour = Valence, ymin = Criterion_mean-Criterion_std.error, ymax = Criterion_mean+Criterion_std.error),width = 0, size =1, position = position_nudge(0), alpha = 1) +
+   geom_line(aes(x = Arousal, color=Valence,y = Criterion_mean),  alpha = 1) +
+   geom_line(aes(x = Arousal, color=Valence, y = Criterion_mean), alpha = 1) +
+   geom_half_violin(
+     data = data %>% filter(Arousal==\"1\"),aes(x = Arousal, color=Valence,fill = Valence,y = Criterion), position = position_nudge(x = nudge_cloud_a), 
+     side = \"r\", alpha = .6) +
+   geom_half_violin(
+     data = data %>% filter(Arousal==\"2\"),aes(x = Arousal, color=Valence,fill = Valence,y = Criterion), position = position_nudge(x = nudge_cloud_b), 
+     side = \"l\", alpha = .6) +
+  scale_x_continuous(breaks=c(1,2), labels=c(\"Low\", \"High\"), limits=c(0, 3)) +
+     #Define additional settings
+   xlab(\"Arousal\") + ylab(\"Criterion\") +
+   ggtitle('B') +
+   theme_cowplot()+
+   theme(legend.position = \"none\") +
+  theme(title = element_text(size=14, face=\"bold\"),axis.text.x = element_text(face = \"bold\", size = 14),axis.text.y = element_text(face = \"bold\", size = 14),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(),axis.line = element_line(colour = \"black\"))+
+  scale_fill_manual(values=c(\"#2C5AA0\",\"#AA0000\")) +
+  scale_color_manual(values=c(\"#2C5AA0\",\"#AA0000\"))
+ggsave(filename=\"figures/Figure3_B.svg\", plot=P_B, width = w, height = h,dpi=600)
+P_B
+```"

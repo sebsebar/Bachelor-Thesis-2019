@@ -1,0 +1,120 @@
+---
+title: "Load and Clean Experimental Data"
+output: html_document
+---
+
+# Loading the Experimental Data and cleaning it 
+```{r setup, results='hide',error = FALSE, warning = FALSE, message = FALSE}
+#Loading Libraries
+library(tidyverse) ; library(plyr) ; library(doBy) ; library(ggplot2) ; library(Hmisc)
+```
+
+
+```{r, include=TRUE}
+#Setting Working Directory
+#Set Absolute Path
+getwd()
+Absolute_Directory <- dirname(rstudioapi::getSourceEditorContext()$path)
+setwd(Absolute_Directory)
+getwd()
+#Going into subfolder with SUBJ Data
+setwd("./SUBJ Data")
+getwd()
+#Make a list of names in Working Directory
+filenames = list.files(pattern = "*.txt") 
+#Show List
+filenames
+#Make Empty Dataframe
+data = data.frame() 
+#It Includes 35 Participants
+
+for (n_subjects in filenames){ #loop over list of files
+  #import the current file
+  file = read.delim(n_subjects, header=TRUE,sep = ",") 
+  #Add Subjetline
+  file$SUBJ <- n_subjects
+  #Make Variable For Conditions
+  file$Cond <- ifelse(file$Arousal == "High" & file$Valence == "High","A+V+", ifelse(file$Arousal == "High" & file$Valence == "Low", "A+V-", ifelse(file$Arousal == "Low" & file$Valence == "High","A-V+","A-V-")))
+  #Make Variable for number of NAs per SUBJ (We Multiply by 2 as we'll remove the datapoints following an NA aswell, as they were corrupted due to the Python Script) 
+  file$NA_Sum <- sum(is.na(file))*2
+  # How Many NAs per SUBJ in Percent
+  file$NA_Sum_Pre <- file$NA_Sum/600
+  
+  #Making Variables for how many NAs there is per category (We Multiply by 2 as we'll remove the datapoints following an NA aswell, as they were corrupted due to the Python Script), we also make a variable for the overall Percentage of NAs per category and a variable for dropped rows - being under 100ms in RT to either Confidence ratings or Decision on trials
+  file$NA_Cat <- 0
+  file$NA_Cat_Pre <- 0
+  
+  temp_file1 <- subset(file,Cond == "A+V-")
+  temp_file1$NA_Sum <- sum(is.na(temp_file1))*2
+  temp_file1$NA_Sum_Pre <- temp_file1$NA_Sum/150
+  temp_file1$Dropped_Speed <- length(which(temp_file1$Confidence_RT < 0.100 & temp_file1$Confidence_RT != is.na(TRUE)| temp_file1$RT < 0.100 & temp_file1$RT != is.na(TRUE)))
+  
+  temp_file2 <- subset(file,Cond == "A-V+")
+  temp_file2$NA_Sum <- sum(is.na(temp_file2))*2
+  temp_file2$NA_Sum_Pre <- temp_file2$NA_Sum/150
+  temp_file2$Dropped_Speed <- length(which(temp_file2$Confidence_RT < 0.100 & temp_file2$Confidence_RT != is.na(TRUE)| temp_file2$RT < 0.100 & temp_file2$RT != is.na(TRUE)))
+  
+  temp_file3 <- subset(file,Cond == "A+V+")
+  temp_file3$NA_Sum <- sum(is.na(temp_file3))*2
+  temp_file3$NA_Sum_Pre <- temp_file3$NA_Sum/150
+  temp_file3$Dropped_Speed <- length(which(temp_file3$Confidence_RT < 0.100 & temp_file3$Confidence_RT != is.na(TRUE)| temp_file3$RT < 0.100 & temp_file3$RT != is.na(TRUE)))
+  
+  temp_file4 <- subset(file,Cond == "A-V-")
+  temp_file4$NA_Sum <- sum(is.na(temp_file4))*2
+  temp_file4$NA_Sum_Pre <- temp_file4$NA_Sum/150
+  temp_file4$Dropped_Speed <- length(which(temp_file4$Confidence_RT < 0.100 & temp_file4$Confidence_RT != is.na(TRUE) | temp_file4$RT < 0.100 & temp_file4$RT != is.na(TRUE)))
+  
+  file$NA_Cat <- ifelse(file$Cond == "A+V-",temp_file1$NA_Sum, ifelse(file$Cond == "A-V+", temp_file2$NA_Sum, ifelse(file$Cond == "A+V+",temp_file3$NA_Sum,temp_file4$NA_Sum)))
+  
+  file$NA_Cat_Pre <- ifelse(file$Cond == "A+V-",temp_file1$NA_Sum_Pre, ifelse(file$Cond == "A-V+", temp_file2$NA_Sum_Pre, ifelse(file$Cond == "A+V+",temp_file3$NA_Sum_Pre,temp_file4$NA_Sum_Pre)))
+  
+  file$Dropped_Speed <- ifelse(file$Cond == "A+V-",temp_file1$Dropped_Speed, ifelse(file$Cond == "A-V+", temp_file2$Dropped_Speed, ifelse(file$Cond == "A+V+",temp_file3$Dropped_Speed,temp_file4$Dropped_Speed)))
+  
+  #Get ID Coloumn to start at 1
+  file$X <- file$X+1
+  #Exclude NAs and the following Datapoint - as both NA values and the ones following were corrupted due to the Python Script
+  Extra_exclusion <- which(is.na(file$Confidence))+1
+  Extra_exclusion <- as.list((Extra_exclusion))
+  Extra_exclusion <- as.numeric(Extra_exclusion)
+  file <-subset(file, !(X %in% Extra_exclusion))
+  file <- na.omit(file)
+  
+  #Exclude all trials with reactiontimes faster than 100 milliseconds aswell as negative trials
+  
+  file <- filter(file, Confidence_RT >= 0.100)
+  file <- filter(file, RT >= 0.100)
+  
+  #Something happend to the accuracy-scores of SUBJ 11123 - So we'll try to force them into numerics
+  #Make Accuracy Scores Numeric
+  file$Accuracy <- (ifelse(file$Accuracy == "True" | file$Accuracy == "1.0" | file$Accuracy == "1", "1", "0"))
+  
+  #Bind To Complete Dataframe
+  data = rbind(data, file[,]) 
+  }
+#Checking for all 35 participants
+unique(data$SUBJ)
+```
+
+
+#Plotting To Find Participants to Exclude
+```{r}
+#Plotting to get an idea of what to exclude
+Plot_1 <- ggplot(data, aes(x = Cond, y = NA_Cat)) + geom_bar(stat = "summary", fun.y = mean) + facet_wrap(~SUBJ)
+Plot_1
+```
+
+
+```{r}
+#Participants with missing data (i.e. data loss due to technical failures) or insufficient data (fewer than 50 trials in total per condition) will be excluded.
+
+#Checking for Participants with conditions with fewer than 50 trials
+# Here we subset the dataframe looking for which participants have conditions with more than 66% of their data missing (So below 50 good trials in a condition)
+subset <- data[which(data[,21]>=0.66),]
+unique(subset$SUBJ)
+#The Low Arousal and Low Valence group (A-V-) for "Subject_11113.txt", "Subject_11128.txt", "Subject_11131.txt", "Subject_47542.txt" has below 50 "good" trials and must therefore be excluded - This Stems with Plot_1
+
+data <- filter(data,SUBJ!="Subject_47542.txt" & SUBJ!="Subject_11113.txt" & SUBJ!="Subject_11131.txt" & SUBJ!="Subject_11128.txt")
+#Checking that we now have only 31 Participants
+unique(data$SUBJ)
+```
+

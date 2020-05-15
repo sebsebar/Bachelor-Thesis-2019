@@ -1,0 +1,24 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1588841029067.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3179563521",
+    "id" : "CF78C052",
+    "lastKnownWriteTime" : 1588890115,
+    "last_content_update" : 1588890115516,
+    "path" : "C:/Users/Micah Allen/Google Drive/ECG_root/Projects/in_progress/EmotionalMetaMemory/code/rPlots/figure_4_final.Rmd",
+    "project_path" : "figure_4_final.Rmd",
+    "properties" : {
+        "chunk_output_type" : "inline",
+        "cursorPosition" : "267,12",
+        "scrollLine" : "266",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

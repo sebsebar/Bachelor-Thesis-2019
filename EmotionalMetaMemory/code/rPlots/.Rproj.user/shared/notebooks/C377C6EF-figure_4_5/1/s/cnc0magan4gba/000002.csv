@@ -1,0 +1,9 @@
+"0","```r
+#plot_grid(P_A, P_B, P_C, P_D, P_E, P_F, nrow = 2, ncol = 3)
+mp<- P_A + P_B + P_C + P_D + P_E + P_F + plot_layout(guides = 'collect', ncol = 3)#, heights = c(10,10), widths = c(10,10,10))
+mp
+ggsave(filename=\"figures/Figure3_ALL.svg\", plot=mp, width = 12, height = 6,dpi=600)
+```"
+"0","```r
+ggsave(filename=\"figures/Figure3_ALL.jpeg\", plot=mp, width = 12, height = 6,dpi=600)
+```"

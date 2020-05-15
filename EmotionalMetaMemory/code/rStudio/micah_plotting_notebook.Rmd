@@ -1,0 +1,85 @@
+---
+title: "Behavioral ANalysis"
+output: html_notebook
+---
+
+```{r}
+library(gghalves)
+library(tidyr)
+library(dplyr)
+library(plyr)
+library(here)
+library(plotrix)
+
+```
+
+```{r}
+Behavior <- read.csv("C:/Users/Micah Allen/Google Drive/ECG_root/Projects/in_progress/EmotionalMetaMemory/Behaviour.txt")
+
+set.seed(231)
+Behavior$xj <- jitter(as.numeric(as.factor(Behavior$Arousal)), amount=0.02)
+
+#Behavior$Valence <- as.numeric(as.factor(Behavior$Valence))
+Behavior$Arousal <- as.numeric(as.factor(Behavior$Arousal))
+
+summary_data <- Behavior %>%
+  group_by(Valence, Arousal) %>%
+  select(-Subject, -X) %>%
+  summarise_all(funs(mean, std.error))
+
+p1<- ggplot(summary_data, aes(y = RT_mean)) +
+   geom_point(data = summary_data, aes( x = Arousal, color = Valence, y = RT_mean), position = position_nudge(0)) +
+    
+   geom_point(data = Behavior %>% filter(Arousal==1), aes(x = xj, colour = Valence, y = RT),
+                position = position_nudge(-.1))+
+   geom_point(data = Behavior %>% filter(Arousal==2), aes(x = xj, colour = Valence, y = RT),
+                position = position_nudge(.1))+
+  
+    geom_errorbar(data = summary_data, aes(x = Arousal, colour = Valence, ymin = RT_mean-RT_std.error, ymax = RT_mean + RT_std.error),
+                  width = 0, size =1.5, position = position_nudge(0), alpha = 0.5)+
+    geom_line(data = summary_data, aes(x = Arousal, colour = Valence, y = RT_mean), position = position_nudge(0), size = 1.5, alpha = 0.75)+
+
+  
+   # geom_point(data = Behavior, aes(x = xj, color = Valence, y = RT), size = 1.5, 
+    #          alpha = .6) +
+  
+   geom_half_violin(
+     data = Behavior %>% filter(Arousal==1),aes(x = Arousal,fill = Valence, y = RT),
+     position = position_nudge(x = -.2), 
+     side = "l", alpha = 0.5) +
+  
+   geom_half_violin(
+     data = Behavior %>% filter(Arousal==2),aes(x = Arousal,fill = Valence, y = RT),
+     position = position_nudge(x = .2), 
+     side = "r", alpha = 0.5) +
+  
+  scale_x_continuous(breaks=c(1,2), labels=c("High", "Low"), limits=c(0, 3)) +
+  #scale_fill_brewer(type = "div", palette = "RdYlBu") +
+  #scale_color_brewer(type = "div", palette = "RdYlBu") +
+  theme_classic()
+
+ggsave("test_raincloud2.jpeg", width = 6, height = 4, dpi = 300)
+p1
+
+```
+
+
+```{r}
+
+
+Behavior$Valence <- as.factor(Behavior$Valence)
+Behavior$Arousal <- as.factor(Behavior$Arousal)
+
+
+Behavior$Valence <- revalue(Behavior$Valence, c("High" = "Positive", "Low" = "Negative"))
+
+csv_data <- Behavior %>%
+  select(-X, -xj) %>%
+  group_by(Subject, Valence, Arousal) %>%
+  mutate(log_Mratio = log10(Behavior$Mratio))%>%
+  pivot_wider(names_from = c(Valence, Arousal), values_from = Confidence:log_Mratio)
+
+write.csv(csv_data, "emo_meta_memory_jasp_final.csv")
+
+```
+

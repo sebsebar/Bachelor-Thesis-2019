@@ -1,0 +1,151 @@
+8.8484 	EXP 	Created window1 = Window(allowGUI=True, allowStencil=False, args=UNKNOWN, autoLog=True, bitsMode=UNKNOWN, blendMode='avg', color=array([0., 0., 0.]), colorSpace='rgb', fullscr=<method-wrapper '__getattribute__' of attributeSetter object at 0x130698e80>, gamma=None, gammaErrorPolicy='raise', kwargs=UNKNOWN, lms=UNKNOWN, monitor=<psychopy.monitors.calibTools.Monitor object at 0x130880780>, multiSample=False, name='window1', numSamples=2, pos=[320.0, 0.0], screen=0, size=array([800, 900]), stereo=False, units='height', useFBO=True, useRetina=False, viewOri=0.0, viewPos=None, viewScale=None, waitBlanking=True, winType='pyglet')
+8.8485 	EXP 	window1: recordFrameIntervals = False
+9.0151 	EXP 	window1: recordFrameIntervals = True
+9.2003 	EXP 	window1: recordFrameIntervals = False
+10.1028 	EXP 	Created introText = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.01, italic=False, languageStyle='LTR', name='introText', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text=str(...), units='height', win=Window(...), wrapWidth=1)
+10.1198 	EXP 	Created InstructValenceText = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='InstructValenceText', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text='be valenced', units='height', win=Window(...), wrapWidth=1)
+10.2429 	EXP 	Created Valence = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, image='Valence.png', interpolate=True, mask=None, maskParams=None, name='Valence', opacity=1.0, ori=0.0, pos=array([0.  , 0.25]), size=array([0.5 , 0.25]), texRes=128, units='height', win=Window(...))
+10.2522 	EXP 	Created InstructArousalText = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='InstructArousalText', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text='be aroused', units='height', win=Window(...), wrapWidth=1)
+10.2703 	EXP 	Created Arousal = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, image='Arousal.png', interpolate=True, mask=None, maskParams=None, name='Arousal', opacity=1.0, ori=0.0, pos=array([0.  , 0.25]), size=array([0.5 , 0.25]), texRes=128, units='height', win=Window(...))
+10.2841 	EXP 	Created WordPresentation = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.05, italic=False, languageStyle='LTR', name='WordPresentation', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text='default text', units='height', win=Window(...), wrapWidth=1)
+10.3468 	EXP 	Created rating_3 = RatingScale(__class__=type(...), acceptKeys=['return'], acceptPreText=UNKNOWN, acceptSize=UNKNOWN, acceptText='accept?', autoLog=True, choices=False, depth=0, disappear=False, flipVert=False, high=9, kwargs=UNKNOWN, labels=list(...), leftKeys=['left'], lineColor='White', low=1, marker=ShapeStim(...), markerColor='DarkBlue', markerExpansion=UNKNOWN, markerStart=None, maxTime=0.0, minTime=0.4, mouseOnly=False, name='rating_3', noMouse=False, pos=[0.0, -0.4], precision=1, respKeys=['1', '2', '3', '4', '5', '6', '7', '8', '9'], rightKeys=['right'], scale='', self=UNKNOWN, showAccept=True, showValue=True, singleClick=True, size=0.6, skipKeys=['tab'], stretch=1.0, textColor='LightGray', textFont='Helvetica Bold', textSize=0.12, tickHeight=1.0, tickMarks=8.0, win=Window(...))
+10.3612 	EXP 	Created ArousalGuide = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=-2.0, flipHoriz=False, flipVert=False, image='Arousal.png', interpolate=True, mask=None, maskParams=None, name='ArousalGuide', opacity=1.0, ori=0.0, pos=array([0.  , 0.25]), size=array([0.5 , 0.25]), texRes=128, units='height', win=Window(...))
+10.3760 	EXP 	Created WordPresentation2 = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='Gray', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.05, italic=False, languageStyle='LTR', name='WordPresentation2', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([128., 128., 128.]), text='default text', units='height', win=Window(...), wrapWidth=1)
+10.3906 	EXP 	Created ValenceImage = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, autoLog=True, color=array([1., 1., 1.]), colorSpace='rgb', contrast=1.0, depth=-1.0, flipHoriz=False, flipVert=False, image='Valence.png', interpolate=True, mask=None, maskParams=None, name='ValenceImage', opacity=1.0, ori=0.0, pos=array([0.  , 0.25]), size=array([0.5 , 0.25]), texRes=128, units='height', win=Window(...))
+10.4218 	EXP 	Created ValenceRating = RatingScale(__class__=type(...), acceptKeys=['return'], acceptPreText=UNKNOWN, acceptSize=UNKNOWN, acceptText='accept?', autoLog=True, choices=False, depth=0, disappear=False, flipVert=False, high=9, kwargs=UNKNOWN, labels=list(...), leftKeys=['left'], lineColor='White', low=1, marker=ShapeStim(...), markerColor='DarkBlue', markerExpansion=UNKNOWN, markerStart=None, maxTime=0.0, minTime=0.4, mouseOnly=False, name='ValenceRating', noMouse=False, pos=[0.0, -0.4], precision=1, respKeys=['1', '2', '3', '4', '5', '6', '7', '8', '9'], rightKeys=['right'], scale='', self=UNKNOWN, showAccept=True, showValue=True, singleClick=True, size=0.6, skipKeys=['tab'], stretch=1.0, textColor='LightGray', textFont='Helvetica Bold', textSize=0.12, tickHeight=1.0, tickMarks=8.0, win=Window(...))
+10.5010 	EXP 	Created GoodbyeText = TextStim(__class__=<class 'psychopy.visual.text.TextStim'>, alignHoriz='center', alignVert='center', antialias=True, autoLog=True, bold=False, color='white', colorSpace='named', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, font='Arial', fontFiles=[], height=0.1, italic=False, languageStyle='LTR', name='GoodbyeText', opacity=1.0, ori=0, pos=array([0., 0.]), rgb=array([255., 255., 255.]), text=str(...), units='height', win=Window(...), wrapWidth=1)
+10.5192 	EXP 	rating_3: flipVert = False
+10.5192 	EXP 	rating_3: autoLog = True
+10.5192 	EXP 	ValenceRating: flipVert = False
+10.5192 	EXP 	ValenceRating: autoLog = True
+10.5192 	EXP 	introText: autoDraw = True
+11.3572 	DATA 	Mouse: Left button down, pos=(419,475)
+11.3714 	EXP 	introText: autoDraw = False
+11.3714 	EXP 	InstructValenceText: autoDraw = True
+11.3714 	EXP 	Valence: autoDraw = True
+11.4238 	DATA 	Mouse:  Left button up, pos=(419,475)
+12.1280 	DATA 	Mouse: Left button down, pos=(419,475)
+12.1566 	EXP 	InstructValenceText: autoDraw = False
+12.1566 	EXP 	Valence: autoDraw = False
+12.1566 	EXP 	InstructArousalText: autoDraw = True
+12.1566 	EXP 	Arousal: autoDraw = True
+12.1748 	DATA 	Mouse:  Left button up, pos=(419,475)
+13.2281 	DATA 	Mouse: Left button down, pos=(419,475)
+13.2490 	EXP 	Imported conditions.xlsx as conditions, 4 conditions, 1 params
+13.2495 	EXP 	Created sequence: random, trialTypes=4, nReps=1, seed=None
+13.2498 	EXP 	New trial (rep=0, index=0): OrderedDict([('word', 'jump')])
+13.2564 	EXP 	RatingScale rating_3: reset()
+13.2765 	EXP 	InstructArousalText: autoDraw = False
+13.2765 	EXP 	Arousal: autoDraw = False
+13.2765 	EXP 	WordPresentation: text = 'jump'
+13.2765 	EXP 	WordPresentation: autoDraw = True
+13.2765 	EXP 	rating_3: autoDraw = True
+13.2765 	EXP 	ArousalGuide: autoDraw = True
+13.3136 	DATA 	Mouse:  Left button up, pos=(419,475)
+14.1334 	DATA 	Mouse: Left button down, pos=(419,475)
+14.1980 	DATA 	Mouse:  Left button up, pos=(419,475)
+15.0847 	DATA 	Mouse: Left button down, pos=(411,259)
+15.0856 	DATA 	RatingScale rating_3: (mouse single-click) rating=5
+15.0857 	DATA 	RatingScale rating_3: rating RT=1.828
+15.0857 	DATA 	RatingScale rating_3: history=[(None, 0.0), (5, 1.828)]
+15.1061 	EXP 	RatingScale ValenceRating: reset()
+15.1322 	EXP 	WordPresentation: autoDraw = False
+15.1322 	EXP 	rating_3: autoDraw = False
+15.1322 	EXP 	ArousalGuide: autoDraw = False
+15.1322 	EXP 	WordPresentation2: text = 'jump'
+15.1322 	EXP 	WordPresentation2: autoDraw = True
+15.1322 	EXP 	ValenceImage: autoDraw = True
+15.1322 	EXP 	ValenceRating: autoDraw = True
+15.1707 	DATA 	Mouse:  Left button up, pos=(411,259)
+16.9253 	DATA 	Mouse: Left button down, pos=(395,275)
+16.9260 	DATA 	RatingScale ValenceRating: (mouse single-click) rating=5
+16.9260 	DATA 	RatingScale ValenceRating: rating RT=1.819
+16.9260 	DATA 	RatingScale ValenceRating: history=[(None, 0.0), (5, 0.01), (5, 1.819)]
+16.9403 	EXP 	New trial (rep=0, index=1): OrderedDict([('word', 'funny')])
+16.9488 	EXP 	RatingScale rating_3: reset()
+16.9698 	EXP 	WordPresentation2: autoDraw = False
+16.9698 	EXP 	ValenceImage: autoDraw = False
+16.9698 	EXP 	ValenceRating: autoDraw = False
+16.9698 	EXP 	WordPresentation: text = 'funny'
+16.9698 	EXP 	WordPresentation: autoDraw = True
+16.9698 	EXP 	rating_3: autoDraw = True
+16.9698 	EXP 	ArousalGuide: autoDraw = True
+17.0397 	DATA 	Mouse:  Left button up, pos=(395,275)
+18.2649 	DATA 	Mouse: Left button down, pos=(395,275)
+18.2658 	DATA 	RatingScale rating_3: (mouse single-click) rating=5
+18.2658 	DATA 	RatingScale rating_3: rating RT=1.316
+18.2658 	DATA 	RatingScale rating_3: history=[(None, 0.0), (5, 0.002), (5, 1.316)]
+18.2886 	EXP 	RatingScale ValenceRating: reset()
+18.3064 	EXP 	WordPresentation: autoDraw = False
+18.3064 	EXP 	rating_3: autoDraw = False
+18.3064 	EXP 	ArousalGuide: autoDraw = False
+18.3064 	EXP 	WordPresentation2: text = 'funny'
+18.3064 	EXP 	WordPresentation2: autoDraw = True
+18.3064 	EXP 	ValenceImage: autoDraw = True
+18.3064 	EXP 	ValenceRating: autoDraw = True
+18.3637 	DATA 	Mouse:  Left button up, pos=(395,275)
+19.3153 	DATA 	Mouse: Left button down, pos=(395,275)
+19.3160 	DATA 	RatingScale ValenceRating: (mouse single-click) rating=5
+19.3160 	DATA 	RatingScale ValenceRating: rating RT=1.026
+19.3160 	DATA 	RatingScale ValenceRating: history=[(None, 0.0), (5, 0.003), (5, 1.026)]
+19.3293 	EXP 	New trial (rep=0, index=2): OrderedDict([('word', 'bastard')])
+19.3456 	EXP 	RatingScale rating_3: reset()
+19.3593 	EXP 	WordPresentation2: autoDraw = False
+19.3593 	EXP 	ValenceImage: autoDraw = False
+19.3593 	EXP 	ValenceRating: autoDraw = False
+19.3593 	EXP 	WordPresentation: text = 'bastard'
+19.3593 	EXP 	WordPresentation: autoDraw = True
+19.3593 	EXP 	rating_3: autoDraw = True
+19.3593 	EXP 	ArousalGuide: autoDraw = True
+19.4653 	DATA 	Mouse:  Left button up, pos=(395,275)
+20.4680 	DATA 	Mouse: Left button down, pos=(451,271)
+20.4687 	DATA 	RatingScale rating_3: (mouse single-click) rating=7
+20.4687 	DATA 	RatingScale rating_3: rating RT=1.122
+20.4688 	DATA 	RatingScale rating_3: history=[(None, 0.0), (5, 0.003), (6, 0.675), (7, 0.845), (7, 1.122)]
+20.4956 	EXP 	RatingScale ValenceRating: reset()
+20.5126 	EXP 	WordPresentation: autoDraw = False
+20.5126 	EXP 	rating_3: autoDraw = False
+20.5126 	EXP 	ArousalGuide: autoDraw = False
+20.5126 	EXP 	WordPresentation2: text = 'bastard'
+20.5126 	EXP 	WordPresentation2: autoDraw = True
+20.5126 	EXP 	ValenceImage: autoDraw = True
+20.5126 	EXP 	ValenceRating: autoDraw = True
+20.6188 	DATA 	Mouse:  Left button up, pos=(451,271)
+21.8542 	DATA 	Mouse: Left button down, pos=(404,271)
+21.8548 	DATA 	RatingScale ValenceRating: (mouse single-click) rating=5
+21.8549 	DATA 	RatingScale ValenceRating: rating RT=1.358
+21.8549 	DATA 	RatingScale ValenceRating: history=[(None, 0.0), (7, 0.003), (6, 0.512), (5, 0.627), (5, 1.358)]
+21.8683 	EXP 	New trial (rep=0, index=3): OrderedDict([('word', 'run')])
+21.8815 	EXP 	RatingScale rating_3: reset()
+21.8999 	EXP 	WordPresentation2: autoDraw = False
+21.8999 	EXP 	ValenceImage: autoDraw = False
+21.8999 	EXP 	ValenceRating: autoDraw = False
+21.8999 	EXP 	WordPresentation: text = 'run'
+21.8999 	EXP 	WordPresentation: autoDraw = True
+21.8999 	EXP 	rating_3: autoDraw = True
+21.8999 	EXP 	ArousalGuide: autoDraw = True
+22.0214 	DATA 	Mouse:  Left button up, pos=(404,271)
+22.7074 	DATA 	Mouse: Left button down, pos=(370,269)
+22.7080 	DATA 	RatingScale rating_3: (mouse single-click) rating=4
+22.7080 	DATA 	RatingScale rating_3: rating RT=0.825
+22.7080 	DATA 	RatingScale rating_3: history=[(None, 0.0), (5, 0.003), (4, 0.461), (4, 0.825)]
+22.7341 	EXP 	RatingScale ValenceRating: reset()
+22.7513 	EXP 	WordPresentation: autoDraw = False
+22.7513 	EXP 	rating_3: autoDraw = False
+22.7513 	EXP 	ArousalGuide: autoDraw = False
+22.7513 	EXP 	WordPresentation2: text = 'run'
+22.7513 	EXP 	WordPresentation2: autoDraw = True
+22.7513 	EXP 	ValenceImage: autoDraw = True
+22.7513 	EXP 	ValenceRating: autoDraw = True
+22.8406 	DATA 	Mouse:  Left button up, pos=(370,269)
+23.8266 	DATA 	Mouse: Left button down, pos=(339,271)
+23.8274 	DATA 	RatingScale ValenceRating: (mouse single-click) rating=3
+23.8275 	DATA 	RatingScale ValenceRating: rating RT=1.092
+23.8275 	DATA 	RatingScale ValenceRating: history=[(None, 0.0), (4, 0.003), (3, 0.895), (3, 1.092)]
+23.8540 	EXP 	WordPresentation2: autoDraw = False
+23.8540 	EXP 	ValenceImage: autoDraw = False
+23.8540 	EXP 	ValenceRating: autoDraw = False
+23.8540 	EXP 	GoodbyeText: autoDraw = True
+23.9235 	DATA 	Mouse:  Left button up, pos=(339,271)
+28.8680 	EXP 	GoodbyeText: autoDraw = False
+28.8877 	EXP 	window1: mouseVisible = True

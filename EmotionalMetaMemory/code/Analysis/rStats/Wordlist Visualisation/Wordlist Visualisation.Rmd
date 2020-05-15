@@ -1,0 +1,516 @@
+---
+title: "Emotional Metamemory - Wordlist Visualisation"
+author: "Sebastian Scott Engen"
+date: "7/23/2019"
+output: pdf_document
+---
+
+#Loading Libraries and Data
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse) ; library(plyr)
+#Set Absolute Path
+getwd()
+Absolute_Directory <- dirname(rstudioapi::getSourceEditorContext()$path)
+setwd(Absolute_Directory)
+getwd()
+#Going into subfolder with ANEW Data
+setwd("./ANEW_Data")
+getwd()
+
+data <- read.delim("ANEW2017All.txt", header=TRUE)
+data$ValSD <- gsub("[()]", "", data$ValSD) 
+data$AroSD <- gsub("[()]", "", data$ValSD) 
+```
+
+
+
+#Plot 9-point rating scale for each dimension of the ANEW Data
+```{r}
+ANEW_p1 <- ggplot(data, aes(x = ValMn, y = AroMn, colour="red")) + geom_point() + expand_limits(x=1, y=1) + scale_x_continuous(limits = c(1,9), breaks = c(seq(1,9))) + scale_y_continuous(limits = c(1,9), breaks = c(seq(1,9))) + labs(title = "Affective Norm Ratings from (ANEW) 2017 (A1)", x = "Valence", y = "Arousal")+theme_bw()+ theme(plot.title = element_text(size=25, face="bold.italic"),aspect.ratio=1,axis.title.x = element_text(size=14, face="bold"),axis.title.y = element_text(size=20, face="bold"))+ theme(legend.position = "none")
+
+ANEW_p1
+```
+
+# Make new flag variables for Tertiles 
+```{r}
+#Valence
+quantile(data$ValMn, c(.40, .50, .60))
+#Arousal
+quantile(data$AroMn, c(.40, .50, .60))
+
+cuthigh <- 5.4
+cutlow <- 4.6
+Valence_And_Arousal <- (ifelse(data$ValMn >= cuthigh & data$AroMn >= cuthigh, 'ValHighAroHigh',
+                                   ifelse(data$ValMn >= cuthigh & data$AroMn <= cutlow, 'ValHighAroLow',
+                                          ifelse(data$ValMn <= cutlow & data$AroMn >= cuthigh, 'ValLowAroHigh',
+                                                 ifelse(data$ValMn <= cutlow & data$AroMn <= cutlow, 'ValLowAroLow',
+                                                 '0')))))
+data <- cbind(data,Valence_And_Arousal)
+# Calculate count for each bin
+count(data$Valence_And_Arousal)
+"""
+               x freq
+1              0 1390
+2 ValHighAroHigh  627
+3  ValHighAroLow  435
+4  ValLowAroHigh  435
+5   ValLowAroLow  301
+"""
+```
+# Visualize
+```{r}
+#Find Median and std
+#Subsetting
+Medians <- data %>%
+select(ValMn,AroMn,Valence_And_Arousal) %>%
+group_by(Valence_And_Arousal)
+Medians <- as.data.frame(Medians)
+data$Valence_And_Arousal <- as_factor(data$Valence_And_Arousal)
+
+SumSum <- data_frame()
+  #Enter subset
+SumSum <- Medians %>%
+    #Tell R to do function on each factorlevel
+  dplyr::group_by(Valence_And_Arousal) %>%
+  #Summarise Median and Std
+  dplyr::summarise(VMedian = median(ValMn), Vsd = sd(ValMn), AMedian = median(AroMn), Asd = sd(AroMn)) 
+#Remove sd and Median value for factorlevel '0'
+SumSum <- filter(SumSum, Valence_And_Arousal != "0")
+
+#Final Plot
+data1 <- filter(data, Valence_And_Arousal != "0")
+data2 <- filter(data, Valence_And_Arousal == "0")
+ANEW_p2 <- ggplot(data1, aes(x = ValMn, y = AroMn,col=Valence_And_Arousal)) + geom_point()+ scale_color_manual(values=c("#333333","#AA0000","#ff8383","#2C5AA0","#99b7e3"))  + labs(title = "Affective Norm Ratings from (ANEW) 2017 (A2)", x = "Valence", y = "Arousal") + theme_bw() + geom_point(data = data2,mapping= aes(x = ValMn, y = AroMn),colour = "grey",alpha= 0.2) + expand_limits(x=1, y=1) + scale_x_continuous(limits = c(1,9), breaks = c(seq(1,9))) + scale_y_continuous(limits = c(1,9), breaks = c(seq(1,9)))+ geom_point(data = SumSum,mapping= aes(x = VMedian, y = AMedian, col="Red", size=2)) + geom_point(data = SumSum,mapping= aes(x = VMedian-Vsd, y = AMedian, col="Red", size=1))+ geom_point(data = SumSum,mapping= aes(x = VMedian+Vsd, y = AMedian, col="Red", size=1)) + geom_point(data = SumSum,mapping= aes(x = VMedian, y = AMedian-Asd, col="Red", size=1))+  geom_point(data = SumSum,mapping= aes(x = VMedian, y = AMedian+Asd, col="Red", size=1)) +  geom_segment(data = SumSum,mapping= aes(x = VMedian+Vsd, y = AMedian, xend = VMedian-Vsd, yend = AMedian, colour="Red")) +  geom_segment(data = SumSum,mapping= aes(x = VMedian, y = AMedian+Asd, xend = VMedian, yend = AMedian-Asd, colour="Red")) + theme(plot.title = element_text(size=25, face="bold.italic"),aspect.ratio=1,axis.title.x = element_text(
+  size=14, face="bold"),axis.title.y = element_text(size=20, face="bold"))+ theme(legend.position = "none")
+ANEW_p2
+```
+
+
+# Split randomly into 3 lists of 50 in each category
+```{r}
+df <- data
+df<- filter(df, Valence_And_Arousal != "0")
+#Make sure the count is still the same
+count(df$Valence_And_Arousal)
+
+#Subset into the four categories for the 2 by 2 design
+df_ValHighAroHigh <- filter(df, Valence_And_Arousal == "ValHighAroHigh") 
+df_ValHighAroLow  <- filter(df, Valence_And_Arousal == "ValHighAroLow") 
+df_ValLowAroHigh  <- filter(df, Valence_And_Arousal == "ValLowAroHigh") 
+df_ValLowAroLow   <- filter(df, Valence_And_Arousal == "ValLowAroLow") 
+#Order first - so Median will be the same with later permutations
+df_ValHighAroHigh <- df_ValHighAroHigh[order(df_ValHighAroHigh$ValMn, df_ValHighAroHigh$AroMn),]
+df_ValHighAroLow <- df_ValHighAroLow[order(df_ValHighAroLow$ValMn, df_ValHighAroLow$AroMn),]
+df_ValLowAroHigh <- df_ValLowAroHigh[order(df_ValLowAroHigh$ValMn, df_ValLowAroHigh$AroMn),]
+df_ValLowAroLow <- df_ValLowAroLow[order(df_ValLowAroLow$ValMn, df_ValLowAroLow$AroMn),]
+# Remove samples to a number divisible by 50
+df_ValHighAroHigh <- df_ValHighAroHigh[-sample(nrow(df_ValHighAroHigh), 27), ] # From 627 -> 600
+df_ValHighAroLow <- df_ValHighAroLow[-sample(nrow(df_ValHighAroLow), 35), ] # From 435 -> 400
+df_ValLowAroHigh <- df_ValLowAroHigh[-sample(nrow(df_ValLowAroHigh), 35), ] # From 435 -> 400
+df_ValLowAroLow <- df_ValLowAroLow[-sample(nrow(df_ValLowAroLow), 1), ] # From 301 -> 300
+#Makign lists within each variable
+set.seed(7)
+
+list_1 <- matrix(nrow=0,ncol=0)
+for (i in 1:50) {
+ list = sample(1:12, replace = FALSE)
+ list_1 = c(list_1, list)
+}
+df_ValHighAroHigh$List <- list_1
+
+list_2 <- matrix(nrow=0,ncol=0)
+for (i in 1:50) {
+ list = sample(1:8, replace = FALSE)
+ list_2 = c(list_2, list)
+ }
+df_ValHighAroLow$List <- list_2
+
+list_3 <- matrix(nrow=0,ncol=0)
+for (i in 1:50) {
+ list = sample(1:8, replace = FALSE)
+ list_3 = c(list_3, list)
+ }
+df_ValLowAroHigh$List <- list_3
+
+list_4 <- matrix(nrow=0,ncol=0)
+for (i in 1:50) {
+ list = sample(1:6, replace = FALSE)
+ list_4 = c(list_4, list)
+ }
+df_ValLowAroLow$List <- list_4
+
+#Doublecheck the median
+MedianCheck_VHAH<- df_ValHighAroHigh %>%
+    #Tell R to do function on each factorlevel
+  dplyr::group_by(List) %>%
+  #Summarise Median and Std
+  dplyr::summarise(VMedian = median(ValMn), AMedian = median(AroMn))
+MedianCheck_VHAH$Category <- "HighValenceHighArousal"
+
+MedianCheck_VHAL<- df_ValHighAroLow %>%
+    #Tell R to do function on each factorlevel
+  dplyr::group_by(List) %>%
+  #Summarise Median and Std
+  dplyr::summarise(VMedian = median(ValMn), AMedian = median(AroMn)) 
+MedianCheck_VHAL$Category <- "HighValenceLowArousal"
+
+MedianCheck_VLAH<- df_ValLowAroHigh %>%
+    #Tell R to do function on each factorlevel
+  dplyr::group_by(List) %>%
+  #Summarise Median and Std
+  dplyr::summarise(VMedian = median(ValMn), AMedian = median(AroMn))
+MedianCheck_VLAH$Category <- "LowValenceHighArousal"
+
+MedianCheck_VLAL<- df_ValLowAroLow %>%
+    #Tell R to do function on each factorlevel
+  dplyr::group_by(List) %>%
+  #Summarise Median and Std
+  dplyr::summarise(VMedian = median(ValMn), AMedian = median(AroMn)) 
+MedianCheck_VLAL$Category <- "LowValenceLowArousal"
+#Looks good
+
+#Summing up all
+MedianCheckAll <- rbind(MedianCheck_VLAL,MedianCheck_VLAH,MedianCheck_VHAL,MedianCheck_VHAH)
+
+
+#Print first 3 of each category
+df_ValHighAroHigh <- filter(df_ValHighAroHigh,List %in%  c("1","2","3","4","5","6"))
+df_ValHighAroLow <- filter(df_ValHighAroLow,List %in%  c("1","2","3","4","5","6"))
+df_ValLowAroHigh <- filter(df_ValLowAroHigh,List %in%  c("1","2","3","4","5","6"))
+df_ValLowAroLow <- filter(df_ValLowAroLow,List %in%  c("1","2","3","4","5","6"))
+#All together
+Printfriendly <- rbind(df_ValHighAroHigh,df_ValHighAroLow,df_ValLowAroHigh,df_ValLowAroLow)
+#All Subeted and clean for only the words  (#Used For Logs - #MICAH-MICAH-MICAH)
+ls.str(df_ValHighAroHigh)
+df_ValHighAroHigh_1 <- select(df_ValHighAroHigh, Word, List, ValMn, ValSD, AroMn, AroSD)
+df_ValHighAroLow_1 <- select(df_ValHighAroLow , Word, List, ValMn, ValSD, AroMn, AroSD)
+df_ValLowAroHigh_1 <- select(df_ValLowAroHigh, Word, List, ValMn, ValSD, AroMn, AroSD)
+df_ValLowAroLow_1 <- select(df_ValLowAroLow, Word, List, ValMn, ValSD, AroMn, AroSD)
+#Write
+#write.csv(df_ValHighAroHigh_1 , "WordList_ValHighAroHigh.csv")
+#write.csv(df_ValHighAroLow_1 , "WordList_ValHighAroLow.csv")
+#write.csv(df_ValLowAroHigh_1 , "WordList_ValLowAroHigh.csv")
+#write.csv(df_ValLowAroLow_1 , "WordList_ValLowAroLow.csv")
+
+
+```
+
+
+
+#Plot 9-point rating scale for each dimension of the Pavlovia Data
+```{r}
+#Set Absolute Path
+getwd()
+Absolute_Directory <- dirname(rstudioapi::getSourceEditorContext()$path)
+setwd(Absolute_Directory)
+getwd()
+#Going into subfolder with Pavlovia Data
+setwd("./Pavlovia_Data")
+setwd("./Pavlovia_Completed")
+getwd()
+
+#Make a list of names in Directory
+pav_filenames = list.files(pattern = "PARTIC*") #list of filenames from WD
+#Test List
+unique(pav_filenames)
+#Make Empty Dataframe
+Data = data.frame() 
+
+for (i in pav_filenames){ #loop over list of files
+  #import the current file
+  Pav <- read.delim(i,header=TRUE,sep = ",")
+  Pav <- select(Pav,A_key_resp.keys, key_resp.keys,word, ParticipantID)
+  Data <- rbind(Data,Pav)
+}
+unique(Data$ParticipantID) 
+names(Data)[1] <- "Arousal"
+names(Data)[2] <- "Valence"
+
+
+#Find Outliers (Using boxplots to find participants who didn't use the scale)
+ggplot(Data, aes(y = Arousal))+ facet_grid(~ ParticipantID) + geom_boxplot()
+ggplot(Data, aes(y = Valence))+ facet_grid(~ ParticipantID) + geom_boxplot()
+#I discard neutral "flatliners" with almost all ratings as 5
+Data <- filter(Data, ParticipantID != 1116 & ParticipantID != 11114&ParticipantID != 11116&ParticipantID != 11124&ParticipantID != 11128&ParticipantID != 11129)
+unique(Data$ParticipantID) 
+
+#Make Mean values for each word
+Means <- data_frame()
+unique(Data$word)
+for (i in unique(Data$word)){ #loop over list of files
+  test <- filter(Data, word == i)
+  test$Arousal_mean <- mean(test$Arousal)
+  test$Valence_mean <- mean(test$Valence)
+  test <- select(test,word,Arousal_mean,Valence_mean) 
+  Means <- rbind(Means,test)
+}
+Means <- Means%>% 
+  distinct(word, .keep_all = TRUE)
+#How does the data then look?
+PAV_p1 <- ggplot(Means, aes(x = Valence_mean, y = Arousal_mean, colour="red")) + geom_point() + expand_limits(x=1, y=1) + scale_x_continuous(limits = c(1,9), breaks = c(seq(1,9))) + scale_y_continuous(limits = c(1,9), breaks = c(seq(1,9))) + theme(legend.position = "none") + labs(title = "Affective Norm Ratings from Pavlovia (B1)", x = "Valence", y = "Arousal")+theme_bw()+ theme(plot.title = element_text(size=25, face="bold.italic"),aspect.ratio=1,axis.title.x = element_text(size=14, face="bold"),axis.title.y = element_text(size=20, face="bold"))+ theme(legend.position = "none")
+PAV_p1
+```
+
+# Make new flag variables for the Pavlovia Data for Tertiles calculated from the ANEW
+```{r}
+cuthigh <- 5.4
+cutlow <- 4.6
+Valence_And_Arousal <- (ifelse(Means$Valence_mean >= cuthigh & Means$Arousal_mean >= cuthigh, 'ValHighAroHigh',
+                                   ifelse(Means$Valence_mean >= cuthigh & Means$Arousal_mean <= cutlow, 'ValHighAroLow',
+                                          ifelse(Means$Valence_mean <= cutlow & Means$Arousal_mean >= cuthigh, 'ValLowAroHigh',
+                                                 ifelse(Means$Valence_mean <= cutlow & Means$Arousal_mean <= cutlow, 'ValLowAroLow',
+                                                 '0')))))
+Means <- cbind(Means,Valence_And_Arousal)
+# Calculate count for each bin
+count(Means$Valence_And_Arousal)
+"""
+               x freq
+1              0  529
+2 ValHighAroHigh  173
+3  ValHighAroLow  140
+4  ValLowAroHigh  288
+5   ValLowAroLow   70
+"""
+```
+
+# Visualize
+```{r}
+#Find Median and std
+#Subsetting
+Medians <- Means %>%
+select(Valence_mean,Arousal_mean,Valence_And_Arousal) %>%
+group_by(Valence_And_Arousal)
+Medians <- as.data.frame(Medians)
+Means$Valence_And_Arousal <- as_factor(Means$Valence_And_Arousal)
+
+SumSum <- data_frame()
+  #Enter subset
+SumSum <- Medians %>%
+    #Tell R to do function on each factorlevel
+  dplyr::group_by(Valence_And_Arousal) %>%
+  #Summarise Median and Std
+  dplyr::summarise(VMedian = median(Valence_mean), Vsd = sd(Valence_mean), AMedian = median(Arousal_mean), Asd = sd(Arousal_mean)) 
+#Remove sd and Median value for factorlevel '0'
+SumSum <- filter(SumSum, Valence_And_Arousal != "0")
+
+#Final Plot
+data1 <- filter(Means, Valence_And_Arousal != "0")
+data2 <- filter(Means, Valence_And_Arousal == "0")
+PAV_p2 <- ggplot(data1, aes(x = Valence_mean, y = Arousal_mean,col=Valence_And_Arousal)) + geom_point() + scale_color_manual(values=c("#333333","#AA0000","#ff8383","#2C5AA0","#99b7e3")) + labs(title = "Affective Norm Ratings from Pavlovia (B2)", x = "Valence", y = "Arousal") + theme_bw()  + geom_point(data = data2,mapping= aes(x = Valence_mean, y = Arousal_mean),colour = "grey",alpha= 0.2) + expand_limits(x=1, y=1) + scale_x_continuous(limits = c(1,9), breaks = c(seq(1,9))) + scale_y_continuous(limits = c(1,9), breaks = c(seq(1,9)))+ geom_point(data = SumSum,mapping= aes(x = VMedian, y = AMedian, col="Red", size=2)) + geom_point(data = SumSum,mapping= aes(x = VMedian-Vsd, y = AMedian, col="Red", size=1))+ geom_point(data = SumSum,mapping= aes(x = VMedian+Vsd, y = AMedian, col="Red", size=1)) + geom_point(data = SumSum,mapping= aes(x = VMedian, y = AMedian-Asd, col="Red", size=1))+  geom_point(data = SumSum,mapping= aes(x = VMedian, y = AMedian+Asd, col="Red", size=1)) +  geom_segment(data = SumSum,mapping= aes(x = VMedian+Vsd, y = AMedian, xend = VMedian-Vsd, yend = AMedian, colour="Red")) +  geom_segment(data = SumSum,mapping= aes(x = VMedian, y = AMedian+Asd, xend = VMedian, yend = AMedian-Asd, colour="Red"))+ theme(plot.title = element_text(size=25, face="bold.italic"),aspect.ratio=1,axis.title.x = element_text(
+  size=14, face="bold"),
+axis.title.y = element_text(size=20, face="bold"))+ theme(legend.position = "none")
+library(cowplot)
+plot_grid(PAV_p1,PAV_p2,ANEW_p1,ANEW_p2)
+```
+
+
+
+
+
+
+
+
+
+
+
+#Correlations between Pavlovia vs. ANEW
+```{r}
+#Do cormatrix
+library(gridExtra)
+library(ggpubr)
+#Make Dataframe of orignal ANEW Dataframe and our new MetaMemory Participant Dataframe
+#Load the Correct Data and put it into one dataframe
+Pav_ANEW <- data
+Pav_ANEW <- select(Pav_ANEW, Word,ValMn,AroMn)
+names(Pav_ANEW)[1] <- "word"
+
+CorData <- merge(Means,Pav_ANEW,by="word")
+names(CorData)[2] <- "Arousal_Mean_Pavlovia"
+names(CorData)[3] <- "Valence_Mean_Pavlovia"
+CorData = CorData[,-4]
+names(CorData)[4] <- "Valence_Mean_ANEW"
+names(CorData)[5] <- "Arousal_Mean_ANEW"
+#Make Numerical
+CorData$Arousal_Mean_Pavlovia <- as.numeric(CorData$Arousal_Mean_Pavlovia)
+CorData$Valence_Mean_Pavlovia <- as.numeric(CorData$Valence_Mean_Pavlovia)
+CorData$Valence_Mean_ANEW <- as.numeric(CorData$Valence_Mean_ANEW)
+CorData$Arousal_Mean_ANEW <- as.numeric(CorData$Arousal_Mean_ANEW)
+
+#Find Spearman Correlation
+Cor_Arousal<-cor.test(CorData$Arousal_Mean_Pavlovia,CorData$Arousal_Mean_ANEW, method = "spearman", exact=F)
+Cor_Arousal
+"""
+> Cor_Arousal
+0.77
+"""
+Cor_Valence<-cor.test(CorData$Valence_Mean_Pavlovia,CorData$Valence_Mean_ANEW, method = "spearman", exact=F)
+Cor_Valence
+"""
+> Cor_Valence
+0.93
+"""
+#Trying To Make Data Visualizeable
+#Visualize
+#Arousal
+Cor_Aro <- select(CorData,word,Arousal_Mean_Pavlovia,Arousal_Mean_ANEW)
+Cor_Aro <- t(Cor_Aro)
+Cor_Aro <- as.data.frame(Cor_Aro)
+colnames(Cor_Aro) <- as.character(unlist(Cor_Aro[1,]))
+Cor_Aro = Cor_Aro[-1, ]
+Cor_Aro <- t(Cor_Aro)
+Cor_Aro <- as.data.frame(Cor_Aro)
+Cor_Aro$Arousal_Mean_Pavlovia <- as.numeric(sub(",", ".", Cor_Aro$Arousal_Mean_Pavlovia,fixed = TRUE))
+Cor_Aro$Arousal_Mean_ANEW <- as.numeric(sub(",", ".",Cor_Aro$Arousal_Mean_ANEW,fixed = TRUE))
+
+
+
+#Valence
+Cor_Val <- select(CorData,word,Valence_Mean_Pavlovia,Valence_Mean_ANEW)
+Cor_Val <- t(Cor_Val)
+Cor_Val <- as.data.frame(Cor_Val)
+colnames(Cor_Val) <- as.character(unlist(Cor_Val[1,]))
+Cor_Val = Cor_Val[-1, ]
+Cor_Val <- t(Cor_Val)
+Cor_Val <- as.data.frame(Cor_Val)
+Cor_Val$Valence_Mean_Pavlovia <- as.numeric(sub(",", ".",Cor_Val$Valence_Mean_Pavlovia,fixed = TRUE))
+Cor_Val$Valence_Mean_ANEW <- as.numeric(sub(",", ".",Cor_Val$Valence_Mean_ANEW,fixed = TRUE))
+
+
+
+```
+
+#Plots
+```{r}
+Cor_Aro$Arousal_Combined <- Cor_Aro$Arousal_Mean_Pavlovia+Cor_Aro$Arousal_Mean_ANEW
+plot1 <- ggplot(Cor_Aro, aes(x=Arousal_Mean_Pavlovia, y=Arousal_Mean_ANEW,col=Arousal_Combined))+ geom_point()+ geom_abline(intercept = 0, slope = 1,colour="red",size=1)+
+  scale_x_continuous(breaks = c(1,2,3,4,5,6,7,8,9), limits=c(1,9)) +
+  scale_y_continuous(breaks = c(1,2,3,4,5,6,7,8,9), limits=c(1,9)) +
+  theme_bw()+
+  labs(title = "Ratings vs Identity Line", x = "Mean Arousal Rating: Pavlovia", y = "Mean Arousal Rating: ANEW") +annotate("text", x = 3, y = 8.5, label = "Spearman Correlation",size=6, fontface="bold")+annotate("text", x = 3, y = 8, label = "rho = 0.7669351",size=6, fontface="bold") +annotate("text", x = 3, y = 7.5, label = "P-value = 2.2e-16",size=6, fontface="bold") + theme(plot.title = element_text(size=25, face="bold.italic"),aspect.ratio=1,axis.title.x = element_text(size=14, face="bold"), axis.title.y = element_text(size=20, face="bold"))+scale_color_gradient(low="#999999", high="#333333")+ theme(legend.position = "none")+ theme(plot.title = element_text(size=25, face="bold.italic"),aspect.ratio=1,axis.title.x = element_text(
+  size=20, face="bold"),axis.text.x = element_text(face = "bold", size = 12),axis.text.y = element_text(face = "bold", size = 12),axis.title.y = element_text(size=20, face="bold"),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"))
+
+Cor_Val$Valence_Combined <- Cor_Val$Valence_Mean_Pavlovia+Cor_Val$Valence_Mean_ANEW
+plot2 <- ggplot(Cor_Val, aes(x=Valence_Mean_Pavlovia, y=Valence_Mean_ANEW,col=Valence_Combined))+ geom_point() + geom_abline(intercept = 0, slope = 1,colour="red",size=1)+
+  scale_x_continuous(breaks = c(1,2,3,4,5,6,7,8,9), limits=c(1,9)) +
+  scale_y_continuous(breaks = c(1,2,3,4,5,6,7,8,9), limits=c(1,9)) +
+  theme_bw()+
+  labs(title = "",x = "Mean Valence Rating: Pavlovia", y = "Mean Valence Rating: ANEW") +annotate("text", x = 3, y = 8.5, label = "Spearman Correlation",size=6, fontface="bold")+annotate("text", x = 3, y = 8, label = "rho = 0.9316756",size=6, fontface="bold") +annotate("text", x = 3, y = 7.5, label = "P-value = 2.2e-16",size=6, fontface="bold") + theme(plot.title = element_text(size=25, face="bold.italic"),aspect.ratio=1,axis.title.x = element_text(size=14, face="bold"),axis.title.y = element_text(size=20, face="bold")) +scale_color_gradient(low="#336699", high="#990000")+ theme(legend.position = "none") + theme(plot.title = element_text(size=25, face="bold.italic"),aspect.ratio=1,axis.title.x = element_text(
+  size=20, face="bold"),axis.text.x = element_text(face = "bold", size = 12),axis.text.y = element_text(face = "bold", size = 12),axis.title.y = element_text(size=20, face="bold"),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"))
+  
+#scale_color_manual(values=c("#336699"))
+#Plots with added 45% angel Identity line
+ggarrange(plot1,plot2)
+#Make Square
+#Spearmans Rho and P-value cor.test
+
+```
+
+
+#Libraries
+```{r}
+#Loading library
+library(gridExtra)
+library(grid)
+library(ggplot2)
+library(lattice)
+```
+
+#Pavlovia Data with ANEW Categories
+```{r}
+#Merging Data - Ratings from ANEW, placement in scatterplot from Pavlovia
+names(Means)[1] <- "Word"
+total <- merge(Means,data,by="Word")
+names(total)[4] <- "Valence_And_Arousal_Pavlovia"
+names(total)[13] <- "Valence_And_Arousal_ANEW"
+#Making new binned variables for Arousal and Valence
+total$Arousal_cutoff <- (ifelse(total$Valence_And_Arousal_ANEW == 'ValHighAroHigh', 'High', ifelse(total$Valence_And_Arousal_ANEW == 'ValLowAroHigh', 'High','Low')))
+total$Valence_cutoff <- (ifelse(total$Valence_And_Arousal_ANEW == 'ValHighAroHigh', 'High', ifelse(total$Valence_And_Arousal_ANEW == 'ValHighAroLow', 'High','Low')))
+
+
+PAV_Cross <- ggplot(total, aes(x = Valence_mean, y = Arousal_mean, colour=Valence_And_Arousal_ANEW)) + geom_point() + scale_color_manual(values=c("#AA0000","#ff8383","#2C5AA0","#99b7e3","#FFF0B5"))+ labs(x = "Valence", y = "Arousal") + geom_hline(aes(yintercept = 5)) + geom_vline(aes(xintercept = 5)) +scale_x_continuous(breaks = c(1,2,3,4,5,6,7,8,9), limits=c(1,9)) +
+  scale_y_continuous(breaks = c(1,2,3,4,5,6,7,8,9), limits=c(1,9)) +
+  theme_bw()+ theme(plot.title = element_text(size=25, face="bold.italic"),aspect.ratio=1,axis.title.x = element_text(
+  size=20, face="bold"), axis.text.x = element_text(face = "bold", size = 20),axis.text.y = element_text(face = "bold", size = 20), axis.title.y = element_text(size=20, face="bold")) +stat_ellipse() + scale_fill_manual(values = c('#999999','#E69F00'))+ theme(legend.position = "none") + theme(plot.title = element_text(size=25, face="bold.italic"),aspect.ratio=1,axis.title.x = element_text(
+  size=20, face="bold"),axis.text.x = element_text(face = "bold", size = 12),axis.text.y = element_text(face = "bold", size = 12),axis.title.y = element_text(size=20, face="bold"),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"))
+#+theme(legend.position = c(0.8, 0.2))
+
+# Marginal density plot of x (top panel)
+xdensity <- axis_canvas(PAV_Cross, axis = "x")+ geom_density(data = total, aes(Valence_mean, fill=Valence_cutoff),alpha=.5)+theme(legend.position = "none",axis.title.x = element_blank(),axis.title.y = element_blank())+ scale_fill_manual(values=c("#AA0000","#2C5AA0"))+ labs(title = "Affective Norm Ratings from (ANEW) 2017 (A3)")+ theme(plot.title = element_text(size=25, face="bold.italic"))+ theme(legend.position = "none")
+
+# Marginal density plot of y (right panel)
+ydensity <- axis_canvas(PAV_Cross, axis = "y", coord_flip = TRUE)+
+  geom_density(data=total, aes(Arousal_mean, fill=Arousal_cutoff),alpha=.5) +theme(legend.position = "none",axis.title.x = element_blank(),axis.title.y = element_blank())+coord_flip()+ scale_fill_manual(values=c("#272727","#A4A4A4"))
+
+p <- insert_xaxis_grob(PAV_Cross, xdensity, grid::unit(.2, "null"), position = "top")
+pp<- insert_yaxis_grob(p, ydensity, grid::unit(.2, "null"), position = "right")
+
+P5 <- ggdraw(pp)
+
+P5
+
+##### scale_fill_manual(values = c('#999999','#E69F00')) - > Specific Colours
+#Maybe plot without middlegroup -> split around 5
+#Means of pavlovia groups -> Hope they don't overlap
+### We're gonna see if some words are different for Danes than Americans
+#In P1's -> Color by Condition
+```
+
+#ANEW Data with ANEW Categories
+```{r}
+#Merging Data - Ratings from ANEW, placement in scatterplot from Pavlovia
+names(Means)[1] <- "Word"
+total <- merge(Means,data,by="Word")
+names(total)[4] <- "Valence_And_Arousal_Pavlovia"
+names(total)[13] <- "Valence_And_Arousal_ANEW"
+#Making new binned variables for Arousal and Valence
+total$Arousal_cutoff2 <- (ifelse(total$Valence_And_Arousal_ANEW == 'ValHighAroHigh', 'High', ifelse(total$Valence_And_Arousal_ANEW == 'ValLowAroHigh', 'High','Low')))
+total$Valence_cutoff2 <- (ifelse(total$Valence_And_Arousal_ANEW == 'ValHighAroHigh', 'High', ifelse(total$Valence_And_Arousal_ANEW == 'ValHighAroLow', 'High','Low')))
+
+
+PAV_Cross2 <- ggplot(total, aes(x = ValMn, y = AroMn, colour=Valence_And_Arousal_ANEW)) + geom_point()+ scale_color_manual(values=c("#AA0000","#ff8383","#2C5AA0","#99b7e3","#FFF0B5"))+ labs(x = "Valence", y = "Arousal") + geom_hline(aes(yintercept = 5)) + geom_vline(aes(xintercept = 5)) +scale_x_continuous(breaks = c(1,2,3,4,5,6,7,8,9), limits=c(1,9)) +
+  scale_y_continuous(breaks = c(1,2,3,4,5,6,7,8,9), limits=c(1,9)) +
+  theme_bw()+ theme(plot.title = element_text(size=25, face="bold.italic"),aspect.ratio=1,axis.title.x = element_text(
+  size=20, face="bold"),axis.text.x = element_text(face = "bold", size = 20),axis.text.y = element_text(face = "bold", size = 20),axis.title.y = element_text(size=20, face="bold")) +stat_ellipse() + scale_fill_manual(values = c('#999999','#E69F00'))+ theme(legend.position = "none") + theme(plot.title = element_text(size=25, face="bold.italic"),aspect.ratio=1,axis.title.x = element_text(
+  size=20, face="bold"),axis.text.x = element_text(face = "bold", size = 12),axis.text.y = element_text(face = "bold", size = 12),axis.title.y = element_text(size=20, face="bold"),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"))
+#+theme(legend.position = c(0.8, 0.2))
+
+# Marginal density plot of x (top panel)
+xdensity2 <- axis_canvas(PAV_Cross2, axis = "x")+ geom_density(data = total, aes(ValMn, fill=Valence_cutoff2),alpha=.5)+theme(legend.position = "none",axis.title.x = element_blank(),axis.title.y = element_blank())+ scale_fill_manual(values=c("#AA0000","#2C5AA0"))+ labs(title = "Affective Norm Ratings from (ANEW) 2017 (A3)")+ theme(plot.title = element_text(size=25, face="bold.italic"))+ theme(legend.position = "none")
+# Marginal density plot of y (right panel)
+ydensity2 <- axis_canvas(PAV_Cross2, axis = "y", coord_flip = TRUE)+
+  geom_density(data=total, aes(AroMn, fill=Arousal_cutoff2),alpha=.5) +theme(legend.position = "none",axis.title.x = element_blank(),axis.title.y = element_blank())+coord_flip()+ scale_fill_manual(values=c("#272727","#A4A4A4"))
+
+p1 <- insert_xaxis_grob(PAV_Cross2, xdensity2, grid::unit(.2, "null"), position = "top")
+p2<- insert_yaxis_grob(p1, ydensity2, grid::unit(.2, "null"), position = "right")
+
+P6 <- ggdraw(p2)
+
+P6
+##### scale_fill_manual(values = c('#AA0000','#2C5AA0'))#AA0000, Blue is #2C5AA0 - > Specific Colours
+#Maybe plot without middlegroup -> split around 5
+#Means of pavlovia groups -> Hope they don't overlap
+### We're gonna see if some words are different for Danes than Americans
+#In P1's -> Color by Condition
+```
+
+
+#Plot Everything
+```{r}
+plot_grid(ANEW_p1,ANEW_p2, P6,PAV_p1,PAV_p2,P5)
+plot_grid(P6,P5)
+ggarrange(plot1,plot2)
+
+
+#Print to SVG - 600dpi svg
+
+
+
+
+
+
+```

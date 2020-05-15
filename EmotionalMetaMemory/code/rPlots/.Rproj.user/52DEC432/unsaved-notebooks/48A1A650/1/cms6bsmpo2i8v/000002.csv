@@ -1,0 +1,5 @@
+"0","pacman::p_load(""plyr"", ""tidyr"", ""lattice"", ""ggplot2"", ""dplyr"", ""readr"", ""rmarkdown"",""Rmisc"",""devtools"",""gghalves"",""plotrix"", ""here"")"
+"0","abs_dic <- dirname(rstudioapi::getSourceEditorContext()$path)"
+"0","setwd(abs_dic)"
+"2","Error in setwd(abs_dic) : cannot change working directory
+"

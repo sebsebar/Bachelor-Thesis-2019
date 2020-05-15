@@ -1,0 +1,46 @@
+---
+title: "Reading Demographic Data"
+output: html_document
+---
+
+```{r setup, results='hide',error = FALSE, warning = FALSE, message = FALSE}
+#Loading Libraries
+library(tidyverse) ; library(plyr) ; library(doBy) ; library(ggplot2) ; library(Hmisc)
+```
+
+
+```{r, include=TRUE}
+#Setting Working Directory
+#Set Absolute Path
+getwd()
+Absolute_Directory <- dirname(rstudioapi::getSourceEditorContext()$path)
+setwd(Absolute_Directory)
+getwd()
+#Going into subfolder with SUBJ Data
+setwd("./Demographics")
+getwd()
+
+#Read Data
+demographic_data <- read.csv("Demographics.csv", sep=";")
+
+#Remove participant who piloted, who didn't show up and the two participants who had broken data
+demographic_data <- filter(demographic_data , Participant !="1" & Participant != "3" & Participant != "8" & Participant !="9")
+
+#Calculating Median and Standard Deviation (Information to put in the Paper)
+median(demographic_data$Age)
+sd(demographic_data$Age)
+
+#Make Important Columns Numeric
+demographic_data$Handedness_R_1 <- as.numeric(demographic_data$Handedness_R_1)
+demographic_data$Gender_M_1 <- as.numeric(demographic_data$Gender_M_1)
+
+#Make the Democrafic data have the same format for IDs as Trial Data
+demographic_data$ID <- paste0("Subject_", demographic_data$ID,".txt")
+#Rename ID coloumn to SUBJ
+colnames(demographic_data)[4] <- "SUBJ"
+```
+
+
+
+
+

@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1588851625367.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "6BC8A68E",
+    "lastKnownWriteTime" : 1588857711,
+    "last_content_update" : 1588857711729,
+    "path" : "C:/Users/Camile Correa/Google Drive/ECG_root/Projects/in_progress/EmotionalMetaMemory/code/rPlots/figure_4_final_cami.Rmd",
+    "project_path" : "figure_4_final_cami.Rmd",
+    "properties" : {
+        "chunk_output_type" : "inline",
+        "cursorPosition" : "5,3",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

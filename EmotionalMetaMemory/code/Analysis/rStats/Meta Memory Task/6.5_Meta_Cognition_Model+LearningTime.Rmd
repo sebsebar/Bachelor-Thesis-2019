@@ -1,0 +1,157 @@
+---
+title: "6.5_Meta_Cognition_Model+LearningTimes"
+output: html_document
+---
+
+#Exploratory
+## Running the Baysian Model on all subjects leveraging the Trial 2 Count Function for all learning times
+```{r}
+#We Make a final dataframe for all participant data to be stored within
+Meta_Cog_data_LearningTime <- data.frame()
+#We Make Dataframes to save S1 and S2
+S_LT <- data.frame()
+SS_LT <- data.frame()
+
+
+#We Make a list of all SUBJs 
+SUBJ_list <- as.list(unique(data$SUBJ))
+        #We make a list if we wish to run the function for only 1 participant
+        #Trial_SUBJ_list <- SUBJ_list[[1]]
+#We Make a list of Conditions 
+Condition_list <- as.list(unique(data$Cond))
+#############ADDED PART#############
+#We Make a list of Conditions 
+LearningTime_list <- as.list(unique(data$LearningTime))
+#############ADDED PART#############
+
+#We set the Working Directory to folder which includes the R Script leveraged by the Meta-Cognitive Model
+# https://github.com/metacoglab/HMeta-d/blob/master/R/Function_metad_indiv.R
+#Set Absolute Path
+getwd()
+Absolute_Directory <- dirname(rstudioapi::getSourceEditorContext()$path)
+setwd(Absolute_Directory)
+getwd()
+
+#Go into Subjects
+for (n_subj in SUBJ_list){
+  #Go into Conditions
+  for(n_cond in Condition_list){
+    #############ADDED PART
+    for(n_ltime in LearningTime_list){
+      #############ADDED PART
+      #Filter for Subj and Condition
+      Individisual_Dataframe <- filter(data,SUBJ==n_subj)
+      Individisual_Dataframe <- filter(Individisual_Dataframe,Cond==n_cond)
+      #############ADDED PART
+      Individisual_Dataframe <- filter(Individisual_Dataframe,LearningTime==n_ltime)
+      #############ADDED PART
+      #Format coloumns for numeric values: Left == 0 and Right == 1
+      Individisual_Dataframe$Expected <- ifelse(Individisual_Dataframe$Expected == "right",1,0)
+      Individisual_Dataframe$KeyPressed <- ifelse(Individisual_Dataframe$KeyPressed == "right",1,0)
+      #Using Trial 2 Count for 1 Participant in 1 condition
+      # Starting by making the Lists for the function inputs:
+      stimID =    as.list(Individisual_Dataframe$Expected)
+      response =  as.list(Individisual_Dataframe$KeyPressed)
+      rating =    as.list(Individisual_Dataframe$Confidence)
+      nRatings = 7
+      #Running The Trial 2 Count Function
+      newlist = trials2counts(stimID,response,rating,nRatings)
+      #Seperating output into vectors containing the total number of responses in
+      #each response category, conditional on presentation of S1 and S2.
+      nR_S1 <- unlist(newlist[1], recursive = TRUE, use.names = TRUE)
+      nR_S2 <- unlist(newlist[2], recursive = TRUE, use.names = TRUE)
+      #save S1 and S2s outside loop
+      S_LT <- rbind(S_LT,nR_S1)
+      SS_LT <- rbind(SS_LT,nR_S2)
+    
+      # Estimate metacognitive sensibility for subject with the MetaCognition Model
+      Fit <- metad_indiv(nR_S1 = nR_S1, nR_S2 = nR_S2)
+      
+      #Add Subject and condition
+      Fit$SUBJ <- n_subj
+      Fit$Cond <- n_cond
+      Fit$LearningTime <- n_ltime
+      #Bind inside the final dataframe
+      Meta_Cog_data_LearningTime <- rbind(Meta_Cog_data_LearningTime, Fit)
+      #Repeat for all conditions and subjects
+    }}}
+
+#Look at the Final Output Dataframe for the MetaCognition Model
+Meta_Cog_data_LearningTime 
+#Backup the Dataframe as to avoid overwriting 
+Backup_Final_LearningTime <- Meta_Cog_data_LearningTime
+write.csv(Backup_Final_LearningTime, file = "FinalWithOutHeartBackUp_LearningTime.csv")
+
+#Add variables for Arousal and Valence
+Meta_Cog_data_LearningTime$Arousal <- ifelse(Meta_Cog_data_LearningTime$Cond == "A+V+" | Meta_Cog_data_LearningTime$Cond == "A+V-",1,0)
+Meta_Cog_data_LearningTime$Valence <- ifelse(Meta_Cog_data_LearningTime$Cond == "A-V+" | Meta_Cog_data_LearningTime$Cond == "A+V+",1,0)
+
+#Rename Coloumn of Meta D prime
+colnames(Meta_Cog_data_LearningTime)[3] <- "meta_d"
+
+#Remove First coloumn which is an obsolete ID Coloumn
+Meta_Cog_data_LearningTime = Meta_Cog_data_LearningTime[,-1]
+Meta_Cog_data_LearningTime = Meta_Cog_data_LearningTime[,-1]
+
+#Merge the Final Meta Cognition Data with the Summary Data (Summary_data)
+Meta_Summary_LearningTime <- merge(Meta_Cog_data_LearningTime,Summary_data_LT,by = c("SUBJ", "Cond","LearningTime"))
+
+###Merge with the Demographic Data
+Meta_Summary_Demo_LearningTime <- merge(Meta_Summary_LearningTime,demographic_data, by = "SUBJ")
+```
+#Excluding same as in the original script
+```{r}
+Meta_Summary_Demo_LearningTime_Or <- Meta_Summary_Demo_LearningTime
+Meta_Summary_Demo_LearningTime_Or <- filter(Meta_Summary_Demo_LearningTime_Or,SUBJ!= "Subject_11138.txt" & SUBJ!= "Subject_11124.txt")
+unique(Meta_Summary_Demo_LearningTime_Or$SUBJ)
+write.csv(Meta_Summary_Demo_LearningTime_Or, file = "FinalWithOutHeart_LearningTime_Or.csv")
+```
+
+#Plotting and Find Participants to Exclude by OSF Exlcusion Criteria
+```{r setup, include=FALSE}
+#Participants with mean d' less than or equal to 0 will be excluded because this indicates that they are unable to do the task. 
+#Participants with mean meta-d' less than or equal to 0 will be excluded because m-ratio is uninterpretable in these cases.
+Min_Metad <- filter(Meta_Summary_Demo_LearningTime,meta_d <=0)
+Min_d <- filter(Meta_Summary_Demo_LearningTime,d <=0)
+Min_Metad$SUBJ ; Min_d$SUBJ
+
+"""
+meta d outliers to be removed: 'Subject_11115.txt' 'Subject_11117.txt' 'Subject_11117.txt' 'Subject_11137.txt' 'Subject_11139.txt'
+mean d outliers to be removed: 'Subject_11126.txt' 'Subject_11129.txt' 'Subject_11138.txt'
+"""
+Meta_Summary_Demo_LearningTime <- filter(Meta_Summary_Demo_LearningTime,SUBJ!= "Subject_11115.txt" & SUBJ!= "Subject_11117.txt"& SUBJ!= "Subject_11137.txt"& SUBJ!= "Subject_11139.txt"& SUBJ!= "Subject_11126.txt"& SUBJ!= "Subject_11129.txt"& SUBJ!= "Subject_11138.txt")
+unique(Meta_Summary_Demo_LearningTime$SUBJ)
+
+
+# We look at Type 1 and Type 2 Errors
+#FAR (Type2)>95% & HR (Type 1)<5%
+boxplot(Meta_Summary_Demo_LearningTime$ratingHR)
+boxplot(Meta_Summary_Demo_LearningTime$ratingFAR)
+#We see no Type 1 or 2 errors - so no reason to exclude
+
+#If m-ratio cannot be estimated, for example because there is no variability in confidence reports or in accuracy, then that participant will be excluded.But all m-ratios could be calculated and no participants needs exclusion
+
+#Finally, outliers in task performance will be detected by inspecting boxplots of reaction time, d’, and confidence across all subjects; subjects whose values for any of these variables on any condition are greater than 1.5 times the interquartile range will be excluded from the analysis
+#Plotting For Confidence and Reaction Time and d'
+ggplot(Meta_Summary_Demo_LearningTime, aes(x = Cond, y = Confidence.mean, col=LearningTime)) + geom_boxplot(outlier.colour = "red") +geom_text(aes(label=SUBJ),hjust=0, vjust=0)
+ggplot(Meta_Summary_Demo_LearningTime, aes(x = Cond, y = RT.median)) + geom_boxplot(outlier.colour = "red")+geom_text(aes(label=SUBJ),hjust=0, vjust=0)
+ggplot(Meta_Summary_Demo_LearningTime, aes(x = Cond, y = d, label=SUBJ)) + geom_boxplot(outlier.colour = "red")+geom_text(aes(label=SUBJ),hjust=0, vjust=0) +geom_text(aes(label=SUBJ),hjust=0, vjust=0)
+#Subject 11127 seem to be outliers in Confidence and should therefore be excluded
+#Subject 11136,11140,11125,11135,11119, seem to be outliers in RT and should therefore be excluded
+#Subject 11127,11141,11130,47617,11127,11123, seem to be outliers in RT and should therefore be excluded
+
+Meta_Summary_Demo_LearningTime <- filter(Meta_Summary_Demo_LearningTime,SUBJ!= "Subject_11127.txt" & SUBJ!= "Subject_11136.txt"& SUBJ!= "Subject_11140.txt"& SUBJ!= "Subject_11125.txt"& SUBJ!= "Subject_11135.txt"& SUBJ!= "Subject_11119.txt"& SUBJ!= "Subject_11127.txt"& SUBJ!= "Subject_11141.txt"& SUBJ!= "Subject_11130.txt"& SUBJ!= "Subject_47617.txt"& SUBJ!= "Subject_11123.txt")
+unique(Meta_Summary_Demo_LearningTime$SUBJ)
+
+#Explore Meta D' over conditions to Test for skewed M-ratio
+#Boxplots of Meta D' for all conditions
+ggplot(Meta_Summary_Demo_LearningTime,aes(y=meta_d,x=Cond))+ geom_boxplot()+geom_point()+facet_wrap(~LearningTime)
+#Boxplots of Meta D' for all conditions
+ggplot(Meta_Summary_Demo_LearningTime,aes(x=meta_d, fill=Cond))+ geom_histogram(aes(y = ..density..), binwidth = .4)+facet_wrap(~LearningTime)
+########################### M-ratios don't look tooo good
+
+#A total of 14 participants
+#Save to CSV
+
+write.csv(Meta_Summary_Demo_LearningTime, file = "FinalWithOutHeart_LearningTime_OSF_Exclusion.csv")
+```

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1588884676438.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1381399469",
+    "id" : "58F1927C",
+    "lastKnownWriteTime" : 1588857711,
+    "last_content_update" : 1588884679474,
+    "path" : "C:/Users/Micah Allen/Google Drive/ECG_root/Projects/in_progress/EmotionalMetaMemory/code/rPlots/figure_4_final_cami.Rmd",
+    "project_path" : "figure_4_final_cami.Rmd",
+    "properties" : {
+        "chunk_output_type" : "inline"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

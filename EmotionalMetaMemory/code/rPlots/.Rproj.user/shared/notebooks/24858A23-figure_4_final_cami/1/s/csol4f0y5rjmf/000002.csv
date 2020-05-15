@@ -1,0 +1,23 @@
+"0","```r
+pacman::p_load(\"plyr\", \"tidyr\", \"lattice\", \"ggplot2\", \"dplyr\", \"patchwork\",
+              \"cowplot\",\"readr\", \"rmarkdown\",\"Rmisc\",\"devtools\",\"gghalves\",\"plotrix\", \"here\")
+
+abs_dic <- dirname(rstudioapi::getSourceEditorContext()$path)
+setwd(abs_dic)
+
+# width and height variables for saved plots
+w = 5
+h = 5
+
+# nudge variables for rainclouds
+
+nudge_dot_a = 1.15
+nudge_dot_b = -1.15
+
+nudge_cloud_a = 1.25
+nudge_cloud_b = -1.25
+
+# Make the figure folder if it doesn't exist yet
+dir.create('../figures/', showWarnings = FALSE)
+
+```"

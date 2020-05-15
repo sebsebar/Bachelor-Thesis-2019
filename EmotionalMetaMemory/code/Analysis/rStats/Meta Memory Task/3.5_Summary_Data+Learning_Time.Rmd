@@ -1,0 +1,52 @@
+---
+title: "3_Summary_Data+Learning_Time"
+output: html_document
+---
+
+#Finding Summary Data for Accuracy, Confidence ReactionTime, ReactionTime and Confidence Scores
+```{r setup, results='hide',error = FALSE, warning = FALSE, message = FALSE}
+#Loading Libraries
+library(tidyverse) ; library(plyr) ; library(doBy) ; library(ggplot2) ; library(Hmisc)
+```
+
+
+```{r}
+#Set Absolute Path
+getwd()
+Absolute_Directory <- dirname(rstudioapi::getSourceEditorContext()$path)
+setwd(Absolute_Directory)
+getwd()
+
+#Extract summaries for each participant and each condition for Accuracy, Confidence ReactionTime, ReactionTime and Confidence Scores
+data$Accuracy <- as.numeric(data$Accuracy)
+Sum_ACC_LT <- doBy::summaryBy( Accuracy ~ SUBJ|Cond|LearningTime, data = data, FUN = list(mean, median, sd))
+Sum_CRT_LT <- doBy::summaryBy( Confidence_RT ~ SUBJ|Cond|LearningTime, data = data, FUN = list(mean, median, sd))
+Sum_RT_LT <- doBy::summaryBy( RT ~ SUBJ|Cond|LearningTime, data = data, FUN = list(mean, median, sd))
+Sum_C_LT <- doBy::summaryBy( Confidence ~ SUBJ|Cond|LearningTime, data = data, FUN = list(mean, median, sd))
+#Add % accuracy (total correct trials for that condition/total trials for that condition) & Number of rejected trials per condition
+Sum_rej_trials_LT <- data.frame()
+    #Make list of SUBJs, Conditions and LearningTimes
+    SUBJ_list <- as.list(unique(data$SUBJ))
+    Condition_list <- as.list(unique(data$Cond))
+    LearningT_list <- as.list(unique(data$LearningTime))
+    #Go into Subjects
+    for (n_subjects in SUBJ_list){
+      #Go into Conditions
+      for(n_con in Condition_list){
+        for(n_list in LearningT_list){
+          temp1 <- filter(data, SUBJ == n_subjects & Cond == n_con & LearningTime == n_list)
+          p <- nrow(temp1)
+          l <- nrow(temp1)/150
+          S <- count(temp1$Accuracy == 1)
+          S <- S[2,2]/p
+          pls <- cbind(p,l,S)
+          Sum_rej_trials_LT <- rbind(Sum_rej_trials_LT,pls)
+          }}}
+      names(Sum_rej_trials_LT) <- c("Total_Accepted_Trials","Reject_Ratio_from_150", "Accuracy_in_percent")
+      
+#Bind all Summary data together into a final summary of ( Accuracy, Confidence ReactionTime, ReactionTime, Confidence Scores, % accuracy and Number of rejected trials)
+Summary_data_LT <- cbind(Sum_C_LT,Sum_CRT_LT,Sum_RT_LT,Sum_ACC_LT,Sum_rej_trials_LT) 
+
+#Remove Duplicate Subject Coloumns
+Summary_data_LT <- subset(Summary_data_LT, select=which(!duplicated(colnames(Summary_data_LT))))
+```

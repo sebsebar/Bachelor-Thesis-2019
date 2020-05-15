@@ -1,0 +1,283 @@
+---
+title: "Figure 3"
+output:
+  html_document:
+    df_print: paged
+editor_options:
+  chunk_output_type: inline
+---
+
+```{r Prepare}
+pacman::p_load("plyr", "lattice", "ggplot2", "dplyr", "readr", "rmarkdown","Rmisc","devtools","gghalves","plotrix")
+
+abs_dic <- dirname(rstudioapi::getSourceEditorContext()$path)
+setwd(abs_dic)
+
+# width and height variables for saved plots
+w = 5
+h = 5
+
+# Make the figure folder if it doesn't exist yet
+dir.create('../figures/', showWarnings = FALSE)
+
+```
+
+```{r Read data}
+data <- read.csv("behaviour.txt")
+
+data$Valence <- factor(data$Valence, levels = c("Low", "High"))
+data$Valence <- revalue(data$Valence, c("Low"="Negative", "High"="Positive"))
+data$Arousal <- factor(data$Arousal, levels = c("Low", "High"))
+
+data$xj <- jitter(as.numeric(as.factor(data$Arousal)), amount=0.02)
+
+data$Arousal <- as.numeric(as.factor(data$Arousal))
+
+summary_data <- data %>%
+  group_by(Valence, Arousal) %>%
+  select(-Subject, -X) %>%
+  summarise_all(funs(mean, std.error))
+
+```
+
+
+```{r Plotting A}
+
+P_A <- ggplot(data = summary_data, aes(y = Accuracy_mean)) +
+   geom_point(data = summary_data, aes( x = Arousal, color = Valence, y = Accuracy_mean), position = position_nudge(0), alpha = 1) +
+   geom_point(data = data %>% filter(Arousal==1), aes(x = xj, colour = Valence, y = Accuracy),
+                position = position_nudge(-.15), alpha =.8, size=1.5)+
+   geom_point(data = data %>% filter(Arousal==2), aes(x = xj, colour = Valence, y = Accuracy),
+                position = position_nudge(.15), alpha =.8,size=1.5) +
+  geom_errorbar(data = summary_data, aes(x = as.numeric(Arousal), colour = Valence, ymin = Accuracy_mean-Accuracy_std.error, ymax = Accuracy_mean+Accuracy_std.error),width = 0, size =1, position = position_nudge(0), alpha = 1) +
+   geom_line(aes(x = Arousal, color=Valence,y = Accuracy_mean),  alpha = 1) +
+   geom_line(aes(x = Arousal, color=Valence, y = Accuracy_mean), alpha = 1) +
+   geom_half_violin(
+     data = data %>% filter(Arousal=="1"),aes(x = Arousal, color=Valence,fill = Valence,y = Accuracy), position = position_nudge(x = -.3), 
+     side = "l", alpha = .6) +
+   geom_half_violin(
+     data = data %>% filter(Arousal=="2"),aes(x = Arousal, color=Valence,fill = Valence,y = Accuracy), position = position_nudge(x = .3), 
+     side = "r", alpha = .6) +
+  scale_x_continuous(breaks=c(1,2), labels=c("Low", "High"), limits=c(0, 3)) +
+     #Define additional settings
+   xlab("Arousal") + ylab("Accuracy Mean") +
+   ggtitle('A') +
+   theme_light()+
+   theme(legend.position = "none") +
+  theme(title = element_text(size=14, face="bold"),axis.text.x = element_text(face = "bold", size = 14),axis.text.y = element_text(face = "bold", size = 14),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(),axis.line = element_line(colour = "black"))+
+  scale_fill_manual(values=c("#2C5AA0","#AA0000")) +
+  scale_color_manual(values=c("#2C5AA0","#AA0000"))
+
+ggsave(filename="figures/Figure3_A.svg", plot=P_A, width = w, height = h,dpi=600)
+
+```
+
+
+
+```{r Plotting B}
+
+P_B <- ggplot(data = summary_data, aes(y = dPrime_mean)) +
+   geom_point(data = summary_data, aes( x = Arousal, color = Valence, y = dPrime_mean), position = position_nudge(0), alpha = 1) +
+   geom_point(data = data %>% filter(Arousal==1), aes(x = xj, colour = Valence, y = dPrime),
+                position = position_nudge(-.15), alpha =.8, size=1.5)+
+   geom_point(data = data %>% filter(Arousal==2), aes(x = xj, colour = Valence, y = dPrime),
+                position = position_nudge(.15), alpha =.8,size=1.5) +
+  geom_errorbar(data = summary_data, aes(x = as.numeric(Arousal), colour = Valence, ymin = dPrime_mean-dPrime_std.error, ymax = dPrime_mean+dPrime_std.error),width = 0, size =1, position = position_nudge(0), alpha = 1) +
+   geom_line(aes(x = Arousal, color=Valence,y = dPrime_mean),  alpha = 1) +
+   geom_line(aes(x = Arousal, color=Valence, y = dPrime_mean), alpha = 1) +
+   geom_half_violin(
+     data = data %>% filter(Arousal=="1"),aes(x = Arousal, color=Valence,fill = Valence,y = dPrime), position = position_nudge(x = -.3), 
+     side = "l", alpha = .6) +
+   geom_half_violin(
+     data = data %>% filter(Arousal=="2"),aes(x = Arousal, color=Valence,fill = Valence,y = dPrime), position = position_nudge(x = .3), 
+     side = "r", alpha = .6) +
+  scale_x_continuous(breaks=c(1,2), labels=c("Low", "High"), limits=c(0, 3)) +
+     #Define additional settings
+   xlab("Arousal") + ylab("d'") +
+   ggtitle('B') +
+   theme_light()+
+   theme(legend.position = "none") +
+  theme(title = element_text(size=14, face="bold"),axis.text.x = element_text(face = "bold", size = 14),axis.text.y = element_text(face = "bold", size = 14),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(),axis.line = element_line(colour = "black"))+
+  scale_fill_manual(values=c("#2C5AA0","#AA0000")) +
+  scale_color_manual(values=c("#2C5AA0","#AA0000"))
+
+ggsave(filename="figures/Figure3_B.svg", plot=P_B, width = w, height = h,dpi=600)
+
+```
+
+
+
+```{r Plotting C}
+
+P_C <- ggplot(data = summary_data, aes(y = RT_mean)) +
+   geom_point(data = summary_data, aes( x = Arousal, color = Valence, y = RT_mean), position = position_nudge(0), alpha = 1) +
+   geom_point(data = data %>% filter(Arousal==1), aes(x = xj, colour = Valence, y = RT),
+                position = position_nudge(-.15), alpha =.8, size=1.5)+
+   geom_point(data = data %>% filter(Arousal==2), aes(x = xj, colour = Valence, y = RT),
+                position = position_nudge(.15), alpha =.8,size=1.5) +
+  geom_errorbar(data = summary_data, aes(x = as.numeric(Arousal), colour = Valence, ymin = RT_mean-RT_std.error, ymax = RT_mean+RT_std.error),width = 0, size =1, position = position_nudge(0), alpha = 1) +
+   geom_line(aes(x = Arousal, color=Valence,y = RT_mean),  alpha = 1) +
+   geom_line(aes(x = Arousal, color=Valence, y = RT_mean), alpha = 1) +
+   geom_half_violin(
+     data = data %>% filter(Arousal=="1"),aes(x = Arousal, color=Valence,fill = Valence,y = RT), position = position_nudge(x = -.3), 
+     side = "l", alpha = .6) +
+   geom_half_violin(
+     data = data %>% filter(Arousal=="2"),aes(x = Arousal, color=Valence,fill = Valence,y = RT), position = position_nudge(x = .3), 
+     side = "r", alpha = .6) +
+  scale_x_continuous(breaks=c(1,2), labels=c("Low", "High"), limits=c(0, 3)) +
+     #Define additional settings
+   xlab("Arousal") + ylab("Accuracy RT Mean") +
+   ggtitle('C') +
+   theme_light()+
+   theme(legend.position = "none") +
+  theme(title = element_text(size=14, face="bold"),axis.text.x = element_text(face = "bold", size = 14),axis.text.y = element_text(face = "bold", size = 14),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(),axis.line = element_line(colour = "black"))+
+  scale_fill_manual(values=c("#2C5AA0","#AA0000")) +
+  scale_color_manual(values=c("#2C5AA0","#AA0000"))
+
+ggsave(filename="figures/Figure3_C.svg", plot=P_C, width = w, height = h,dpi=600)
+
+```
+
+
+
+```{r Plotting D}
+
+P_D <- ggplot(data = summary_data, aes(y = Confidence_mean)) +
+   geom_point(data = summary_data, aes( x = Arousal, color = Valence, y = Confidence_mean), position = position_nudge(0), alpha = 1) +
+   geom_point(data = data %>% filter(Arousal==1), aes(x = xj, colour = Valence, y = Confidence),
+                position = position_nudge(-.15), alpha =.8, size=1.5)+
+   geom_point(data = data %>% filter(Arousal==2), aes(x = xj, colour = Valence, y = Confidence),
+                position = position_nudge(.15), alpha =.8,size=1.5) +
+  geom_errorbar(data = summary_data, aes(x = as.numeric(Arousal), colour = Valence, ymin = Confidence_mean-Confidence_std.error, ymax = Confidence_mean+Confidence_std.error),width = 0, size =1, position = position_nudge(0), alpha = 1) +
+   geom_line(aes(x = Arousal, color=Valence,y = Confidence_mean),  alpha = 1) +
+   geom_line(aes(x = Arousal, color=Valence, y = Confidence_mean), alpha = 1) +
+   geom_half_violin(
+     data = data %>% filter(Arousal=="1"),aes(x = Arousal, color=Valence,fill = Valence,y = Confidence), position = position_nudge(x = -.3), 
+     side = "l", alpha = .6) +
+   geom_half_violin(
+     data = data %>% filter(Arousal=="2"),aes(x = Arousal, color=Valence,fill = Valence,y = Confidence), position = position_nudge(x = .3), 
+     side = "r", alpha = .6) +
+  scale_x_continuous(breaks=c(1,2), labels=c("Low", "High"), limits=c(0, 3)) +
+     #Define additional settings
+   xlab("Arousal") + ylab("Confidence Mean") +
+   ggtitle('D') +
+   theme_light()+
+   theme(legend.position = "none") +
+  theme(title = element_text(size=14, face="bold"),axis.text.x = element_text(face = "bold", size = 14),axis.text.y = element_text(face = "bold", size = 14),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(),axis.line = element_line(colour = "black"))+
+  scale_fill_manual(values=c("#2C5AA0","#AA0000")) +
+  scale_color_manual(values=c("#2C5AA0","#AA0000"))
+
+ggsave(filename="figures/Figure3_D.svg", plot=P_D, width = w, height = h,dpi=600)
+
+```
+
+
+```{r Plotting E}
+
+P_E <- ggplot(data = summary_data, aes(y = MetadPrime_mean)) +
+   geom_point(data = summary_data, aes( x = Arousal, color = Valence, y = MetadPrime_mean), position = position_nudge(0), alpha = 1) +
+   geom_point(data = data %>% filter(Arousal==1), aes(x = xj, colour = Valence, y = MetadPrime),
+                position = position_nudge(-.15), alpha =.8, size=1.5)+
+   geom_point(data = data %>% filter(Arousal==2), aes(x = xj, colour = Valence, y = MetadPrime),
+                position = position_nudge(.15), alpha =.8,size=1.5) +
+  geom_errorbar(data = summary_data, aes(x = as.numeric(Arousal), colour = Valence, ymin = MetadPrime_mean-MetadPrime_std.error, ymax = MetadPrime_mean+MetadPrime_std.error),width = 0, size =1, position = position_nudge(0), alpha = 1) +
+   geom_line(aes(x = Arousal, color=Valence,y = MetadPrime_mean),  alpha = 1) +
+   geom_line(aes(x = Arousal, color=Valence, y = MetadPrime_mean), alpha = 1) +
+   geom_half_violin(
+     data = data %>% filter(Arousal=="1"),aes(x = Arousal, color=Valence,fill = Valence,y = MetadPrime), position = position_nudge(x = -.3), 
+     side = "l", alpha = .6) +
+   geom_half_violin(
+     data = data %>% filter(Arousal=="2"),aes(x = Arousal, color=Valence,fill = Valence,y = MetadPrime), position = position_nudge(x = .3), 
+     side = "r", alpha = .6) +
+  scale_x_continuous(breaks=c(1,2), labels=c("Low", "High"), limits=c(0, 3)) +
+     #Define additional settings
+   xlab("Arousal") + ylab("Meta d'") +
+   ggtitle('E') +
+   theme_light()+
+   theme(legend.position = "none") +
+  theme(title = element_text(size=14, face="bold"),axis.text.x = element_text(face = "bold", size = 14),axis.text.y = element_text(face = "bold", size = 14),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(),axis.line = element_line(colour = "black"))+
+  scale_fill_manual(values=c("#2C5AA0","#AA0000")) +
+  scale_color_manual(values=c("#2C5AA0","#AA0000"))
+
+ggsave(filename="figures/Figure3_E.svg", plot=P_E, width = w, height = h,dpi=600)
+
+```
+
+
+```{r Plotting F}
+
+P_F <- ggplot(data = summary_data, aes(y = Mratio_mean)) +
+   geom_point(data = summary_data, aes( x = Arousal, color = Valence, y = Mratio_mean), position = position_nudge(0), alpha = 1) +
+   geom_point(data = data %>% filter(Arousal==1), aes(x = xj, colour = Valence, y = Mratio),
+                position = position_nudge(-.15), alpha =.8, size=1.5)+
+   geom_point(data = data %>% filter(Arousal==2), aes(x = xj, colour = Valence, y = Mratio),
+                position = position_nudge(.15), alpha =.8,size=1.5) +
+  geom_errorbar(data = summary_data, aes(x = as.numeric(Arousal), colour = Valence, ymin = Mratio_mean-Mratio_std.error, ymax = Mratio_mean+Mratio_std.error),width = 0, size =1, position = position_nudge(0), alpha = 1) +
+   geom_line(aes(x = Arousal, color=Valence,y = Mratio_mean),  alpha = 1) +
+   geom_line(aes(x = Arousal, color=Valence, y = Mratio_mean), alpha = 1) +
+   geom_half_violin(
+     data = data %>% filter(Arousal=="1"),aes(x = Arousal, color=Valence,fill = Valence,y = Mratio), position = position_nudge(x = -.3), 
+     side = "l", alpha = .6) +
+   geom_half_violin(
+     data = data %>% filter(Arousal=="2"),aes(x = Arousal, color=Valence,fill = Valence,y = Mratio), position = position_nudge(x = .3), 
+     side = "r", alpha = .6) +
+  scale_x_continuous(breaks=c(1,2), labels=c("Low", "High"), limits=c(0, 3)) +
+     #Define additional settings
+   xlab("Arousal") + ylab("Mratio'") +
+   ggtitle('F') +
+   theme_light()+
+   theme(legend.position = "none") +
+  theme(title = element_text(size=14, face="bold"),axis.text.x = element_text(face = "bold", size = 14),axis.text.y = element_text(face = "bold", size = 14),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(),axis.line = element_line(colour = "black"))+
+  scale_fill_manual(values=c("#2C5AA0","#AA0000")) +
+  scale_color_manual(values=c("#2C5AA0","#AA0000"))
+
+ggsave(filename="figures/P_F.svg", plot=P_F, width = w, height = h,dpi=600)
+
+```
+
+
+```{r Plotting Valence}
+
+Valence <- ggplot(data = summary_data, aes(y = Mratio_mean)) +
+   geom_point(data = summary_data, aes( x = Arousal, color = Valence, y = Mratio_mean), position = position_nudge(0), alpha = 1) +
+   geom_point(data = data %>% filter(Arousal==1), aes(x = xj, colour = Valence, y = Mratio),
+                position = position_nudge(-.15), alpha =.8, size=1.5)+
+   geom_point(data = data %>% filter(Arousal==2), aes(x = xj, colour = Valence, y = Mratio),
+                position = position_nudge(.15), alpha =.8,size=1.5) +
+  geom_errorbar(data = summary_data, aes(x = as.numeric(Arousal), colour = Valence, ymin = Mratio_mean-Mratio_std.error, ymax = Mratio_mean+Mratio_std.error),width = 0, size =1, position = position_nudge(0), alpha = 1) +
+   geom_line(aes(x = Arousal, color=Valence,y = Mratio_mean),  alpha = 1) +
+   geom_line(aes(x = Arousal, color=Valence, y = Mratio_mean), alpha = 1) +
+   geom_half_violin(
+     data = data %>% filter(Arousal=="1"),aes(x = Arousal, color=Valence,fill = Valence,y = Mratio), position = position_nudge(x = -.3), 
+     side = "l", alpha = .6) +
+   geom_half_violin(
+     data = data %>% filter(Arousal=="2"),aes(x = Arousal, color=Valence,fill = Valence,y = Mratio), position = position_nudge(x = .3), 
+     side = "r", alpha = .6) +
+  scale_x_continuous(breaks=c(1,2), labels=c("Low", "High"), limits=c(0, 3)) +
+     #Define additional settings
+   xlab("Arousal") + ylab("Mratio'") +
+   ggtitle('Valence') +
+   theme_light()+
+   #theme(legend.position = "none") +
+  theme(title = element_text(size=14, face="bold"),axis.text.x = element_text(face = "bold", size = 14),axis.text.y = element_text(face = "bold", size = 14),
+        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(),axis.line = element_line(colour = "black"))+
+  scale_fill_manual(values=c("#2C5AA0","#AA0000")) +
+  scale_color_manual(values=c("#2C5AA0","#AA0000"))
+
+ggsave(filename="figures/Valence.svg", plot=Valence, width = 2, height = 2,dpi=600)
+
+```
+

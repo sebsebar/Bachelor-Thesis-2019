@@ -1,0 +1,3 @@
+"0","#plot_grid(P_A, P_B, P_C, P_D, P_E, P_F, nrow = 2, ncol = 3)"
+"0","mp<- P_A + P_B + P_C + P_D + P_E + P_F + plot_layout(guides = 'collect', ncol = 3)#, heights = c(10,10), widths = c(10,10,10))"
+"0","mp"

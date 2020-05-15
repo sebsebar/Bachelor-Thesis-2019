@@ -1,0 +1,30 @@
+---
+title: "7.6 Jasp For No Exclusions"
+output: html_document
+---
+#Convert from Wide to Long format for analysis in JASP
+```{r setup, include=FALSE}
+#Load Library
+library(tidyverse)
+#Set Absolute Path
+getwd()
+Absolute_Directory <- dirname(rstudioapi::getSourceEditorContext()$path)
+setwd(Absolute_Directory)
+getwd()
+
+Meta_Summary_Demo <- read.csv("FinalWithOutHeart_No_Exclu_ReRun.csv")
+#Drop first coloumn as it was added for no reason
+Meta_Summary_Demo <- subset(Meta_Summary_Demo, select = -c(X))
+
+#Format for Jasp (From Wide to Long Format)
+library(reshape2)
+Jasp <- Meta_Summary_Demo
+
+Jasp <- select(Jasp,meta_d,d,criterion,SUBJ,Cond,mratio,Confidence.mean,RT.median,Confidence_RT.median, Accuracy_in_percent, Handedness_R_1,Total_Accepted_Trials,Gender_M_1,Accuracy.mean)
+
+Jasp <- Jasp%>%
+  pivot_wider(names_from = c(Cond),names_sep = "_",values_from = c(meta_d,d,criterion,mratio,Confidence.mean,RT.median,Confidence_RT.median, Accuracy_in_percent, Handedness_R_1,Total_Accepted_Trials,Gender_M_1,Accuracy.mean))
+
+Final_Jasp_Dataframe <- Jasp
+write.csv(Final_Jasp_Dataframe,file = "Final_Jasp_Dataframe_No_Exclu_ReRun.csv")
+```

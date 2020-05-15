@@ -1,0 +1,4 @@
+,Accuracy,Arousal,Confidence,Confidence_RT,KeyPressed,LearningTime,RT,TrialNumber,Valence,nBlock
+0,0.0,High,,0.009,NaN,30.0,Nan,0.0,Low,0.0
+1,0.0,Low,,0.006,NaN,30.0,Nan,0.0,High,1.0
+2,0.0,High,,0.006,NaN,60.0,Nan,0.0,Low,2.0
